@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dexie</title>
+</head>
+<body>
+<script src="./dexie.js"></script>
+<script>
+  //只创建数据库数据表暂时不添加数据
+  let db = new Dexie('Famous_People');
+  db.version(1).stores({
+    fake_people: '++id,name,sex,age,from',
+    real_people: '++id,name,sex,age,from',
+  });
+  //更新数据表字段
+  db.version(2).stores({
+    fake_people: '++id,name,sex,age,from,isMarried',
+  });
+  db.version(3).stores({fake_people: "++id,sex,age,from,isMarried,firstName,lastName"}).upgrade(tx => {
+    // An upgrade function for version 3 will upgrade data based on version 2.
+    return tx.fake_people.toCollection().modify(person => {
+      // Modify each friend:
+      person.firstName = person.name.split(' ')[0];
+      person.lastName = person.name.split(' ')[1];
+      delete person.name;
+    });
+  });
+  db.version(4).stores({fake_people: null});
+  db.version(5).stores({real_people: null});
+  db.open();
+</script>
+</body>
+</html>

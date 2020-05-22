@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>读取avatar.png文件</title>
+</head>
+<body>
+<img src="" alt="" id="img">
+<script src="./localforage.min.js"></script>
+<script>
+  let img = document.getElementById('img');
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    //异步读取成功
+    //console.log(xhr.response);
+    let avatar = xhr.response;
+    //将数据保存到IndexedDB
+    localforage.setItem('avatar', avatar)
+        .then(image => {
+          console.log('保存成功');
+          // 如下为一个合法的 <img> 标签的 blob URI
+          let blob = new Blob([image]);
+          let imageURI = URL.createObjectURL(blob);
+          console.log(imageURI);
+          img.src = imageURI;
+        })
+        .catch(error => {
+          console.log('保存失败', error);
+        });
+  };
+  xhr.open('GET', './avatar.png');
+  xhr.send();
+  xhr.responseType = 'arraybuffer';
+</script>
+</body>
+</html>

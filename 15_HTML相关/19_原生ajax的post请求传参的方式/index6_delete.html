@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>delete</title>
+</head>
+<body>
+<script>
+  let url = 'http://192.168.2.242:8080/newinterlockwebservice/deltype';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    console.log(xhr.response);
+  };
+  xhr.onerror = function (err) {
+    console.log(err);
+  };
+  xhr.open('POST', url);
+  xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  xhr.send('id=11');
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流和防抖</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      height: 20000px
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<ul>
+  <li>1</li>
+  <li>11</li>
+  <li>111</li>
+</ul>
+<script>
+  //防抖：频繁触发的事件，只在最后一次触发后的间隔一段时间才真正的去处理，
+  //      如果设定的时间到来之前，又一次触发了事件，就重新开始计时
+  const debounce = function (fn, delay) {
+    let timer = null
+    //返回的函数是真正进行处理的函数
+    return function (...args) {
+      //把上一次事件触发时设置的定时器清除掉
+      clearTimeout(timer)
+      //只有在事件停止触发后又过了delay时间后才会真的去执行延时定时器中的代码
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+
+  window.onscroll = debounce(function () {
+    console.log(200000)
+  }, 2000)
+
+  //节流：频繁触发的事件，保证每次只在固定的时间间隔内处理一次
+  const throttle = function (fn, delay) {
+    let flag = true
+    return function (...args) {
+      if (flag) {
+        flag = false
+        setTimeout(() => {
+          fn.apply(this, args)
+          flag = true
+        }, delay)
+      }
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>html2canvas</title>
+</head>
+<body>
+<div id="capture" style="padding: 10px; background: #f5da55">
+  <h4 style="color: #000; ">Hello world!</h4>
+</div>
+<button id="btn">按钮</button>
+<script src="./html2canvas.js"></script>
+<script>
+  document.getElementById('btn').onclick = function () {
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+      document.body.appendChild(canvas)
+    });
+  };
+</script>
+</body>
+</html>

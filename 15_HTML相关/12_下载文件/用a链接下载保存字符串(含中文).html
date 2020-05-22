@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用a链接下载保存字符串(含中文)</title>
+</head>
+
+<body>
+<button id="btn">按钮</button>
+<a href="" id="download-link" download="" style="display:none;">保存</a>
+<script>
+  let aLink = document.getElementById('download-link');
+  let student = {name: 'Tom克鲁斯', age: 45};
+  console.log(btoa(encodeURIComponent(JSON.stringify(student))));
+  console.log((encodeURIComponent(JSON.stringify(student))));
+  // 只有这种方式是对的
+  let hrefStr = 'data:text/plain,' + encodeURIComponent(JSON.stringify(student));
+  // 下面这种方式是错的
+  // let hrefStr = 'data:text/plain,' + btoa(encodeURIComponent(JSON.stringify(student)));
+  // 下面这种方式是错的
+  // let hrefStr = 'data:text/plain;base64,' + btoa(encodeURIComponent(JSON.stringify(student)));
+  aLink.href = hrefStr;
+  aLink.download = 'Tom2.json';
+  console.log(aLink.href);
+  document.getElementById('btn').onclick = function () {
+    aLink.click();
+  };
+
+  console.log('--------------------------------------');
+  console.log(btoa(encodeURIComponent(JSON.stringify({name: '林志玲'}))))
+</script>
+</body>
+
+</html>

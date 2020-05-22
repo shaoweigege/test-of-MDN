@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>setTimeout&setInterval</title>
+</head>
+<body>
+<input type="text" id="username">
+<script>
+  /*
+  * 1.setInterval指定的是每次开始执行任务的间隔，并不考虑每次执行该任务所花费的时间
+  * 2.可以用setTimeout来模拟实现setInterval
+  * 3.setTimeout和setInterval的返回值都是从1开始的整数，依次递增
+  * 4.实现“防抖动”与“节流”的功能
+  * */
+  /*let i = 0;
+  let intervalID = setInterval(() => {
+    i++;
+    console.log(i);
+    if (i === 3) {
+      clearInterval(intervalID);
+    }
+  }, 1000)*/
+
+  let j = 0;
+  const fn = () => {
+    setTimeout(() => {
+      j++;
+      console.log(j);
+      if (j < 3) {
+        fn();
+      }
+    }, 1000)
+  }
+  fn();
+
+  console.log(setInterval(() => {
+  }, 0))
+
+  //防抖:在一段时间内多洗触发了某一事件，只对最后一次做处理
+  const debounce = (fn, delay) => {
+    let timer = null
+    return (...args) => {
+      //清除掉上次创建的还没来得及执行的定时器
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+  //节流：在一段时间内多次触发了某一事件，规定必须间隔一定的时间才能再次触发
+  const throttle = (fn, delay) => {
+    let flag = true
+    return (...args) => {
+      if (flag) {
+        flag = false
+        setTimeout(() => {
+          fn.apply(this, args)
+          flag = true
+        }, delay)
+      }
+    }
+  }
+  //setTimeout(f,0)的使用
+  const username = document.getElementById('username')
+  //方式一：在keyup之后将输入的字符变为大写字母(首选这种方式)
+  username.onkeyup = (e) => {
+    e.target.value = e.target.value.toUpperCase()
+  }
+  //方式二：在keydown时将输入的字符变为大写
+  // username.onkeydown = (e) => {
+  //   setTimeout(() => {
+  //     e.target.value = e.target.value.toUpperCase();
+  //   }, 0)
+  // }
+  //方式三：在keypress时将输入的字符变为大写
+  // username.onkeypress = (e) => {
+  //   setTimeout(() => {
+  //     e.target.value = e.target.value.toUpperCase();
+  //   }, 0)
+  // }
+
+  //实例：让背景颜色不断的改变rgb(0,0,0)-->rgb(255,255,255)
+  // let bodyElement = document.body
+  // let index1 = -1, index2 = 0, index3 = 0
+  // let intervalID2 = setInterval(() => {
+  //   if (index1 < 255) {
+  //     index1++
+  //   } else if (index2 < 255) {
+  //     index2++
+  //   } else if (index3 < 255) {
+  //     index3++
+  //   }
+  //   if (index1 === 255 && index2 === 255 && index3 === 255) {
+  //     clearInterval(intervalID2)
+  //   }
+  //   bodyElement.style.backgroundColor = `rgb(${index1},${index2},${index3})`
+  // }, 100)
+  //使用十六进制的颜色值来实现背景颜色的渐变（晃眼）
+  // let start = 0xA00000
+  // let end = 0xFFFFFF
+  // let bodyElement = document.body
+  // let intervalId = setInterval(() => {
+  //   bodyElement.style.backgroundColor = '#' + start.toString(16)
+  //   start++
+  //   if (start === end) {
+  //     clearInterval(intervalId)
+  //   }
+  // }, 0)
+</script>
+</body>
+</html>

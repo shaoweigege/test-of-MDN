@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动态导入</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+  document.getElementById('btn').onclick = async function () {
+    await import('./index.js');  //import()函数返回的是一个promise对像
+    util.sayHi();
+  };
+</script>
+</body>
+</html>

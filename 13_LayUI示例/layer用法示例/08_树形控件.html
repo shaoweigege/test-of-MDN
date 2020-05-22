@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>树形控件</title>
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+  <style>
+    div {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">按钮</button>
+<div id="date-box" style="display: none;">
+  <div style="width: 100%;height: 100%;display: flex;
+  justify-content: space-between;padding-left: 20px;padding-right: 20px;">
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+  </div>
+</div>
+<script src="./layer/jquery.js"></script>
+<script src="./layer/layer.js"></script>
+<script src="./layui/layui.js"></script>
+<script>
+  let checkData1;
+  let checkData2;
+  let checkData3;
+  let btn = document.getElementById('btn');
+  btn.onclick = function () {
+    layui.use('tree', function () {
+      let tree = layui.tree;
+      tree.render({
+        elem: '#test1',  //绑定元素
+        showCheckbox: true,
+        id: 1001,//定义索引,
+        data: [
+          {
+            "id": "35",
+            "title": "北京市",
+            "value": "110000",
+            "children": [
+              {
+                "id": "1022",
+                "title": "市辖区",
+                "value": "110100",
+                "children": [
+                  {
+                    "id": "44",
+                    "title": "东城区",
+                    "value": "110101",
+                    "children": []
+                  },
+                  {
+                    "id": "45",
+                    "title": "西城区",
+                    "value": "110102",
+                    "children": []
+                  },
+                  {
+                    "id": "46",
+                    "title": "朝阳区",
+                    "value": "110105",
+                    "children": []
+                  },
+                  {
+                    "id": "47",
+                    "title": "丰台区",
+                    "value": "110106",
+                    "children": []
+                  },
+                  {
+                    "id": "48",
+                    "title": "石景山区",
+                    "value": "110107",
+                    "children": []
+                  },
+                  {
+                    "id": "49",
+                    "title": "海淀区",
+                    "value": "110108",
+                    "children": []
+                  },
+                  {
+                    "id": "50",
+                    "title": "门头沟区",
+                    "value": "110109",
+                    "children": []
+                  },
+                  {
+                    "id": "51",
+                    "title": "房山区",
+                    "value": "110111",
+                    "children": []
+                  },
+                  {
+                    "id": "52",
+                    "title": "通州区",
+                    "value": "110112",
+                    "children": []
+                  },
+                  {
+                    "id": "53",
+                    "title": "顺义区",
+                    "value": "110113",
+                    "children": []
+                  },
+                  {
+                    "id": "54",
+                    "title": "昌平区",
+                    "value": "110114",
+                    "children": []
+                  },
+                  {
+                    "id": "55",
+                    "title": "大兴区",
+                    "value": "110115",
+                    "children": []
+                  },
+                  {
+                    "id": "56",
+                    "title": "怀柔区",
+                    "value": "110116",
+                    "children": []
+                  },
+                  {
+                    "id": "57",
+                    "title": "平谷区",
+                    "value": "110117",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1023",
+                "title": "县",
+                "value": "110200",
+                "children": [
+                  {
+                    "id": "58",
+                    "title": "密云县",
+                    "value": "110228",
+                    "children": []
+                  },
+                  {
+                    "id": "59",
+                    "title": "延庆县",
+                    "value": "110229",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+        ],
+        oncheck: function () {
+          checkData1 = tree.getChecked(1001);
+        }
+      });
+    });
+    layui.use('tree', function () {
+      let tree = layui.tree;
+      tree.render({
+        elem: '#test2',  //绑定元素
+        showCheckbox: true,
+        id: 1002,//定义索引,
+        data: [
+          {
+            "id": "1",
+            "title": "上海市",
+            "value": "310000",
+            "children": [
+              {
+                "id": "1096",
+                "title": "市辖区",
+                "value": "310100",
+                "children": [
+                  {
+                    "id": "825",
+                    "title": "黄浦区",
+                    "value": "310101",
+                    "children": []
+                  },
+                  {
+                    "id": "826",
+                    "title": "卢湾区",
+                    "value": "310103",
+                    "children": []
+                  },
+                  {
+                    "id": "827",
+                    "title": "徐汇区",
+                    "value": "310104",
+                    "children": []
+                  },
+                  {
+                    "id": "828",
+                    "title": "长宁区",
+                    "value": "310105",
+                    "children": []
+                  },
+                  {
+                    "id": "829",
+                    "title": "静安区",
+                    "value": "310106",
+                    "children": []
+                  },
+                  {
+                    "id": "830",
+                    "title": "普陀区",
+                    "value": "310107",
+                    "children": []
+                  },
+                  {
+                    "id": "831",
+                    "title": "闸北区",
+                    "value": "310108",
+                    "children": []
+                  },
+                  {
+                    "id": "832",
+                    "title": "虹口区",
+                    "value": "310109",
+                    "children": []
+                  },
+                  {
+                    "id": "833",
+                    "title": "杨浦区",
+                    "value": "310110",
+                    "children": []
+                  },
+                  {
+                    "id": "834",
+                    "title": "闵行区",
+                    "value": "310112",
+                    "children": []
+                  },
+                  {
+                    "id": "835",
+                    "title": "宝山区",
+                    "value": "310113",
+                    "children": []
+                  },
+                  {
+                    "id": "836",
+                    "title": "嘉定区",
+                    "value": "310114",
+                    "children": []
+                  },
+                  {
+                    "id": "837",
+                    "title": "浦东新区",
+                    "value": "310115",
+                    "children": []
+                  },
+                  {
+                    "id": "838",
+                    "title": "金山区",
+                    "value": "310116",
+                    "children": []
+                  },
+                  {
+                    "id": "839",
+                    "title": "松江区",
+                    "value": "310117",
+                    "children": []
+                  },
+                  {
+                    "id": "840",
+                    "title": "青浦区",
+                    "value": "310118",
+                    "children": []
+                  },
+                  {
+                    "id": "841",
+                    "title": "奉贤区",
+                    "value": "310120",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1097",
+                "title": "县",
+                "value": "310200",
+                "children": [
+                  {
+                    "id": "842",
+                    "title": "崇明县",
+                    "value": "310230",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+        ],
+        oncheck: function () {
+          checkData2 = tree.getChecked(1002);
+        }
+      });
+    });
+
+    layui.use('tree', function () {
+      let tree = layui.tree;
+      tree.render({
+        elem: '#test3',  //绑定元素
+        showCheckbox: true,
+        id: 1003,//定义索引,
+        data: [
+          {
+            "id": "5",
+            "title": "山西省",
+            "value": "140000",
+            "children": [
+              {
+                "id": "1037",
+                "title": "太原市",
+                "value": "140100",
+                "children": [
+                  {
+                    "id": "259",
+                    "title": "市辖区",
+                    "value": "140101",
+                    "children": []
+                  },
+                  {
+                    "id": "260",
+                    "title": "小店区",
+                    "value": "140105",
+                    "children": []
+                  },
+                  {
+                    "id": "261",
+                    "title": "迎泽区",
+                    "value": "140106",
+                    "children": []
+                  },
+                  {
+                    "id": "262",
+                    "title": "杏花岭区",
+                    "value": "140107",
+                    "children": []
+                  },
+                  {
+                    "id": "263",
+                    "title": "尖草坪区",
+                    "value": "140108",
+                    "children": []
+                  },
+                  {
+                    "id": "264",
+                    "title": "万柏林区",
+                    "value": "140109",
+                    "children": []
+                  },
+                  {
+                    "id": "265",
+                    "title": "晋源区",
+                    "value": "140110",
+                    "children": []
+                  },
+                  {
+                    "id": "266",
+                    "title": "清徐县",
+                    "value": "140121",
+                    "children": []
+                  },
+                  {
+                    "id": "267",
+                    "title": "阳曲县",
+                    "value": "140122",
+                    "children": []
+                  },
+                  {
+                    "id": "268",
+                    "title": "娄烦县",
+                    "value": "140123",
+                    "children": []
+                  },
+                  {
+                    "id": "269",
+                    "title": "古交市",
+                    "value": "140181",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1038",
+                "title": "大同市",
+                "value": "140200",
+                "children": [
+                  {
+                    "id": "270",
+                    "title": "市辖区",
+                    "value": "140201",
+                    "children": []
+                  },
+                  {
+                    "id": "271",
+                    "title": "城区",
+                    "value": "140202",
+                    "children": []
+                  },
+                  {
+                    "id": "272",
+                    "title": "矿区",
+                    "value": "140203",
+                    "children": []
+                  },
+                  {
+                    "id": "273",
+                    "title": "南郊区",
+                    "value": "140211",
+                    "children": []
+                  },
+                  {
+                    "id": "274",
+                    "title": "新荣区",
+                    "value": "140212",
+                    "children": []
+                  },
+                  {
+                    "id": "275",
+                    "title": "阳高县",
+                    "value": "140221",
+                    "children": []
+                  },
+                  {
+                    "id": "276",
+                    "title": "天镇县",
+                    "value": "140222",
+                    "children": []
+                  },
+                  {
+                    "id": "277",
+                    "title": "广灵县",
+                    "value": "140223",
+                    "children": []
+                  },
+                  {
+                    "id": "278",
+                    "title": "灵丘县",
+                    "value": "140224",
+                    "children": []
+                  },
+                  {
+                    "id": "279",
+                    "title": "浑源县",
+                    "value": "140225",
+                    "children": []
+                  },
+                  {
+                    "id": "280",
+                    "title": "左云县",
+                    "value": "140226",
+                    "children": []
+                  },
+                  {
+                    "id": "281",
+                    "title": "大同县",
+                    "value": "140227",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1039",
+                "title": "阳泉市",
+                "value": "140300",
+                "children": [
+                  {
+                    "id": "282",
+                    "title": "市辖区",
+                    "value": "140301",
+                    "children": []
+                  },
+                  {
+                    "id": "283",
+                    "title": "城区",
+                    "value": "140302",
+                    "children": []
+                  },
+                  {
+                    "id": "284",
+                    "title": "矿区",
+                    "value": "140303",
+                    "children": []
+                  },
+                  {
+                    "id": "285",
+                    "title": "郊区",
+                    "value": "140311",
+                    "children": []
+                  },
+                  {
+                    "id": "286",
+                    "title": "平定县",
+                    "value": "140321",
+                    "children": []
+                  },
+                  {
+                    "id": "287",
+                    "title": "盂县",
+                    "value": "140322",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1040",
+                "title": "长治市",
+                "value": "140400",
+                "children": [
+                  {
+                    "id": "288",
+                    "title": "市辖区",
+                    "value": "140401",
+                    "children": []
+                  },
+                  {
+                    "id": "289",
+                    "title": "城区",
+                    "value": "140402",
+                    "children": []
+                  },
+                  {
+                    "id": "290",
+                    "title": "郊区",
+                    "value": "140411",
+                    "children": []
+                  },
+                  {
+                    "id": "291",
+                    "title": "长治县",
+                    "value": "140421",
+                    "children": []
+                  },
+                  {
+                    "id": "292",
+                    "title": "襄垣县",
+                    "value": "140423",
+                    "children": []
+                  },
+                  {
+                    "id": "293",
+                    "title": "屯留县",
+                    "value": "140424",
+                    "children": []
+                  },
+                  {
+                    "id": "294",
+                    "title": "平顺县",
+                    "value": "140425",
+                    "children": []
+                  },
+                  {
+                    "id": "295",
+                    "title": "黎城县",
+                    "value": "140426",
+                    "children": []
+                  },
+                  {
+                    "id": "296",
+                    "title": "壶关县",
+                    "value": "140427",
+                    "children": []
+                  },
+                  {
+                    "id": "297",
+                    "title": "长子县",
+                    "value": "140428",
+                    "children": []
+                  },
+                  {
+                    "id": "298",
+                    "title": "武乡县",
+                    "value": "140429",
+                    "children": []
+                  },
+                  {
+                    "id": "299",
+                    "title": "沁县",
+                    "value": "140430",
+                    "children": []
+                  },
+                  {
+                    "id": "300",
+                    "title": "沁源县",
+                    "value": "140431",
+                    "children": []
+                  },
+                  {
+                    "id": "301",
+                    "title": "潞城市",
+                    "value": "140481",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1041",
+                "title": "晋城市",
+                "value": "140500",
+                "children": [
+                  {
+                    "id": "302",
+                    "title": "市辖区",
+                    "value": "140501",
+                    "children": []
+                  },
+                  {
+                    "id": "303",
+                    "title": "城区",
+                    "value": "140502",
+                    "children": []
+                  },
+                  {
+                    "id": "304",
+                    "title": "沁水县",
+                    "value": "140521",
+                    "children": []
+                  },
+                  {
+                    "id": "305",
+                    "title": "阳城县",
+                    "value": "140522",
+                    "children": []
+                  },
+                  {
+                    "id": "306",
+                    "title": "陵川县",
+                    "value": "140524",
+                    "children": []
+                  },
+                  {
+                    "id": "307",
+                    "title": "泽州县",
+                    "value": "140525",
+                    "children": []
+                  },
+                  {
+                    "id": "308",
+                    "title": "高平市",
+                    "value": "140581",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1042",
+                "title": "朔州市",
+                "value": "140600",
+                "children": [
+                  {
+                    "id": "309",
+                    "title": "市辖区",
+                    "value": "140601",
+                    "children": []
+                  },
+                  {
+                    "id": "310",
+                    "title": "朔城区",
+                    "value": "140602",
+                    "children": []
+                  },
+                  {
+                    "id": "311",
+                    "title": "平鲁区",
+                    "value": "140603",
+                    "children": []
+                  },
+                  {
+                    "id": "312",
+                    "title": "山阴县",
+                    "value": "140621",
+                    "children": []
+                  },
+                  {
+                    "id": "313",
+                    "title": "应县",
+                    "value": "140622",
+                    "children": []
+                  },
+                  {
+                    "id": "314",
+                    "title": "右玉县",
+                    "value": "140623",
+                    "children": []
+                  },
+                  {
+                    "id": "315",
+                    "title": "怀仁县",
+                    "value": "140624",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1043",
+                "title": "晋中市",
+                "value": "140700",
+                "children": [
+                  {
+                    "id": "316",
+                    "title": "市辖区",
+                    "value": "140701",
+                    "children": []
+                  },
+                  {
+                    "id": "317",
+                    "title": "榆次区",
+                    "value": "140702",
+                    "children": []
+                  },
+                  {
+                    "id": "318",
+                    "title": "榆社县",
+                    "value": "140721",
+                    "children": []
+                  },
+                  {
+                    "id": "319",
+                    "title": "左权县",
+                    "value": "140722",
+                    "children": []
+                  },
+                  {
+                    "id": "320",
+                    "title": "和顺县",
+                    "value": "140723",
+                    "children": []
+                  },
+                  {
+                    "id": "321",
+                    "title": "昔阳县",
+                    "value": "140724",
+                    "children": []
+                  },
+                  {
+                    "id": "322",
+                    "title": "寿阳县",
+                    "value": "140725",
+                    "children": []
+                  },
+                  {
+                    "id": "323",
+                    "title": "太谷县",
+                    "value": "140726",
+                    "children": []
+                  },
+                  {
+                    "id": "324",
+                    "title": "祁县",
+                    "value": "140727",
+                    "children": []
+                  },
+                  {
+                    "id": "325",
+                    "title": "平遥县",
+                    "value": "140728",
+                    "children": []
+                  },
+                  {
+                    "id": "326",
+                    "title": "灵石县",
+                    "value": "140729",
+                    "children": []
+                  },
+                  {
+                    "id": "327",
+                    "title": "介休市",
+                    "value": "140781",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1044",
+                "title": "运城市",
+                "value": "140800",
+                "children": [
+                  {
+                    "id": "328",
+                    "title": "市辖区",
+                    "value": "140801",
+                    "children": []
+                  },
+                  {
+                    "id": "329",
+                    "title": "盐湖区",
+                    "value": "140802",
+                    "children": []
+                  },
+                  {
+                    "id": "330",
+                    "title": "临猗县",
+                    "value": "140821",
+                    "children": []
+                  },
+                  {
+                    "id": "331",
+                    "title": "万荣县",
+                    "value": "140822",
+                    "children": []
+                  },
+                  {
+                    "id": "332",
+                    "title": "闻喜县",
+                    "value": "140823",
+                    "children": []
+                  },
+                  {
+                    "id": "333",
+                    "title": "稷山县",
+                    "value": "140824",
+                    "children": []
+                  },
+                  {
+                    "id": "334",
+                    "title": "新绛县",
+                    "value": "140825",
+                    "children": []
+                  },
+                  {
+                    "id": "335",
+                    "title": "绛县",
+                    "value": "140826",
+                    "children": []
+                  },
+                  {
+                    "id": "336",
+                    "title": "垣曲县",
+                    "value": "140827",
+                    "children": []
+                  },
+                  {
+                    "id": "337",
+                    "title": "夏县",
+                    "value": "140828",
+                    "children": []
+                  },
+                  {
+                    "id": "338",
+                    "title": "平陆县",
+                    "value": "140829",
+                    "children": []
+                  },
+                  {
+                    "id": "339",
+                    "title": "芮城县",
+                    "value": "140830",
+                    "children": []
+                  },
+                  {
+                    "id": "340",
+                    "title": "永济市",
+                    "value": "140881",
+                    "children": []
+                  },
+                  {
+                    "id": "341",
+                    "title": "河津市",
+                    "value": "140882",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1045",
+                "title": "忻州市",
+                "value": "140900",
+                "children": [
+                  {
+                    "id": "342",
+                    "title": "市辖区",
+                    "value": "140901",
+                    "children": []
+                  },
+                  {
+                    "id": "343",
+                    "title": "忻府区",
+                    "value": "140902",
+                    "children": []
+                  },
+                  {
+                    "id": "344",
+                    "title": "定襄县",
+                    "value": "140921",
+                    "children": []
+                  },
+                  {
+                    "id": "345",
+                    "title": "五台县",
+                    "value": "140922",
+                    "children": []
+                  },
+                  {
+                    "id": "346",
+                    "title": "代县",
+                    "value": "140923",
+                    "children": []
+                  },
+                  {
+                    "id": "347",
+                    "title": "繁峙县",
+                    "value": "140924",
+                    "children": []
+                  },
+                  {
+                    "id": "348",
+                    "title": "宁武县",
+                    "value": "140925",
+                    "children": []
+                  },
+                  {
+                    "id": "349",
+                    "title": "静乐县",
+                    "value": "140926",
+                    "children": []
+                  },
+                  {
+                    "id": "350",
+                    "title": "神池县",
+                    "value": "140927",
+                    "children": []
+                  },
+                  {
+                    "id": "351",
+                    "title": "五寨县",
+                    "value": "140928",
+                    "children": []
+                  },
+                  {
+                    "id": "352",
+                    "title": "岢岚县",
+                    "value": "140929",
+                    "children": []
+                  },
+                  {
+                    "id": "353",
+                    "title": "河曲县",
+                    "value": "140930",
+                    "children": []
+                  },
+                  {
+                    "id": "354",
+                    "title": "保德县",
+                    "value": "140931",
+                    "children": []
+                  },
+                  {
+                    "id": "355",
+                    "title": "偏关县",
+                    "value": "140932",
+                    "children": []
+                  },
+                  {
+                    "id": "356",
+                    "title": "原平市",
+                    "value": "140981",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1046",
+                "title": "临汾市",
+                "value": "141000",
+                "children": [
+                  {
+                    "id": "357",
+                    "title": "市辖区",
+                    "value": "141001",
+                    "children": []
+                  },
+                  {
+                    "id": "358",
+                    "title": "尧都区",
+                    "value": "141002",
+                    "children": []
+                  },
+                  {
+                    "id": "359",
+                    "title": "曲沃县",
+                    "value": "141021",
+                    "children": []
+                  },
+                  {
+                    "id": "360",
+                    "title": "翼城县",
+                    "value": "141022",
+                    "children": []
+                  },
+                  {
+                    "id": "361",
+                    "title": "襄汾县",
+                    "value": "141023",
+                    "children": []
+                  },
+                  {
+                    "id": "362",
+                    "title": "洪洞县",
+                    "value": "141024",
+                    "children": []
+                  },
+                  {
+                    "id": "363",
+                    "title": "古县",
+                    "value": "141025",
+                    "children": []
+                  },
+                  {
+                    "id": "364",
+                    "title": "安泽县",
+                    "value": "141026",
+                    "children": []
+                  },
+                  {
+                    "id": "365",
+                    "title": "浮山县",
+                    "value": "141027",
+                    "children": []
+                  },
+                  {
+                    "id": "366",
+                    "title": "吉县",
+                    "value": "141028",
+                    "children": []
+                  },
+                  {
+                    "id": "367",
+                    "title": "乡宁县",
+                    "value": "141029",
+                    "children": []
+                  },
+                  {
+                    "id": "368",
+                    "title": "大宁县",
+                    "value": "141030",
+                    "children": []
+                  },
+                  {
+                    "id": "369",
+                    "title": "隰县",
+                    "value": "141031",
+                    "children": []
+                  },
+                  {
+                    "id": "370",
+                    "title": "永和县",
+                    "value": "141032",
+                    "children": []
+                  },
+                  {
+                    "id": "371",
+                    "title": "蒲县",
+                    "value": "141033",
+                    "children": []
+                  },
+                  {
+                    "id": "372",
+                    "title": "汾西县",
+                    "value": "141034",
+                    "children": []
+                  },
+                  {
+                    "id": "373",
+                    "title": "侯马市",
+                    "value": "141081",
+                    "children": []
+                  },
+                  {
+                    "id": "374",
+                    "title": "霍州市",
+                    "value": "141082",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "1047",
+                "title": "吕梁市",
+                "value": "141100",
+                "children": [
+                  {
+                    "id": "375",
+                    "title": "市辖区",
+                    "value": "141101",
+                    "children": []
+                  },
+                  {
+                    "id": "376",
+                    "title": "离石区",
+                    "value": "141102",
+                    "children": []
+                  },
+                  {
+                    "id": "377",
+                    "title": "文水县",
+                    "value": "141121",
+                    "children": []
+                  },
+                  {
+                    "id": "378",
+                    "title": "交城县",
+                    "value": "141122",
+                    "children": []
+                  },
+                  {
+                    "id": "379",
+                    "title": "兴县",
+                    "value": "141123",
+                    "children": []
+                  },
+                  {
+                    "id": "380",
+                    "title": "临县",
+                    "value": "141124",
+                    "children": []
+                  },
+                  {
+                    "id": "381",
+                    "title": "柳林县",
+                    "value": "141125",
+                    "children": []
+                  },
+                  {
+                    "id": "382",
+                    "title": "石楼县",
+                    "value": "141126",
+                    "children": []
+                  },
+                  {
+                    "id": "383",
+                    "title": "岚县",
+                    "value": "141127",
+                    "children": []
+                  },
+                  {
+                    "id": "384",
+                    "title": "方山县",
+                    "value": "141128",
+                    "children": []
+                  },
+                  {
+                    "id": "385",
+                    "title": "中阳县",
+                    "value": "141129",
+                    "children": []
+                  },
+                  {
+                    "id": "386",
+                    "title": "交口县",
+                    "value": "141130",
+                    "children": []
+                  },
+                  {
+                    "id": "387",
+                    "title": "孝义市",
+                    "value": "141181",
+                    "children": []
+                  },
+                  {
+                    "id": "388",
+                    "title": "汾阳市",
+                    "value": "141182",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+        ],
+        oncheck: function () {
+          checkData3 = tree.getChecked(1003);
+        }
+      });
+    });
+
+    let layerIndex = layer.open({
+      type: 1,
+      title: '请选择地区',
+      closeBtn: 0,
+      area: ['800px', '400px'],
+      btn: ['确定', '取消'],
+      shadeClose: true,
+      content: $('#date-box'),
+      //点击确定按钮
+      yes() {
+        //获取选择的地区的数据
+        console.log(checkData1);
+        console.log(checkData2);
+        console.log(checkData3);
+        //关闭弹出层
+        layer.close(layerIndex);
+      },
+      no() {
+        layer.close(layerIndex);
+      }
+    });
+  };
+</script>
+</body>
+</html>

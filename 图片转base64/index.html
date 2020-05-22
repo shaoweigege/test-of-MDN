@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用blob读取图片文件</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+  const path = './images/alipay.png'
+  const btn = document.getElementById('btn')
+  btn.onclick = function () {
+    return new Promise((resolve, reject) => {
+      //读取图片文件
+      const xhr = new XMLHttpRequest()
+      xhr.onload = function () {
+        const reader = new FileReader()
+        reader.onload = function (e) {
+          resolve(e.target.result)
+        }
+        reader.onerror = function () {
+          reject('读取文件二进制数据失败')
+        }
+        reader.readAsBinaryString(xhr.response)
+      }
+      xhr.onerror = function () {
+        reject('获取指定路径的图片失败')
+      }
+      xhr.open('GET', path)
+      xhr.send()
+      xhr.responseType = 'blob'
+    })
+  }().then(result => {
+    console.log(result)
+  }).catch(error => {
+    console.log(error)
+  })
+</script>
+</body>
+</html>

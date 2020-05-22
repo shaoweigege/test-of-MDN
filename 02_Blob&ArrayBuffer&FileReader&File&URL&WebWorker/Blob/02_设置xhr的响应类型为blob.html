@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blob</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+  document.getElementById('btn').onclick = function () {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      console.log(this.response);//就是一个blob对象
+      //可以用FileReader对象来读取blob对象的内容
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        console.log(e.target.result);//就是一个json字符串
+       // console.log(JSON.parse(e.target.result));//就是一个js对象
+      };
+      // reader.readAsText(xhr.response);
+      // reader.readAsArrayBuffer(xhr.response);
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', './student.json');
+    xhr.responseType = 'blob';
+    xhr.send();
+  };
+</script>
+</body>
+</html>

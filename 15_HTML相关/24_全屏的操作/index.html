@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>全屏</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.0/screenfull.js"></script>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+  document.getElementById('btn').onclick = function () {
+    if (screenfull.isEnabled) {
+      screenfull.request();
+    } else {
+      // Ignore or do something else
+    }
+  }
+</script>
+</body>
+</html>

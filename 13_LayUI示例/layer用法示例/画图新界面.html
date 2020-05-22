@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>画图</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <script src="./layui/layui.js"></script>
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+<div class="header-section-box">
+  <div class="header-section1">
+    <div class="func-btn save-file">
+      <img src="./imgs/save-file.png" alt="">
+      <span>本地保存</span>
+    </div>
+    <div class="func-btn save-cloud">
+      <img src="./imgs/save-cloud.png" alt="">
+      <span>云端保存</span>
+    </div>
+    <div id="chooseFile" class="func-btn open-file">
+      <img src="./imgs/open-file.png" alt="">
+      <span>打开本地</span>
+    </div>
+    <div id="openCloud" class="func-btn open-cloud">
+      <img src="./imgs/open-cloud.png" alt="">
+      <span>打开云端</span>
+    </div>
+    <div id="addImage" class="func-btn create-item">
+      <img src="./imgs/create-item.png" alt="">
+      <span>创建图元</span>
+    </div>
+    <div class="func-btn clear-map">
+      <img src="./imgs/clear-map.png" alt="">
+      <span>清除画布</span>
+    </div>
+  </div>
+  <div class="header-section2">
+    <div class="func-btn color-picker">
+      <img src="./imgs/color-picker.png" alt="">
+      <span>颜色</span>
+    </div>
+    <div id="color-picker"></div>
+  </div>
+  <div class="header-section3">
+    <div class="line-width-title">
+      <img src="./imgs/line-width.png" alt="">
+      <span>线宽</span>
+    </div>
+    <div class="layui-btn-group">
+      <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
+        <span class="font-minus">-</span>
+      </button>
+      <button type="button" class="layui-btn layui-btn-primary layui-btn-xs line-width">22</button>
+      <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
+        <span class="font-add">+</span>
+      </button>
+    </div>
+  </div>
+  <div class="header-section4">
+    <form class="layui-form" action="">
+      <div class="layui-form-item">
+        <div class="layui-input-inline">
+          <select name="line-dash" lay-verify="required">
+            <option value="实线">实线</option>
+            <option value="虚线">虚线</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="header-section5">
+    <div class="func-btn h-line selected">
+      <img src="./imgs/h-line.png" alt="">
+      <span>水平线</span>
+    </div>
+    <div class="func-btn v-line">
+      <img src="./imgs/v-line.png" alt="">
+      <span>竖直线</span>
+    </div>
+    <div class="func-btn random-line">
+      <img src="./imgs/random-line.png" alt="">
+      <span>任意线</span>
+    </div>
+    <div class="func-btn rect">
+      <img src="./imgs/rect.png" alt="">
+      <span>矩形</span>
+    </div>
+    <div class="func-btn circle">
+      <img src="./imgs/circle.png" alt="">
+      <span>圆形</span>
+    </div>
+    <div class="func-btn text">
+      <img src="./imgs/text.png" alt="">
+      <span>文字</span>
+    </div>
+    <div class="func-btn adjust">
+      <img src="./imgs/adjust.png" alt="">
+      <span>调整</span>
+    </div>
+  </div>
+</div>
+<div class="devices-images-box">
+  <div class="device-item-name">开关</div>
+  <div class="device-item-name">战斗机</div>
+  <div class="device-item-name">航空母舰</div>
+  <div class="device-item-name">锁</div>
+  <div class="device-item-name">通道门</div>
+</div>
+<script>
+  layui.use('colorpicker', function () {
+    let colorPicker = layui.colorpicker;
+    //渲染
+    colorPicker.render({
+      elem: '#color-picker', //绑定元素
+      size: 'xs',
+      color: '#fff', //初始颜色
+      predefine: true, //开启预定义颜色
+      colors: ['#009688', '#5FB878', '#1E9FFF', '#FF5722', '#999999',
+        '#CC0000', '#ffffff', '#FFD700', '#EDE700', '#1f93ff', '#000',],
+      //选择完颜色的回调
+      done: function (color) {
+        //PubSub.publish('chooseColor', color)
+      }
+    });
+  });
+  layui.use('form', function () {
+    let form = layui.form;
+    //监听提交
+    form.on('select', function (data) {
+      console.log(data.value);
+    });
+  });
+</script>
+</body>
+</html>

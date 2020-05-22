@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>利用Proxy对象来实现接口请求对象</title>
+  <script src="https://cdn.bootcss.com/axios/0.19.2/axios.js"></script>
+</head>
+<body>
+<script>
+  const BASE_URL = 'http://localhost:3000';
+  //封装一个接口请求对象(主要用于get请求 对象.接口名称(参数)的方式来调用)
+  const apiUtil = new Proxy({}, {
+    get(target, prop, receiver) {
+      return function (params) {
+        return axios.get(BASE_URL + '/' + prop, {params});
+      }
+    }
+  });
+  apiUtil.home({detail: 'detail'})
+</script>
+</body>
+</html>

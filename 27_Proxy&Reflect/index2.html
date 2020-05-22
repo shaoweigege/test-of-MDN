@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  const obj = {};
+  const target = Object.defineProperties(obj, {
+    foo: {
+      value: 123,
+      writable: false,
+      configurable: false
+    },
+  });
+  console.log(obj === target)
+  const handler = {
+    get(target, propKey) {
+      return 'abc';
+    }
+  };
+  const proxy = new Proxy(target, handler);
+  console.log('******************************');
+  const person = new Proxy({}, {
+    set(target, prop, value, receiver) {
+      if (prop === 'age') {
+        if (value > 200) {
+          console.log('赋值失败，年龄不能大于200');
+        } else if (value < 0) {
+          console.log('赋值失败，年龄不能小于0');
+        } else {
+          //验证合法后才进行赋值
+          target[prop] = value;
+        }
+      }
+    }
+  });
+  person.age = 300;
+  person.age = -1;
+  person.age = 56;
+  console.log(person.age);
+</script>
+</body>
+</html>

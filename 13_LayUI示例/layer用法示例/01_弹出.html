@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弹出层</title>
+  <script src="./layer/jquery.js"></script>
+  <script src="./layer/layer.js"></script>
+</head>
+<body>
+<button id="test1">按钮</button>
+<script>
+  let btn = document.getElementById('test1');
+  //弹出一个提示层
+  // $('#test1').on('click', function () {
+  //   layer.msg('hello');
+  // });
+  btn.onclick = function () {
+    let index = layer.confirm('区域下已经有锁具被绑定过,需要先删除该区域下被绑定的锁具才能一次性绑定该区域？', {
+      btn: ['确定'] //按钮
+    }, function () {
+      layer.close(index)
+    });
+  };
+</script>
+</body>
+</html>

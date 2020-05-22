@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>svg格式的图片</title>
+  <style>
+    img {
+      animation: img-rotation 8s infinite linear;
+    }
+    img:hover{
+      animation-play-state: paused;
+    }
+
+    @keyframes img-rotation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+<embed src="./avatar.svg" type="">
+<img src="./avatar.svg" alt="">
+<img src="./index.svg" alt="">
+<object data="./avatar.svg" type=""></object>
+</body>
+</html>

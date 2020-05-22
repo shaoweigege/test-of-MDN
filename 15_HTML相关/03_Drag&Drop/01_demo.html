@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drag&Drop</title>
+</head>
+<body>
+<input id="myCar" list="cars" />
+<datalist id="cars">
+  <option value="BMW">
+  <option value="Ford">
+  <option value="Volvo">
+</datalist>
+<hr/>
+<label for="username">
+  用户名：
+  <input type="text" id="username">
+</label>
+<h3>&copy;&yen;&amp;</h3>
+<p id="p1" draggable="true">This element is draggable.</p>
+<script>
+  let p1 = document.getElementById('p1');
+  p1.ondragstart = function (e) {
+    console.log('dragstart');
+    e.dataTransfer.setData("text/plain", e.target.innerText);
+  };
+  p1.ondragend = function (e) {
+    console.log('ondragend');
+    e.dataTransfer.setData("text/plain", e.target.innerText);
+  };
+  window.onload = function () {
+    document.getElementById('username').focus();
+  };
+</script>
+</body>
+</html>

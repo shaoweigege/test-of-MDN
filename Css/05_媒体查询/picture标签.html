@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>picture元素</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+    }
+
+    /*利用媒体查询根据不同尺寸的可视区域来显示不同的背景图片*/
+    @media screen and (min-width: 1200px) {
+      .box {
+        background-image: url('./icon_01.png');
+      }
+    }
+
+    @media screen and (max-width: 1200px) and (min-width: 992px) {
+      .box {
+        background-image: url('./icon_02.png');
+      }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      .box {
+        background-image: url('./icon_04.png');
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .box {
+        background-image: url('./icon_05.png');
+      }
+    }
+  </style>
+</head>
+<body style="height: 200px;">
+<div class="box">
+
+</div>
+</body>
+</html>

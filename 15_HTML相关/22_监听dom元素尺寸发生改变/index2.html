@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ResizeObserve</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+  const resizeObserver = new ResizeObserver(entries => {
+    console.log('resize occurs')
+    for (let entry of entries) {
+      entry.target.style.borderRadius = Math.max(0, 250 - entry.contentRect.width) + 'px';
+    }
+  })
+  resizeObserver.observe(document.querySelector('#box'))
+
+
+</script>
+</body>
+</html>

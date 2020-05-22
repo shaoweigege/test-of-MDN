@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>contextmenu事件</title>
+</head>
+<body>
+<script>
+  /*
+  * 1.contextmenu事件就是唤起浏览器提供的一些菜单信息
+  * 2.可以在事件处理函数中用e.preventDefault()方法阻止浏览器的该默认行为(可以自定义菜单栏)
+  * */
+  window.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+  })
+</script>
+</body>
+</html>

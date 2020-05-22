@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>设置API</title>
+</head>
+<body>
+<script src="./localforage.min.js"></script>
+<script>
+  //设置API一般用来配置数据库,在读取API之前操作
+  //localforage.setDriver([driverName, nextDriverName]) //设置驱动的类型
+  //localforage.setDriver(driverName) //设置驱动的类型
+  //localforage默认的驱动顺序为：IndexedDB,WebSql,localStorage
+  //这样设置就是默认有限使用WebSql作为数据库驱动
+  //localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB, localforage.LOCALSTORAGE]);
+  let todoList = [
+    {id: 1, title: '吃饭', completed: false},
+    {id: 2, title: '睡觉', completed: true},
+    {id: 3, title: '打豆豆', completed: false}
+  ];
+
+  localforage.setDriver(localforage.WEBSQL);
+
+  localforage.setItem('todoList', todoList)
+      .then(() => {
+        console.log('设置成功');
+      });
+
+  //localforage.config(); //更通用的配置
+  localforage.config({
+    name: 'TP_USER',
+    driver: localforage.INDEXEDDB,
+    storeName: 'user_todo_list',
+  });
+  localforage.setItem('todoList', todoList)
+      .then(() => {
+        console.log('设置成功');
+      });
+</script>
+</body>
+</html>

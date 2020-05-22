@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom对象的方法和属性</title>
+</head>
+<body>
+<ul id="fruit" readonly="readonly">
+  <li class="item one">Apple</li>
+  <li class="item two">Banana</li>
+  <li class="item three">Pear</li>
+</ul>
+<script>
+  let ulNode = document.getElementById('fruit');
+  console.log(ulNode); //返回的是HTMLElement类型的元素
+  console.log(ulNode.innerHTML);
+  let ul = document.createElement('ul');
+  ul.innerHTML = ulNode.innerHTML;
+  console.log(ul);
+</script>
+</body>
+</html>

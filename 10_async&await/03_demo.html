@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>async/await3</title>
+</head>
+<body>
+<script>
+  function asyncFunc() {
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        reject('成功')
+      }, 1000)
+    })
+  }
+
+  //async函数会确保其内部的promise状态改变后才执行.then()回调函数
+  asyncFunc()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+</script>
+</body>
+</html>

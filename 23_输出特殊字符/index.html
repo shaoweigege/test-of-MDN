@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  let stu = {
+    name: '林志玲',
+    age: 34,
+    sayHi() {
+      console.log('萌萌~站起来~');
+    }
+  };
+  console.dir(stu);
+  console.dir(document.location);
+  console.log(document.location);
+  console.dirxml(document)
+  console.log(document)
+  console.log('**************************************');
+  /*
+  * console.log()中的%
+  * 1.%s 代表字符串的占位符
+  * 2.%d 代表整型数值的占位符
+  * 3.%f 代表浮点型数值的占位符
+  * 4.%o 或者%O 代表对象的占位符
+  * */
+  console.log('%s', '林志玲');
+  console.log('%d', 100);
+  console.log('%f', 100.001);
+  console.log('%o', {name: '林志玲'});
+  console.log('This is %s,%d,%f,%o', '林志玲', 100, 100.001, {name: '林志玲'});
+  console.log('the word is %s try number %d', 'foo', 123);
+  console.log('**************************************');
+  const debounce = (fn, delay) => {
+    let timer = null
+    return (...args) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+  console.log('%o', debounce)
+  const throttle = (fn, delay) => {
+    //用于判断能否进行操作
+    let flag = true
+    return (...args) => {
+      if (flag) {
+        flag = false
+        setTimeout(() => {
+          fn.apply(this, args)
+          flag = true
+        }, delay)
+      }
+    }
+  }
+  console.log('%o', throttle)
+  console.log('%o', throttle())
+  console.log('%O', throttle())
+</script>
+</body>
+</html>

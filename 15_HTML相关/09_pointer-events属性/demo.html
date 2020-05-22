@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防止重复提交请求</title>
+  <style>
+    .silent-click {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">提交请求</button>
+<script>
+  function reqPostData(path) {
+    return new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (err) {
+        reject(err);
+      };
+      xhr.open('POST', path + 'name=林志玲&age=29');
+      xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+      xhr.send();
+    })
+  }
+
+  let btn = document.getElementById('btn');
+  let path = 'http://localhost:3000/login';
+  btn.onclick = function () {
+    //发送请求
+    reqPostData(path)
+        .then(data => {
+          //让按钮不响应点击事件
+          btn.classList.add('silent-click');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+</script>
+</body>
+</html>

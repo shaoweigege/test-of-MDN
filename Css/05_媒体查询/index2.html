@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+    }
+
+    /*
+    orientation:
+    1.portrait:可视区域高度大于等于宽度时生效(width>=height)
+    2.landscape: 除portrait值情况外 都是landscape
+    */
+    /*设备的宽度大于高度时生效*/
+    @media screen and (orientation: landscape) {
+      .box {
+        background-color: pink;
+      }
+    }
+
+    /*设备的高度大于宽度时生效*/
+    @media screen and (orientation: portrait) {
+      .box {
+        background-color: yellowgreen;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

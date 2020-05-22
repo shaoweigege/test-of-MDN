@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  //async函数的返回值是Promise
+  let readFileAsync = async function () {
+    //do something
+    return 111  //就算函数内部明确返回了非promise类型的变量也会被转换成立即执行的resolve(值)promise对象
+  }
+  readFileAsync()
+      .then(data => {
+        console.log(data);
+      })
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则表达式</title>
+</head>
+<body>
+<script>
+  //在js中正则表达式也是对象
+  let reg1 = /abc+/i;   //+表示出现一次或者多次
+  let str1 = 'hello abc world';
+  let str2 = 'HELLO ABC WORLD';
+  console.log(reg1.test(str1));
+  console.log(reg1.test(str2));
+
+  let reg2 = /abc*/i;  //*表示出现0次或者多次
+  let str3 = 'hello abc world';
+  let str4 = 'hello ab world';
+  console.log(reg2.test(str3));
+  console.log(reg2.test(str4));
+</script>
+</body>
+</html>

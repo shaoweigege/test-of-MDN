@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>URL对象</title>
+</head>
+<body>
+<script>
+  let url1 = new URL('http://localhost:3000/login');
+  let url2 = new URL('/login?username=林志玲&password=123456', 'http://localhost:3000');
+  console.log(url1)
+  console.log(url2)
+  url1.searchParams.set('username', '林志玲');
+  url1.searchParams.set('password', '123456');
+  console.log(url1.href);
+  console.log(url2.href);
+  console.log(decodeURIComponent(url1.href));
+  console.log(decodeURI(url1.href));
+</script>
+</body>
+</html>

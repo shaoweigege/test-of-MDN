@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02_对象的getter和setter</title>
+</head>
+<body>
+<script>
+  //对象的getter和setter用来创建伪属性,不可能在具有真实值的属性上同时拥有一个 setter 器。
+  let data = {
+    names: [],
+    //对象中本来没有name这个属性,利用getter&setter可以创造出name这个属性(伪属性)
+    set name(name) {
+      this.names.push(name);
+    },
+    get name() {
+      return this.names.length;
+    }
+  };
+  data.name = '古天乐';
+  data.name = '刘德华';
+  data.name = '林志玲';
+  console.log(data.names);
+</script>
+</body>
+</html>

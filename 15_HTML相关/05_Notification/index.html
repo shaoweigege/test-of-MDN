@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Notification</title>
+</head>
+<body>
+<button id="btn">点击提示</button>
+<script>
+  Notification.requestPermission(function (permission) {
+    if (permission === "granted") {
+      new Notification("点击了允许！");
+    } else {
+      console.log('点击了禁止！');
+    }
+  });
+  console.log(window.Notification.permission);
+  console.log('**********************************');
+  let button = document.getElementById('btn');
+  button.onclick = function () {
+    // 先检查浏览器是否支持
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+      // 检查用户是否同意接受通知
+      let notification = new Notification("Hi there!");
+    } else if (Notification.permission !== 'denied') {
+      // 否则我们需要向用户获取权限
+      Notification.requestPermission(function (permission) {
+        // 如果用户同意，就可以向他们发送通知
+        if (permission === "granted") {
+          let notification = new Notification("Hi there!");
+        }
+      });
+    }
+  };
+</script>
+</body>
+</html>

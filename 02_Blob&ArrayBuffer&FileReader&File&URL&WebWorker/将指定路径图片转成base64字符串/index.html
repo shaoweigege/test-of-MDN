@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<img src="" id="img" alt="">
+<script>
+  const path = './images/github.jpg'
+  const btn = document.getElementById('btn')
+  const img = document.getElementById('img')
+  let xhr = new XMLHttpRequest()
+  btn.onclick = function () {
+    xhr.onload = function () {
+      //这种方式可以得到图片的base64格式的字符串
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        //e.target.result是base64格式的字符串
+        //console.log(btoa(e.target.result)) 转码之后好像也没什么用
+        img.src = e.target.result
+      }
+      reader.readAsDataURL(xhr.response)
+      //这样也可以显示图片
+      // img.src = URL.createObjectURL(xhr.response)
+    }
+    xhr.open('GET', path)
+    //设置响应类型
+    xhr.responseType = 'blob';
+    xhr.send()
+  }
+</script>
+</body>
+</html>

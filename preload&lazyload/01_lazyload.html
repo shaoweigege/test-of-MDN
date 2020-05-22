@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01_懒加载</title>
+</head>
+<body>
+<img src="" id="img" data-url="./images/github.jpg" alt="">
+<button id="btn">显示图片</button>
+<script>
+  /*
+  * 这样的方式本质上是:先将图片添加到页面 然后再得到图片的地址
+  * */
+  const img = document.getElementById('img')
+  const button = document.getElementById('btn')
+  button.addEventListener('click', e => {
+    img.src = img.getAttribute('data-url')
+  })
+</script>
+</body>
+</html>

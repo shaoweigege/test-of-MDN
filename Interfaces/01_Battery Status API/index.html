@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+  * Battery Status API 向 window.navigator 扩展了一个 navigator.getBattery 方法，
+  * 其返回了一个battery promise, 完成后传递一个 BatteryManager 对象，
+  * 并提供了一些新的可以操作电池状态的事件
+  *
+  * 事件列表:
+  * 1.chargingchange:电池充电状态更新时触发
+  * 2.levelchange:电池电量更新的时候触发
+  * 3.chargingtimechange:电池充电时间更新时触发
+  * 4.dischargingtimechange:电池断开时间更新时触发
+  * */
+
+  navigator.getBattery()
+      .then(function (battery) {
+
+        console.log("Battery charging? " + (battery.charging ? "Yes" : "No"));
+        console.log("Battery level: " + battery.level * 100 + "%");
+        console.log("Battery charging time: " + battery.chargingTime + " seconds");
+        console.log("Battery discharging time: " + battery.dischargingTime + " seconds");
+
+        battery.addEventListener('chargingchange', function () {
+          console.log("Battery charging? " + (battery.charging ? "Yes" : "No"));
+        });
+
+        battery.addEventListener('levelchange', function () {
+          console.log("Battery level: " + battery.level * 100 + "%");
+        });
+
+        battery.addEventListener('chargingtimechange', function () {
+          console.log("Battery charging time: " + battery.chargingTime + " seconds");
+        });
+
+        battery.addEventListener('dischargingtimechange', function () {
+          console.log("Battery discharging time: " + battery.dischargingTime + " seconds");
+        });
+
+      });
+</script>
+</body>
+</html>

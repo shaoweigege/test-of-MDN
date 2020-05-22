@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>响应式布局</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #eee;
+    }
+
+    .up-box, .down-box {
+      width: 100%;
+      height: 30px;
+      background-color: pink;
+    }
+
+    .middle-box {
+      width: 100%;
+      height: 50px;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .middle-box .middle-left {
+      position: absolute;
+      left: 0;
+      width: 25%;
+      height: 50px;
+      background-color: pink;
+    }
+
+    .middle-box .middle-right {
+      position: absolute;
+      right: 0;
+      width: 25%;
+      height: 50px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+<div class="up-box"></div>
+<div class="middle-box">
+  <div class="middle-left"></div>
+  <div class="middle-right"></div>
+</div>
+<div class="down-box"></div>
+</body>
+</html>

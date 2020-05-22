@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义html内容</title>
+  <script src="./layer/jquery.js"></script>
+  <script src="./layer/layer.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+<button id="btn">点我</button>
+<div id="image-box" style="display: none;"></div>
+<script>
+  //创建虚拟DOM结构
+  let imageBox = document.getElementById('image-box');
+  imageBox.innerHTML = 'I am image box';
+  let btn = document.getElementById('btn');
+  btn.onclick = function () {
+    let layerIndex = layer.open({
+      type: 1,
+      area: ['500px', '360px'],
+      btn: ['确定', '取消'],
+      shadeClose: true, //点击遮罩关闭
+      //content还可以是一个DOM选择器
+      content: $('#image-box'),
+      end() {
+
+      },
+      //点击确定按钮
+      yes() {
+        layer.close(layerIndex);
+      }
+    });
+  };
+</script>
+</body>
+</html>

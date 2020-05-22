@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mutation Observer1</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #fefefe;
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+  //构造函数接受一个回调函数作为参数 该回调函数有两个参数 1.发生变化的dom结构组成的数组 2.观察器本身
+  let observer = new MutationObserver(function (mutations, observer) {
+    mutations.forEach(function (mutation) {
+      console.log(mutation)
+    })
+  })
+  //实例方法:observe(需要观察的dom节点,配置对象) 配置对象有三种属性可以写
+  let box = document.getElementById('box')
+  //注意：至少必须同时指定这三种观察的一种，若均未指定将报错
+  observer.observe(box, {
+    childList: true, //子节点的变动
+    attributes: true, //属性的变动
+    characterData: true, //节点内容或者节点文本的变动
+    subtree: true     // 观察后代节点，默认为 false
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上传图片的效果实现2</title>
+</head>
+<body>
+<input type="file" accept="image/" id="file">
+<script>
+  let fileInput = document.getElementById('file');
+  fileInput.onchange = function (e) {
+    if (e.target.files.length === 0) {
+      //没有选择图片
+      window.alert('您没有选择图片');
+    } else {
+      //选择了图片,将图片添加到页面中
+      let blob = new Blob([e.target.files[0]]);
+      let imageURL = URL.createObjectURL(blob);
+      let imageNode = document.createElement('img');
+      imageNode.src = imageURL;
+      document.body.appendChild(imageNode);
+    }
+  };
+</script>
+</body>
+</html>

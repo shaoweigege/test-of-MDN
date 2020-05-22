@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>find</title>
+</head>
+
+<body>
+  <script src="./_Array.js"></script>
+  <script>
+    const arr = [1, 2, 3, 4]
+    let value1 = arr.find((item, index, arr) => {
+      console.log(item, index, arr)
+      return item % 2 == 10
+    })
+    console.log(value1)
+    console.log('----------------')
+    let value2 = arr._find((item, index, arr) => {
+      console.log(item, index, arr)
+      return item % 2 == 10
+    })
+    console.log(value2)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>layui_选择器</title>
+  <link rel="stylesheet" href="../layer/layui/css/layui.css">
+  <style>
+    #form {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+<form class="layui-form" id="form" action="">
+  <select name="city" id="select" lay-verify="">
+    <option value="">请选择一个城市</option>
+  </select>
+</form>
+<script src="../layer/layui/layui.js"></script>
+<script>
+  //Demo
+  layui.use('form', function () {
+    let form = layui.form;
+    // 所有的代码都写在这个回调函数中
+    document.querySelector('#form').children[0].innerHTML += '<option >拉萨</option>';
+    console.log(document.querySelector('#form').children[1]);
+    // 最后要更新form
+    form.render();
+  });
+</script>
+<script>
+
+</script>
+</body>
+</html>

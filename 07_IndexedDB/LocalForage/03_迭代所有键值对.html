@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>iterate</title>
+</head>
+<body>
+<script src="./localforage.min.js"></script>
+<script>
+  localforage.iterate((item, key) => {
+    console.log({item, key})
+  })
+      .then(() => {
+        console.log('iterate has been successful')
+      })
+      .catch(err => {
+        console.log(err)
+      });
+</script>
+</body>
+</html>

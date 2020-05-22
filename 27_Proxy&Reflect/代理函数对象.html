@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>代理函数对象</title>
+</head>
+<body>
+<script>
+  function method() {
+    console.log('I am method');
+  }
+
+  const proxy = new Proxy(method, {
+    apply(target, thisArg, argArray) {
+      console.log(target, thisArg, argArray)
+    }
+  });
+  proxy('hello');//其实就是去调用apply()方法
+</script>
+</body>
+</html>

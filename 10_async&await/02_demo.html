@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>async&await2</title>
+</head>
+<body>
+<script>
+  //封装读取文件内容的方法
+  function _readFile(path) {
+    return new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        reject(xhr.response);
+      };
+      xhr.open('GET', path);
+      xhr.responseType = 'json';
+      xhr.send();
+    })
+  }
+
+  //普通调用函数
+  let path = './data/student.json';
+  let path1 = './data/teacher.json';
+  _readFile(path)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+  //async&await  await一定要写在async函数里面
+  async function test(path1, path2) {
+    return await _readFile(path1);
+    // await _readFile(path2);
+  }
+
+  test(path, path1)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+</script>
+</body>
+</html>

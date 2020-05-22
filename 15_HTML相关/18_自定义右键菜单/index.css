@@ -1,0 +1,161 @@
+.context-menu {
+  font-family: 幼圆;
+  font-size: 12px;
+  width: 100px;
+  height: 250px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #555;
+}
+.context-menu .menu-item {
+  width: 100%;
+  height: 33.333333%;
+}
+.context-menu .menu-item.item1 {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px dashed #555;
+}
+.context-menu .menu-item.item1 .menu-title {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 1px solid #555;
+}
+.context-menu .menu-item.item1 .menu-title img {
+  width: 20%;
+}
+.context-menu .menu-item.item1 .menu-title p {
+  width: 80%;
+}
+.context-menu .menu-item.item1 .change-color {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item1 .change-color:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item1 .change-color img {
+  width: 15%;
+}
+.context-menu .menu-item.item1 .change-color p {
+  width: 80%;
+}
+.context-menu .menu-item.item2 {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px dashed #555;
+}
+.context-menu .menu-item.item2 .scale-big {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item2 .scale-big:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item2 .scale-big img {
+  width: 15%;
+}
+.context-menu .menu-item.item2 .scale-big p {
+  width: 80%;
+}
+.context-menu .menu-item.item2 .scale-small {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item2 .scale-small:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item2 .scale-small img {
+  width: 15%;
+}
+.context-menu .menu-item.item2 .scale-small p {
+  width: 80%;
+}
+.context-menu .menu-item.item2 .rotate {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item2 .rotate:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item2 .rotate img {
+  width: 15%;
+}
+.context-menu .menu-item.item2 .rotate p {
+  width: 80%;
+}
+.context-menu .menu-item.item3 {
+  display: flex;
+  flex-direction: column;
+}
+.context-menu .menu-item.item3 .copy {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item3 .copy:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item3 .copy img {
+  width: 15%;
+}
+.context-menu .menu-item.item3 .copy p {
+  width: 80%;
+}
+.context-menu .menu-item.item3 .delete {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.context-menu .menu-item.item3 .delete:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item3 .delete img {
+  width: 15%;
+}
+.context-menu .menu-item.item3 .delete p {
+  width: 80%;
+}
+.context-menu .menu-item.item3 .close-menu {
+  width: 100%;
+  height: 33.33333333%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed #555;
+}
+.context-menu .menu-item.item3 .close-menu:hover {
+  color: #409EFF;
+}
+.context-menu .menu-item.item3 .close-menu img {
+  width: 15%;
+}
+.context-menu .menu-item.item3 .close-menu p {
+  width: 80%;
+}
+/*# sourceMappingURL=index.css.map */

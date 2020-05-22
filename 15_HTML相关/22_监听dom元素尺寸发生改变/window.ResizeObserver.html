@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  //创建resize的observer
+  const observer = new window.ResizeObserver(function (entries) {
+    //entries 是一个数组 监听了几个dom元素 数组就有几个元素
+    //console.log('resize occurs', entries)
+    entries.forEach(entry => {
+      let {target, contentRect} = entry
+      //target:被监听的dom元素 contentRect:被监听的dom元素的位置信息(readonly)
+      console.log(target, contentRect)
+    })
+  })
+  //指明该observer到底监听哪个dom元素的resize事件
+  observer.observe(document.body)
+  observer.observe(document.querySelector('.box'))
+</script>
+</body>
+</html>

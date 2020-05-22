@@ -1,0 +1,56 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>select</title>
+  <!--<link rel="stylesheet" href="./normalize.css">-->
+  <style>
+    select {
+      width: 180px;
+      height: 25px;
+      /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+      border: solid 1px #F0E7E1;
+
+      /*很关键：将默认的select选择框样式清除*/
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      /*在选择框的最右侧中间显示小箭头图片*/
+      /*background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;*/
+
+
+      /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+      padding-right: 14px;
+      background-color: #F0E7E1;
+    }
+
+
+    /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+    select::-ms-expand {
+      display: none;
+    }
+    select::selection{
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    option{
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  </style>
+</head>
+<body>
+<select>
+  <option value="00">请选择城市</option>
+  <option value="01">北京</option>
+  <option value="02">上海</option>
+  <option value="03">广州</option>
+</select>
+</body>
+</html>

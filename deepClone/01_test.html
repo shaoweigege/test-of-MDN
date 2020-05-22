@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深度克隆变量</title>
+</head>
+<body>
+<script>
+  // 得到变量的数据类型
+  const result1 = Object.prototype.toString.call(111);
+  const result2 = Object.prototype.toString.call('111');
+  const result3 = Object.prototype.toString.call(true);
+  const result4 = Object.prototype.toString.call([]);
+  const result5 = Object.prototype.toString.call({});
+  const result6 = Object.prototype.toString.call(() => {
+  });
+  const result7 = Object.prototype.toString.call(new Date());
+  const result8 = Object.prototype.toString.call(undefined);
+  const result9 = Object.prototype.toString.call(null);
+  const result10 = Object.prototype.toString.call(Math);
+  const result11 = Object.prototype.toString.call(/\.jpg$/);
+  const result12 = Object.prototype.toString.call(Symbol('hello'));
+
+  console.log(result1); // [object Number]
+  console.log(result2); // [object String]
+  console.log(result3); // [object Boolean]
+  console.log(result4); // [object Array]
+  console.log(result5); // [object Object]
+  console.log(result6); // [object Function]
+  console.log(result7); // [object Date]
+  console.log(result8); // [object Undefined]
+  console.log(result9); // [object Null]
+  console.log(result10); // [object Math]
+  console.log(result11); // [object RegExp]
+  console.log(result12); // [object Symbol]
+
+</script>
+</body>
+</html>

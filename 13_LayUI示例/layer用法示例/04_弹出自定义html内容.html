@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义html内容</title>
+  <script src="./layer/jquery.js"></script>
+  <script src="./layer/layer.js"></script>
+  <style>
+    ul {
+      list-style: none;
+    }
+
+    li {
+      border-bottom: 1px solid gray;
+    }
+
+    #file-select {
+      visibility: hidden;
+      width: 500px;
+      height: 0;
+      /*background-color: pink;*/
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
+
+    #file-select div {
+      width: 100%;
+      height: 25px;
+      line-height: 25px;
+      cursor: pointer;
+      border-bottom: 1px solid #c0c4cc;
+    }
+
+    #file-select div:hover {
+      color: pink;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">点我</button>
+<div id="file-select">
+  <div>shape1.json</div>
+  <div>shape2.json</div>
+  <div>shape3.json</div>
+  <div>shape4.json</div>
+  <div>shape5.json</div>
+  <div>shape6.json</div>
+  <div>shape7.json</div>
+  <div>shape8.json</div>
+  <div>shape9.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+  <div>shape10.json</div>
+</div>
+<div>hello world</div>
+<script>
+  let selectFileName = '';
+  let btn = document.getElementById('btn');
+  let fileSelect = document.getElementById('file-select');
+  fileSelect.onclick = function (e) {
+    //console.log(e.target.innerText);
+    selectFileName = e.target.innerText;
+  };
+  btn.onclick = function () {
+    document.getElementById('file-select').style.visibility = 'visible';
+    document.getElementById('file-select').style.height = '250px';
+    //弹出自定义内容
+    //弹出一个页面层
+   let layerIndex =  layer.open({
+      type: 1,
+      area: ['500px', '360px'],
+      btn: ['确定', '取消'],
+      shadeClose: true, //点击遮罩关闭
+      //content还可以是一个DOM选择器
+      content: $('#file-select'),
+      end() {
+        document.getElementById('file-select').style.visibility = 'hidden';
+        document.getElementById('file-select').style.height = '0';
+      },
+      //点击确定按钮
+      yes() {
+        if (selectFileName === '') {
+          //没有选择文件
+        } else {
+          console.log(selectFileName);
+          selectFileName = '';
+          layer.close(layerIndex);
+        }
+      }
+    });
+  };
+</script>
+</body>
+</html>

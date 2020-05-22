@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+    }
+
+    .box div {
+      width: 80px;
+      height: 20px;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+<script>
+  const arr = [12, 2, 4, 5, 67, 90, 3, 2, 45, 6, 7, 4,1,22]
+
+  arr.filter()
+  let empty = []
+  const list = arr.reduce((prev, item, index) => {
+    if (empty.length === 3) {
+      // 先存进外层数组 然后清空数组 然后再想其中添加数据
+      prev.push(empty)
+      empty = []
+      empty.push(item)
+    } else {
+      //直接向内层数组添加元素
+      empty.push(item)
+    }
+    //最后一个元素的判断
+    if (index === arr.length - 1) {
+      prev.push(empty)
+    }
+    return prev
+  }, [])
+  console.log(list)
+</script>
+</body>
+</html>

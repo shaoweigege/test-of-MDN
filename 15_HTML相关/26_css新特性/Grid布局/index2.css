@@ -1,0 +1,29 @@
+.grid-container {
+  width: calc(100% - 50px);
+  margin-left: 25px;
+  height: 300px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.grid-container .item {
+  height: 15vh;
+  width: 100%;
+}
+.grid-container .item .item-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #152860;
+  color: #fff;
+}
+.grid-container .item .item-box img {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=index2.css.map */

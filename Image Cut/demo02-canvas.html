@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      display: block;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="300"></canvas>
+<img src="./avatar.png" id="avatar" alt="">
+<script>
+  const canvas = document.getElementById('canvas')
+  const context = canvas.getContext('2d')
+
+  const avatar = document.querySelector('#avatar')
+  const avatarWidth = avatar.clientWidth
+  const avatarHeight = avatar.clientHeight
+  const clipWidth = avatarWidth / 2
+  const clipHeight = avatarHeight / 2
+  const clipX = avatarWidth / 4
+  const clipY = avatarHeight / 4
+  canvas.setAttribute('width', clipWidth)
+  canvas.setAttribute('height', clipHeight)
+
+  context.drawImage(avatar, clipX, clipY, 0, 0)
+</script>
+</body>
+</html>

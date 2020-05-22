@@ -1,0 +1,161 @@
+.context-menu {
+  font-family: 幼圆;
+  font-size: 12px;
+  width: 100px;
+  height: 250px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #555;
+
+  .menu-item {
+    width: 100%;
+    height: 33.333333%;
+    &.item1{
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px dashed #555;
+      .menu-title{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        font-weight: bold;
+        border-bottom: 1px solid #555;
+        img{
+          width: 20%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+      .change-color{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+    }
+    &.item2{
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px dashed #555;
+      .scale-big{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+      .scale-small{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+      .rotate{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+    }
+    &.item3{
+      display: flex;
+      flex-direction: column;
+      .copy{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+      .delete{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+      .close-menu{
+        width: 100%;
+        height: 33.33333333%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px dashed #555;
+        &:hover{
+          color: #409EFF;
+        }
+        img{
+          width: 15%;
+        }
+        p{
+          width: 80%;
+        }
+      }
+    }
+  }
+}

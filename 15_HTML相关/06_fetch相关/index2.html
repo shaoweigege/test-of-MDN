@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fetch</title>
+</head>
+<body>
+<button id="btn">点击</button>
+<script>
+  //添加参数
+  let btn = document.getElementById('btn');
+  let url = 'http://localhost:3000/login';
+  btn.onclick = function () {
+    fetch(url, {
+      body: 'username=林志玲&age=29',
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+    })
+        .then((res) => {
+          return res.json();//res.json()是一个promise对象
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch(() => {
+          console.log('error');
+        });
+  };
+</script>
+</body>
+</html>

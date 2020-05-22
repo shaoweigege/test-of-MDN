@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LayUI的颜色选择器</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <style>
+    #color-select .layui-unselect.layui-colorpicker.layui-colorpicker-xs {
+      width: 20px;
+      height: 12px;
+    }
+
+    #color-select .layui-icon.layui-colorpicker-trigger-i.layui-icon-close {
+      display: none;
+    }
+
+    #color-select .layui-icon.layui-colorpicker-trigger-i.layui-icon-down {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">按钮</button>
+<div id="color-select"></div>
+<script src="./layui/layui.js"></script>
+<script>
+  layui.use('colorpicker', function () {
+    let colorpicker = layui.colorpicker;
+    //渲染
+    colorpicker.render({
+      elem: '#color-select', //绑定元素
+      predefine: true, //开启预定义颜色
+      size: 'xs',
+      done: function (color) {
+        console.log('done', color)
+      },
+      change: function (color) {
+        console.log('change', color)
+      }
+    });
+  });
+</script>
+<script>
+  document.getElementById('btn').onclick = function () {
+    console.log(1111);
+    document.querySelector('.layui-colorpicker-trigger-span').dispatchEvent(new MouseEvent('click'))
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<button id="btn1">按钮1</button>
+<button id="btn2">按钮2</button>
+<script>
+  //给一个对象的属性添加深度监听
+  function observe(data) {
+    //如果data不是对象类型 则不作处理
+    if (!data || typeof data !== 'object') return;
+    // 取出所有属性遍历
+    Object.keys(data).forEach(function(key) {
+      // data是源对象 key是data属性名 data[key]是key属性对应的值
+      defineReactive(data, key, data[key]);
+    });
+  }
+
+  function defineReactive(data, key, val) {
+    // 监听子属性(如果子属性不是对象类型 则不作处理)
+    observe(val);
+    Object.defineProperty(data, key, {
+      enumerable: true, // 可枚举
+      configurable: false, // 不能再define
+      get: function() {
+        return val;
+      },
+      set: function(newVal) {
+        console.log('哈哈哈，监听到值变化了 ', val, ' --> ', newVal);
+        val = newVal;
+      }
+    });
+  }
+</script>
+</body>
+</html>

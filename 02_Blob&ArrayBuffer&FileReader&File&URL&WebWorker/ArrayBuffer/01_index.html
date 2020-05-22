@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ArrayBuffer对象</title>
+</head>
+<body>
+<script>
+  //ArrayBuffer表示一段二进制数据,可以操作二进制数据
+  let buffer = new ArrayBuffer(24);  //构造函数接受一个整数作为参数,表示这个对象占多大的字节
+  console.log(buffer.byteLength);   //24
+  console.log(buffer.slice(0));    //表示复制了一份本身
+</script>
+</body>
+</html>

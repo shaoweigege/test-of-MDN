@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弹出下拉框</title>
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+  <script src="./layer/jquery.js"></script>
+  <script src="./layer/layer.js"></script>
+  <style>
+    .layui-form {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<form class="layui-form" style="width: 400px;" id="form">
+  <select id="fileName" lay-filter="file" name="fileName"></select>
+</form>
+<button id="btn">点我</button>
+<div>hello world</div>
+<script src="./layui/layui.js"></script>
+<script>
+  let fileList = [
+    '2019-10-04 14:43:22.json',
+    '2019-10-04 14:43:33.json',
+    '2019-10-05 14:43:22.json',
+    '2019-10-05 14:43:33.json',
+    '2019-10-06 14:43:22.json',
+    '2019-10-07 14:43:22.json',
+    '2019-10-07 14:43:33.json',
+    '2019-10-08 14:43:22.json',
+    '2019-10-08 14:43:33.json',
+    '2019-10-09 14:43:22.json',
+    '2019-10-09 14:43:33.json',
+    '2019-10-10 14:43:22.json',
+    '2019-10-10 14:43:33.json',
+  ];
+  let selectedValue = '请选择文件';
+  let btn = document.getElementById('btn');
+  layui.use('form', function () {
+    let form = layui.form;
+    btn.onclick = function () {
+      //向下拉框中添加option
+      let fileSelect = document.querySelector('#form').children[0];
+      let fileHTML = `<option value=请选择文件>请选择文件</option>`;
+      for (let i = 0; i < fileList.length; i++) {
+        fileHTML += `<option value="${fileList[i]}">${fileList[i]}</option>`
+      }
+      fileSelect.innerHTML = fileHTML;
+      form.render(); //更新全部
+      let layerIndex = layer.open({
+        type: 1,
+        title: '请选择文件',
+        closeBtn: 0,
+        area: ['400px', '500px'],
+        btn: ['确定', '取消'],
+        shadeClose: true, //点击遮罩关闭
+        //content还可以是一个DOM选择器
+        content: $('#form'),
+        //点击确定按钮
+        yes() {
+          layer.close(layerIndex);
+          if (selectedValue === '请选择文件') {
+            layer.msg('你还没有选择文件');
+          } else {
+            console.log('选择的文件名是：' + selectedValue);
+          }
+        },
+        no() {
+          layer.close(layerIndex);
+        }
+      });
+    };
+    form.on('select', function (data) {
+      selectedValue = data.value;
+    });
+  });
+</script>
+</body>
+</html>

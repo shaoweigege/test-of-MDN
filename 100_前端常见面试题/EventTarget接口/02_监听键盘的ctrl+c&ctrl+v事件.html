@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>监听键盘的ctrl+c&ctrl+v事件</title>
+</head>
+<body>
+<script>
+  //监听键盘的ctrl+c ctrl+v事件
+  //方式一：(不使用这种方式，太麻烦)
+  /*let controlFlag = false
+  window.addEventListener('keydown', (e) => {
+    console.log(e.key) //'Control'
+    if (e.key === 'Control') {
+      controlFlag = true
+    }
+    if (controlFlag && e.key.toLowerCase() === 'c') {
+      console.log('复制成功')
+      controlFlag = false
+    }
+  })
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key) //'Control'
+    if (e.key === 'Control') {
+      controlFlag = false
+    }
+  })*/
+  //方式二：利用e.ctrlKey这个属性(是否按下ctrl键)来判断按下一个按键时是否按下ctrl键
+  window.addEventListener('keyup', e => {
+    /*
+    * 注意：以下的事件可以是任意类型的事件(eg:某一元素的click事件) 不仅仅是键盘的事件
+    * 1.e.ctrlKey表示事件发生时 是否同时按下了ctrl键
+    * 2.e.altKey表示事件发生时 是否同时按下了alt键
+    * 3.e.shiftyKey表示事件发生时 是否同时按下了shift键
+    * 4.e.metaKey表示事件发生时 是否同时按下了meta键
+    * */
+    console.log(e.key, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey)
+  })
+</script>
+</body>
+</html>

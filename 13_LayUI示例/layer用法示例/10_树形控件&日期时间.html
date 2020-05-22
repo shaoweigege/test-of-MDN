@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>树形控件&日期时间</title>
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+  <style>
+    div {
+      box-sizing: border-box;
+    }
+
+    #all-content {
+      width: 1000px;
+      height: 600px;
+      display: none;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #BABABA;
+    }
+
+    #all-content .tree-box {
+      width: 100%;
+      height: 320px;
+      margin: 10px 0;
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+    }
+
+    #all-content .tree-box .left {
+      width: 220px;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #C6C6C6;
+    }
+
+    #all-content .tree-box .left .title {
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      background-color: #F5F8F9;
+    }
+
+    #all-content .tree-box .left .tree1-box {
+      width: 100%;
+      height: 290px;
+      padding-bottom: 15px;
+      overflow: auto;
+    }
+
+    #all-content .tree-box .middle {
+      width: 220px;
+      height: 100%;
+      margin-left: 50px;
+      margin-right: 50px;
+      border: 1px solid #C6C6C6;
+    }
+
+    #all-content .tree-box .middle .tree2-box {
+      width: 100%;
+      height: 290px;
+      padding-bottom: 15px;
+      overflow: auto;
+    }
+
+    #all-content .tree-box .middle .title {
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      background-color: #F5F8F9;
+    }
+
+    #all-content .tree-box .right {
+      width: 220px;
+      height: 100%;
+      border: 1px solid #C6C6C6;
+    }
+
+    #all-content .tree-box .right .tree3-box {
+      width: 100%;
+      height: 290px;
+      padding-bottom: 15px;
+      overflow: auto;
+    }
+
+    #all-content .tree-box .right .title {
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      background-color: #F5F8F9;
+    }
+
+  </style>
+</head>
+<body>
+<div id="all-content">
+  <form lay-filter="todo-demo" class="layui-form">
+    <div class="layui-form-item">
+      <label class="layui-form-label">任务名称：</label>
+      <div class="layui-input-inline">
+        <input type="text" name="taskName" placeholder="请输入任务名称" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">授权时间：</label>
+      <div class="layui-input-inline">
+        <input type="text" name="beginTime" id="begin-time" placeholder="开始时间" class="layui-input">
+      </div>
+      <div class="layui-input-inline">
+        <input type="text" name="endTime" id="end-time" placeholder="结束时间" class="layui-input">
+      </div>
+    </div>
+    <div class="tree-box">
+      <div class="left">
+        <div class="title">选择人员(单选)</div>
+        <div class="tree1-box">
+          <div id="tree1"></div>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="title">选择钥匙(单选)</div>
+        <div class="tree2-box">
+          <div id="tree2"></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="title">选择锁具(多选)</div>
+        <div class="tree3-box">
+          <div id="tree3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">备注：</label>
+      <div class="layui-input-block">
+        <textarea placeholder="请输入内容" name="extraInfo" class="layui-textarea"></textarea>
+      </div>
+    </div>
+  </form>
+</div>
+<button id="btn">按钮</button>
+<script src="./layer/jquery.js"></script>
+<script src="./layer/layer.js"></script>
+<script src="./layui/layui.js"></script>
+<script>
+  let checkData1;
+  let checkData2;
+  let checkData3;
+  layui.use('form', function () {
+    let form = layui.form;
+
+    //监听提交
+    form.on('submit(todo-demo)', function (data) {
+      layer.msg(JSON.stringify(data.field));
+      return false;
+    });
+  });
+  //tree1
+  layui.use('tree', function () {
+    let tree = layui.tree;
+    tree.render({
+      elem: '#tree1',  //绑定元素
+      showCheckbox: true,
+      id: 1001,//定义索引,
+      data: [
+        {
+          "id": "35",
+          "title": "北京市",
+          "value": "110000",
+          "children": [
+            {
+              "id": "1022",
+              "title": "市辖区",
+              "value": "110100",
+              "children": [
+                {
+                  "id": "44",
+                  "title": "东城区",
+                  "value": "110101",
+                  "children": []
+                },
+                {
+                  "id": "45",
+                  "title": "西城区",
+                  "value": "110102",
+                  "children": []
+                },
+                {
+                  "id": "46",
+                  "title": "朝阳区",
+                  "value": "110105",
+                  "children": []
+                },
+                {
+                  "id": "47",
+                  "title": "丰台区",
+                  "value": "110106",
+                  "children": []
+                },
+                {
+                  "id": "48",
+                  "title": "石景山区",
+                  "value": "110107",
+                  "children": []
+                },
+                {
+                  "id": "49",
+                  "title": "海淀区",
+                  "value": "110108",
+                  "children": []
+                },
+                {
+                  "id": "50",
+                  "title": "门头沟区",
+                  "value": "110109",
+                  "children": []
+                },
+                {
+                  "id": "51",
+                  "title": "房山区",
+                  "value": "110111",
+                  "children": []
+                },
+                {
+                  "id": "52",
+                  "title": "通州区",
+                  "value": "110112",
+                  "children": []
+                },
+                {
+                  "id": "53",
+                  "title": "顺义区",
+                  "value": "110113",
+                  "children": []
+                },
+                {
+                  "id": "54",
+                  "title": "昌平区",
+                  "value": "110114",
+                  "children": []
+                },
+                {
+                  "id": "55",
+                  "title": "大兴区",
+                  "value": "110115",
+                  "children": []
+                },
+                {
+                  "id": "56",
+                  "title": "怀柔区",
+                  "value": "110116",
+                  "children": []
+                },
+                {
+                  "id": "57",
+                  "title": "平谷区",
+                  "value": "110117",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "1023",
+              "title": "县",
+              "value": "110200",
+              "children": [
+                {
+                  "id": "58",
+                  "title": "密云县",
+                  "value": "110228",
+                  "children": []
+                },
+                {
+                  "id": "59",
+                  "title": "延庆县",
+                  "value": "110229",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+      ],
+      oncheck: function () {
+        checkData1 = tree.getChecked(1001); //得到当前点击的节点数据
+      }
+    });
+  });
+  //tree2
+  layui.use('tree', function () {
+    let tree = layui.tree;
+    tree.render({
+      elem: '#tree2',  //绑定元素
+      showCheckbox: true,
+      id: 1002,//定义索引,
+      data: [
+        {
+          "id": "35",
+          "title": "北京市",
+          "value": "110000",
+          "children": [
+            {
+              "id": "1022",
+              "title": "市辖区",
+              "value": "110100",
+              "children": [
+                {
+                  "id": "44",
+                  "title": "东城区",
+                  "value": "110101",
+                  "children": []
+                },
+                {
+                  "id": "45",
+                  "title": "西城区",
+                  "value": "110102",
+                  "children": []
+                },
+                {
+                  "id": "46",
+                  "title": "朝阳区",
+                  "value": "110105",
+                  "children": []
+                },
+                {
+                  "id": "47",
+                  "title": "丰台区",
+                  "value": "110106",
+                  "children": []
+                },
+                {
+                  "id": "48",
+                  "title": "石景山区",
+                  "value": "110107",
+                  "children": []
+                },
+                {
+                  "id": "49",
+                  "title": "海淀区",
+                  "value": "110108",
+                  "children": []
+                },
+                {
+                  "id": "50",
+                  "title": "门头沟区",
+                  "value": "110109",
+                  "children": []
+                },
+                {
+                  "id": "51",
+                  "title": "房山区",
+                  "value": "110111",
+                  "children": []
+                },
+                {
+                  "id": "52",
+                  "title": "通州区",
+                  "value": "110112",
+                  "children": []
+                },
+                {
+                  "id": "53",
+                  "title": "顺义区",
+                  "value": "110113",
+                  "children": []
+                },
+                {
+                  "id": "54",
+                  "title": "昌平区",
+                  "value": "110114",
+                  "children": []
+                },
+                {
+                  "id": "55",
+                  "title": "大兴区",
+                  "value": "110115",
+                  "children": []
+                },
+                {
+                  "id": "56",
+                  "title": "怀柔区",
+                  "value": "110116",
+                  "children": []
+                },
+                {
+                  "id": "57",
+                  "title": "平谷区",
+                  "value": "110117",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "1023",
+              "title": "县",
+              "value": "110200",
+              "children": [
+                {
+                  "id": "58",
+                  "title": "密云县",
+                  "value": "110228",
+                  "children": []
+                },
+                {
+                  "id": "59",
+                  "title": "延庆县",
+                  "value": "110229",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+      ],
+      oncheck: function () {
+        checkData2 = tree.getChecked(1002); //得到当前点击的节点数据
+      }
+    });
+  });
+  //tree3
+  layui.use('tree', function () {
+    let tree = layui.tree;
+    tree.render({
+      elem: '#tree3',  //绑定元素
+      showCheckbox: true,
+      id: 1003,//定义索引,
+      data: [
+        {
+          "id": "35",
+          "title": "北京市",
+          "value": "110000",
+          "children": [
+            {
+              "id": "1022",
+              "title": "市辖区",
+              "value": "110100",
+              "children": [
+                {
+                  "id": "44",
+                  "title": "东城区",
+                  "value": "110101",
+                  "children": []
+                },
+                {
+                  "id": "45",
+                  "title": "西城区",
+                  "value": "110102",
+                  "children": []
+                },
+                {
+                  "id": "46",
+                  "title": "朝阳区",
+                  "value": "110105",
+                  "children": []
+                },
+                {
+                  "id": "47",
+                  "title": "丰台区",
+                  "value": "110106",
+                  "children": []
+                },
+                {
+                  "id": "48",
+                  "title": "石景山区",
+                  "value": "110107",
+                  "children": []
+                },
+                {
+                  "id": "49",
+                  "title": "海淀区",
+                  "value": "110108",
+                  "children": []
+                },
+                {
+                  "id": "50",
+                  "title": "门头沟区",
+                  "value": "110109",
+                  "children": []
+                },
+                {
+                  "id": "51",
+                  "title": "房山区",
+                  "value": "110111",
+                  "children": []
+                },
+                {
+                  "id": "52",
+                  "title": "通州区",
+                  "value": "110112",
+                  "children": []
+                },
+                {
+                  "id": "53",
+                  "title": "顺义区",
+                  "value": "110113",
+                  "children": []
+                },
+                {
+                  "id": "54",
+                  "title": "昌平区",
+                  "value": "110114",
+                  "children": []
+                },
+                {
+                  "id": "55",
+                  "title": "大兴区",
+                  "value": "110115",
+                  "children": []
+                },
+                {
+                  "id": "56",
+                  "title": "怀柔区",
+                  "value": "110116",
+                  "children": []
+                },
+                {
+                  "id": "57",
+                  "title": "平谷区",
+                  "value": "110117",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "1023",
+              "title": "县",
+              "value": "110200",
+              "children": [
+                {
+                  "id": "58",
+                  "title": "密云县",
+                  "value": "110228",
+                  "children": []
+                },
+                {
+                  "id": "59",
+                  "title": "延庆县",
+                  "value": "110229",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+      ],
+      oncheck: function () {
+        checkData3 = tree.getChecked(1003); //得到当前点击的节点数据
+      }
+    });
+  });
+
+  //时间日期选择器
+  layui.use('laydate', function () {
+    var laydate = layui.laydate;
+    laydate.render({
+      elem: '#begin-time' //指定元素
+    });
+  });
+  layui.use('laydate', function () {
+    var laydate = layui.laydate;
+    laydate.render({
+      elem: '#end-time' //指定元素
+    });
+  });
+
+  let btn = document.getElementById('btn');
+  btn.onclick = function () {
+    //显示弹出框
+    let layerIndex = layer.open({
+      type: 1,
+      title: '生成新任务',
+      closeBtn: 1,
+      area: ['1200px', '600px'],
+      btn: ['确定', '取消'],
+      shadeClose: true,
+      content: $('#all-content'),
+      //点击确定按钮
+      yes() {
+        //获取选择的地区的数据
+        console.log(checkData1);
+        console.log(checkData2);
+        console.log(checkData3);
+        //关闭弹出层
+        layer.close(layerIndex);
+      },
+      no() {
+        layer.close(layerIndex);
+      }
+    });
+  };
+</script>
+</body>
+</html>

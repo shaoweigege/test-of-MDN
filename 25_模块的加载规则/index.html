@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script type="module">
+  /*
+  * es6模块的加载
+  *   1.script标签的type属性要设置为'module' <script type="module">
+  *   2.被导入的模块的后缀名.js一定要加上
+  *   3.模块中this===undefined
+  *   4.模块中默认是严格模式 不必加上use strict了
+  *   5.被导入的模块不是被挂载到window对象的属性上了
+  *   6.多次导入同一个模块只会执行一次模块中的代码
+  * */
+  import time from './time.js'
+
+  console.log(time)
+  console.dir(time)
+  console.log(time(17872872982))
+  console.log(this === undefined)//true
+  console.log(window.time === time)//false
+</script>
+</body>
+</html>

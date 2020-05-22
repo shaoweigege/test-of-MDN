@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端常见面试题</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      height: 20000px;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<ul>
+  <li>1</li>
+  <li>11</li>
+  <li>111</li>
+</ul>
+<script>
+  //防抖：频繁触发的事件，只在最后一次触发后的间隔一段时间才真正的去处理，
+  //      如果设定的时间到来之前，又一次触发了事件，就重新开始计时
+  const debounce = function (fn, delay) {
+    let timer = null
+    //返回的函数是真正进行处理的函数
+    return function (...args) {
+      //把上一次事件触发时设置的定时器清除掉
+      clearTimeout(timer)
+      //只有在事件停止触发后又过了delay时间后才会真的去执行延时定时器中的代码
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+
+  window.onscroll = debounce(function () {
+    console.log(200000)
+  }, 2000)
+
+  //节流：频繁触发的事件，保证每次只在固定的时间间隔内处理一次
+  const throttle = function (fn, delay) {
+    let flag = true
+    return function (...args) {
+      if (flag) {
+        flag = false
+        setTimeout(() => {
+          fn.apply(this, args)
+          flag = true
+        }, delay)
+      }
+    }
+  }
+  //获取页面中所有的DOM节点
+  const all = document.querySelectorAll('*') //返回NodeList类型的伪数组(可以转换成真数组)
+  console.log([...all])
+  console.log(Array.from(all).map(el => el.tagName))
+  console.log(Array.from(all).map(el => el.nodeName))
+  console.log(new Set(Array.from(all).map(el => el.nodeName)))
+
+  /*
+  * js实现深浅拷贝
+  * 1.深拷贝：将原对象的所有属性都复制一份 开辟一个新的内存 两个对象的修改都互不影响
+  *           {...obj}、Object.assign({},obj) 都属于浅拷贝
+  * 2.浅拷贝：只复制原对象中非对象类型的属性 对象类型的属性不是复制 而是共用同一个内存
+  *           原对象与拷贝后的对象修改对象类型的属性会互相影响
+  *           JSON.parse(JSON.stringify(obj))-->如果属性值为函数、正则、日期类型 则会被转成空对象{}
+  * */
+  let obj = {
+    a: 100,
+    b: [100, 200, 300],
+    c: {x: 10},
+    d: /^\d+$/
+  }
+  let obj1 = {...obj}
+  console.log(obj1)
+  obj1.c.x = 101
+  console.log(obj1, obj)
+  let obj2 = JSON.parse(JSON.stringify(obj))
+  console.log(obj2)
+  obj2.c.x = 10111
+  console.log(obj2, obj)
+
+  /*
+  * apply和call的原理
+  * 1.apply和call的第一个参数如果不传 则默认为window
+  * 2.apply第二个参数接受一个数组 call方法如果后面有参数则依次传入
+  * 3.两个函数都会执行该函数并且都会改变原函数内部的this的指向
+  * */
+  Function.prototype._apply = function (context = window, args = []) {
+    //此处this就是函数的调用者(需要被执行的函数 但是函数内部的this会被改变)
+    context.fn = this
+    let result = context.fn(...args)
+    delete context.fn
+    return result
+  }
+  let stu = {
+    name: '林志玲',
+    study(subject1, subject2) {
+      console.log('我是' + this.name + ',我正在学习' + subject1 + '和' + subject2)
+    }
+  }
+  stu.study('数学', '英语')
+  window.name = 'window'
+  stu.study._apply(window, ['abc', 'def'])
+
+  Function.prototype._call = function (context = window, ...args) {
+    context.fn = this
+    let result = context.fn(...args)
+    delete context.fn
+    return result
+  }
+  stu.study._call(window, '数学', '英语')
+
+  /*
+  * bind方法的原理
+  * 1.bind改变原方法内部的this 将this指向bind方法的第一个参数(如果没有传参则指向window)
+  * 2.bind方法如果有多参数 则依次传入
+  * */
+  Function.prototype._bind = function (context = window, ...args) {
+    context.fn = this
+    //返回一个新的函数 新函数的调用不需要传递参数
+    return function () {
+      let result = context.fn(...args)
+      delete context.fn
+      return result
+    }
+  }
+  stu.study._bind(window, '数学', '英语')()
+
+  let arr = [1, 2, 3, 4, 5]
+  //Array.prototype.splice(startIndex,replaceCount,replaceValue)
+  arr.splice(0, 1, 10)
+  console.log(arr)
+</script>
+</body>
+</html>

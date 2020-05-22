@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Notification</title>
+</head>
+<body>
+<script>
+  let notification;
+  Notification.requestPermission(function (permission) {
+    if (permission) {
+      notification = new Notification('通知', {
+        body: '今天是立冬',
+        icon: './avatar.png' //相对路径也是可以的
+        //网络上的而图片资源是可以的
+        //icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      });
+      notification.onclick = function () {
+        console.log('click');
+      };
+      notification.onclose = function () {
+        console.log('close');
+      };
+      notification.onshow = function () {
+        console.log('show');
+      };
+      notification.onerror = function () {
+        console.log('error');
+      };
+    }
+  })
+</script>
+</body>
+</html>

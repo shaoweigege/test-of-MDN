@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01_页面刷新</title>
+</head>
+<body>
+<script>
+  //beforeunload:页面卸载之前触发
+  window.addEventListener('beforeunload', function () {
+    localStorage.setItem('state', JSON.stringify({name: '林志玲'}))
+  });
+  //Object.assign(target,...source)
+  const obj = Object.assign({}, {name: '林志玲'}, {age: 28}, {sex: 0})
+  console.log(obj);
+</script>
+</body>
+</html>

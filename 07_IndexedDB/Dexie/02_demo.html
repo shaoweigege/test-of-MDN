@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script src="./dexie.js"></script>
+<script>
+  let db = new Dexie("FriendsAndPetsDB");
+
+  db.version(1).stores({
+    friends: "++id,name,isCloseFriend",
+    pets: "++id,name,kind"
+  });
+  db.open();
+  db.friends.add({name: "Ingemar Bergman", isCloseFriend: 0});
+  db.friends.add({name: '林志玲', isCloseFriend: 1});
+  db.pets.add({name: "Josephina", kind: "dog", fur: "too long right now"});
+</script>
+</body>
+</html>

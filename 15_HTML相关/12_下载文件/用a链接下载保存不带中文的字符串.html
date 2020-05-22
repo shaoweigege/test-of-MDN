@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用a链接下载保存字符串</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<a href="" id="download-link" download="" style="display:none;">保存</a>
+<script>
+  let aLink = document.getElementById('download-link');
+  let student = {name: 'Tom', age: 5};
+  // 这种方式可以
+  // let hrefStr = 'data:text/plain;base64,' + window.btoa(JSON.stringify(student));
+  // 这种方式也可以
+  let hrefStr = 'data:text/plain,' + encodeURIComponent(JSON.stringify(student));
+  //a链接的href属性是要下载文件的内容
+  aLink.href = hrefStr;
+  //a链接的download属性是要下载文件的文件名
+  aLink.download = 'Tom.json';
+  document.getElementById('btn').onclick = function () {
+    aLink.click();
+  };
+</script>
+</body>
+</html>

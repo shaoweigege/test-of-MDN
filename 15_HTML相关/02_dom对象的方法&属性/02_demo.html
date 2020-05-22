@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>demo</title>
+</head>
+<body>
+<ul id="fruit">
+  <li class="item one">Apple</li>
+  <li class="item two">Banana</li>
+  <li class="item three">Pear</li>
+</ul>
+<hr/>
+<div id="box"></div>
+<script>
+  let ul = document.getElementById('fruit');
+  let div = document.getElementById('box');
+  console.log(ul);
+  console.log(div);
+  //克隆节点
+  let ulCopy = ul.cloneNode(true);
+  //将id值修改掉，避免出现两个相同id的元素
+  ulCopy.setAttribute('id', 'fruit-copy');
+  console.log(ulCopy);
+  div.appendChild(ulCopy);
+</script>
+</body>
+</html>

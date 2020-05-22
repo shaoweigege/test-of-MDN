@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css中pointer-events属性</title>
+  <style>
+    .silent-pointer {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+  let btn = document.getElementById('btn');
+  btn.onclick = function () {
+    console.log('点击按钮');
+    btn.classList.add('silent-pointer');
+    window.setTimeout(() => {
+      btn.classList.remove('silent-pointer');
+    }, 3000);
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+    }
+
+    /*
+    使用媒体查询时
+    1.and后面一定要有空格
+    2.可以有多个and(表示有多重查询条件)
+    3.查询条件一定要跟单位
+    */
+    /*
+    1.min-width:查询当可视区域的最小宽度(调整浏览器窗口大小会改变该值)
+    2.min-device-width:查询当前设备的宽度(调整浏览器窗口大小该值不会发生变化)
+    */
+    @media screen and (min-width: 1200px) {
+      .box {
+        background-color: pink;
+      }
+    }
+
+    @media screen and (min-width: 992px) and (max-width: 1200px) {
+      .box {
+        background-color: yellow;
+      }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      .box {
+        background-color: yellowgreen;
+      }
+    }
+
+    @media screen and  (max-width: 768px) {
+      .box {
+        background-color: deeppink;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

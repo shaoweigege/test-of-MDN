@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map结构</title>
+</head>
+<body>
+<script>
+  //Object是字符串-值 Map结构是值-值
+  const obj = {mame: 'Tom', age: 26};
+  console.log(JSON.stringify(obj));
+  const map = new Map();
+  map.set(obj, 'Message of Tom');
+  console.log(map);
+  console.log(JSON.stringify(map));
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>增删改查操作</title>
+</head>
+<body>
+<script src="./dexie.js"></script>
+<script>
+  //创建数据库
+  let db = new Dexie('device_pictures');
+  //设计数据表
+  db.version(1).stores({
+    //表名：pictures
+    //主键id,type表明属于哪一种设备,pic是该图片的base64格式的字符串以及状态值
+    pictures: '++id,type,pic'
+  });
+
+  /****************将增删改查操作封装到方法里避免重复操作*******************/
+  //1.查询数据库中所有数据
+  function getAllData() {
+    db.pictures
+        .toArray()
+        .then(value => {
+          console.log(value)
+        });
+  }
+
+  //2.按条件查询
+  function getDataById(id) {
+    db.pictures
+        .where('id')
+        .equals(id)
+        .toArray()
+        .then(value => {
+          console.log(value);
+        })
+  }
+
+  //await方式
+  async function getDataByIdAsync(id) {
+    let data = await db.pictures
+        .where('id')
+        .equals(id)
+        .toArray();
+    console.log(data);
+  }
+
+  //4狩猎4隐匿2调和10鹰眼10异变
+
+  //测试部分的代码
+  //getAllData();
+  getDataById(3);
+  getDataByIdAsync(3);
+</script>
+</body>
+</html>

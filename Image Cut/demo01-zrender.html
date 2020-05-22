@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #canvas {
+      display: block;
+      width: 600px;
+      height: 400px;
+      margin: 100px auto;
+      background-color: #e2e2e2;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<button id="btn">OK</button>
+<script src="./zrender.js"></script>
+<script>
+  let zr = zrender.init(document.getElementById('canvas'))
+  //console.log(zr)
+  let avatar = new zrender.Image({
+    style: {
+      image: './avatar.png',
+      x: 0, y: 0,
+      width: 100, height: 100
+    }
+  })
+  zr.add(avatar)
+
+  //计算裁剪区域的信息{x:左上角横坐标,y:左上角纵坐标,width:裁剪区域的宽,height:裁剪区域的高}
+  let avatarRect = avatar.getBoundingRect()
+  console.log(avatarRect)
+  let {x, y, width, height} = avatarRect
+  let clipX = x + width / 4
+  let clipY = y + height / 4
+  let clipWidth = width / 2
+  let clipHeight = height / 2
+
+  //创建裁剪区域的矩形
+  let clip = new zrender.Rect({
+    cursor: 'move',
+    draggable: true,
+    style: {
+      fill: 'transparent',
+      stroke: 'pink'
+    },
+    shape: {
+      x: clipX,
+      y: clipY,
+      width: clipWidth,
+      height: clipHeight
+    }
+  })
+  zr.add(clip)
+  //avatar.setClipPath(clip)
+  document.getElementById('btn').onclick = function () {
+    avatar.setClipPath(clip)
+  }
+</script>
+</body>
+</html>

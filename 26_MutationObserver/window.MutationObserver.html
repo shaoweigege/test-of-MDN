@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<button id="btn1">add</button>
+<button id="btn2">drop</button>
+<ul id="ul-box">
+  <li>1</li>
+</ul>
+<script>
+  let ulBox = document.getElementById('ul-box')
+
+  let mutationObserver = new window.MutationObserver((mutations, observer) => {
+    // console.log(observer)
+    mutations.forEach(mutation => {
+      for (let addedNode of mutation.addedNodes) {
+        console.log(addedNode)
+      }
+    })
+  })
+
+  mutationObserver.observe(ulBox, {
+    childList: true, //子节点的变动
+    attributes: true, //属性的变动
+    characterData: true, //节点内容或者节点文本的变动
+    subtree: true     // 观察后代节点，默认为 false
+  })
+  let i = 2
+  document.getElementById('btn1').addEventListener('click', () => {
+    let li = document.createElement('li')
+    li.innerText = i
+    i++
+    ulBox.appendChild(li)
+  })
+  document.getElementById('btn2').addEventListener('click', () => {
+    let lis = document.querySelectorAll('#ul-box li')
+    let li = lis[lis.length - 1]
+    ulBox.removeChild(li)
+    i--
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>layui_选择器_三级联动</title>
+  <link rel="stylesheet" href="../layer/layui/css/layui.css">
+  <style>
+    #box {
+      width: 550px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    select {
+      display: inline;
+    }
+
+    #form {
+      width: 150px;
+    }
+
+    #form2 {
+      width: 150px;
+    }
+
+    #form3 {
+      width: 150px;
+    }
+
+    /*#confirm-btn {
+      height: 30px;
+      line-height: 30px;
+    }
+
+    #cancel-btn {
+      height: 30px;
+      line-height: 30px;
+    }*/
+  </style>
+</head>
+<body>
+<div id="box">
+  <form class="layui-form" id="form" action="">
+    <select name="prov" id="prov" lay-filter="prov" lay-verify="">
+      <option value="请选择省">请选择省</option>
+    </select>
+  </form>
+  <form class="layui-form" id="form2" action="">
+    <select name="city" id="city" lay-filter="city" lay-verify="">
+      <option value="请选择市">请选择市</option>
+    </select>
+  </form>
+  <form class="layui-form" id="form3" action="">
+    <select name="country" id="country" lay-filter="county" lay-verify="">
+      <option value="请选择区">请选择区</option>
+    </select>
+  </form>
+  <button type="button" id="confirm-btn" class="layui-btn">确定</button>
+  <button type="button" id="cancel-btn" class="layui-btn layui-btn-danger">取消</button>
+</div>
+<script src="省市地区数据.js"></script>
+<script src="../layer/layui/layui.js"></script>
+<script>
+  let form;
+  //创建保存地址信息的对象
+  let address = {};
+  layui.use('form', function () {
+    form = layui.form;
+    let provSelect = document.querySelector('#form').children[0];
+    let provHTML = `<option value=请选择省>请选择省</option>`;
+    for (let i = 0; i < dataArray.length; i++) {
+      provHTML += `<option value=${dataArray[i]["label"]}>${dataArray[i]["label"]}</option>`
+    }
+    provSelect.innerHTML = provHTML;
+    //form事件监听
+    form.on('select(prov)', function (data) {
+      // 获取下标
+      if (data.value === '请选择省') return;
+      address.prov = data.value;
+      let currentProvIndex = dataArray.findIndex(item => {
+        return item.label === data.value
+      });
+      // 获取下一级的数据数组
+      let cityArray = dataArray[currentProvIndex]["children"];
+      //console.log(cityArray);
+      // 动态添加第二级数据数组
+      let citySelect = document.querySelector('#form2').children[0];
+      let cityHTML = `<option value=请选择市>请选择市</option>`;
+      for (let i = 0; i < cityArray.length; i++) {
+        cityHTML += `<option value=${cityArray[i]["label"]}>${cityArray[i]["label"]}</option>`
+      }
+      citySelect.innerHTML = cityHTML;
+      form.render(); //更新全部
+      //添加事件监听
+      form.on('select(city)', function (data) {
+        // 获取下标
+        if (data.value === '请选择市') return;
+        address.city = data.value;
+        let currentCityIndex = cityArray.findIndex(item => {
+          return item.label === data.value
+        });
+        // 获取下一级的数据数组
+        let countyArray = cityArray[currentCityIndex]["children"];
+        //console.log(countyArray);
+        // 动态添加第二级数据数组
+        let countySelect = document.querySelector('#form3').children[0];
+        let countyHTML = `<option value=请选择县>请选择县</option>`;
+        for (let i = 0; i < countyArray.length; i++) {
+          countyHTML += `<option value=${countyArray[i]["label"]}>${countyArray[i]["label"]}</option>`
+        }
+        countySelect.innerHTML = countyHTML;
+        form.render(); //更新全部
+        //添加事件监听
+        form.on('select(county)', function (data) {
+          // 获取下标
+          if (data.value === '请选择县') return;
+          address.county = data.value;
+          //console.log(address);
+        });
+      });
+    });
+    form.render(); //更新全部
+  });
+  document.getElementById('confirm-btn').onclick = function () {
+    let {prov, city, county} = address;
+    if (!prov || !city || !county) {
+      //提示还没有完成选择
+      layer.alert('还没有完成选择', {icon: 2});
+    } else {
+      layer.confirm(`确定将设备绑定到 <span style="color: red;font-weight: bold">"${prov}--${city}--${county}"</span> 吗？`, {
+        btn: ['确定', '取消'] //按钮
+      }, function () {
+        layer.msg('绑定成功', {icon: 1});
+      });
+    }
+  };
+</script>
+</body>
+</html>

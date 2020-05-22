@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>forEach</title>
+</head>
+
+<body>
+  <script src="./_Array.js"></script>
+  <script>
+    const arr = [1, 2, 3, 4]
+    arr.forEach((item, index, arr) => {
+      console.log(item, index, arr)
+    })
+
+    //测试Array.prototype._forEach()方法
+    arr._forEach((item, index, arr) => {
+      console.log(item, index, arr)
+    })
+  </script>
+</body>
+
+</html>

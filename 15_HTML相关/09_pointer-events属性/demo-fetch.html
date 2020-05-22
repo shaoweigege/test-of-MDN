@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防止重复提交请求fetch</title>
+  <style>
+    .silent-click {
+      pointer-events: none;
+      font-family: Tahoma ;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">提交请求</button>
+<button id="btn1">提交请求</button>
+<button id="btn3">提交请求axios-get</button>
+<button id="btn4">提交请求axios-post</button>
+<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+<script>
+  function reqLogin(path, {name, pass}) {
+    return new Promise((resolve, reject) => {
+      fetch(path, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, pass})
+      })
+          .then(res => {
+            return res.json(); //返回的是promise对象
+          })
+          .then(data => {
+            resolve(data); //改变promise对象的状态
+          })
+          .catch(err => {
+            reject(err);
+          })
+    })
+  }
+
+  function reqLogin1(path, {name, pass}) {
+    return fetch(path, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name, pass})
+    })
+        .then(res => {
+          return res.json();
+        })
+  }
+
+  function reqHome(path, data = {}, type = 'GET') {
+    if (type === 'GET') {
+      return axios.get(path);
+    }
+    return axios.post(path, data);
+  }
+
+  let btn = document.getElementById('btn');
+  let path = 'http://localhost:3000/login';
+  let name = '林志玲';
+  let pass = 123456;
+  btn.onclick = function () {
+    //发送请求
+    reqLogin(path, {name, pass})
+        .then(data => {
+          console.log(data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+
+  document.getElementById('btn1').onclick = function () {
+    //发送请求
+    reqLogin1(path, {name, pass})
+        .then(data => {
+          console.log(data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  document.getElementById('btn3').onclick = function () {
+    //发送请求
+    reqHome('http://localhost:3000')
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  document.getElementById('btn4').onclick = function () {
+    //发送请求
+    reqHome('http://localhost:3000/login', {name, pass}, 'POST')
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+</script>
+</body>
+</html>

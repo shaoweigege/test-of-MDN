@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  window.onload = async function () {
+    const battery = await window.navigator.getBattery()
+    console.log(battery)
+    let {
+      //是否正在充电  充电时间  断电时间  电池电量(两位小数:0.76)
+      charging, chargingTime, dischargingTime, level,
+      //四个事件
+      onchargingchange, onchargingtimechange, ondischargingtimechange, onlevelchange
+    } = battery
+    battery.addEventListener('chargingchange', e => {
+      console.log('电池充电状态发生变化')
+    })
+  }
+</script>
+</body>
+</html>

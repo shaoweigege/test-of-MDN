@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>公众号网页的本地存储</title>
+</head>
+<body>
+<button id="btn1">存数据</button>
+<button id="btn2">取数据</button>
+<script>
+  let btn1 = document.getElementById('btn1');
+  let btn2 = document.getElementById('btn2');
+  btn1.onclick = function () {
+    //向本地存储一些信息
+    localStorage.setItem('linZhiLing', JSON.stringify({name: '林志玲', age: 50}));
+  };
+
+  btn2.onclick = function () {
+    //获取本地存储的数据
+    let perStr = localStorage.getItem('linZhiLing');
+    console.log(JSON.parse(perStr));
+  };
+
+  /*
+      说明在公众号的网页中localStorage是可以用的
+      但是只能在同一个域下访问
+
+      不管是什么环境 window.localStorage window.sessionStorage都是只能在相同的域下访问
+   */
+  console.log(window.host);
+</script>
+</body>
+</html>

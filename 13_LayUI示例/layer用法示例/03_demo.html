@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>选择框</title>
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+  <style>
+    #box {
+      display: inline-block;
+      width: 150px;
+      background-color: pink;
+    }
+
+    #box1 {
+      display: inline-block;
+      width: 150px;
+      background-color: pink;
+    }
+
+    #box2 {
+      display: inline-block;
+      width: 150px;
+      background-color: pink;
+    }
+
+    select {
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+<form class="layui-form">
+  <div id="box" class="layui-form-item">
+    <select id="city" name="city">
+      <option value="">城市</option>
+      <option value="010">北京</option>
+      <option value="021">上海</option>
+      <option value="0571">杭州</option>
+    </select>
+  </div>
+  <div id="box1" class="layui-form-item">
+    <select id="city1" name="city">
+      <option value="">请选择一个城市</option>
+      <option value="010">北京</option>
+      <option value="021">上海</option>
+      <option value="0571">杭州</option>
+    </select>
+  </div>
+  <div id="box2" class="layui-form-item">
+    <select id="city2" name="city">
+      <option value="">请选择一个城市</option>
+      <option value="010">北京</option>
+      <option value="021">上海</option>
+      <option value="0571">杭州</option>
+    </select>
+  </div>
+</form>
+<script src="./layui/layui.js"></script>
+<script>
+  layui.use('form', function () {
+    let form = layui.form;
+  });
+</script>
+</body>
+</html>

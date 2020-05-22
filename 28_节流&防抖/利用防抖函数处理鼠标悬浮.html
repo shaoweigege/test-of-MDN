@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>利用防抖函数处理鼠标悬浮</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+  //防抖
+  const debounce = (fn, delay) => {
+    let timer = null
+    return (...args) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+
+  let box = document.getElementById('box')
+  //给document添加mousemove事件 在mousemove事件停止之后判断此时此刻的鼠标位置是否还停留在box中
+  document.addEventListener('mousemove', debounce((e) => {
+    //在鼠标的move事件停止后判断此时此刻的鼠标是否在#box内部
+    const {offsetX, offsetY, target} = e
+    console.log({offsetX, offsetY, target})
+    if (offsetX > 1 && offsetX < 99 && offsetY > 1 && offsetY < 99) {
+      console.log('鼠标在' + target + '上停留了2秒')
+    }
+  }, 2000))
+</script>
+</body>
+</html>

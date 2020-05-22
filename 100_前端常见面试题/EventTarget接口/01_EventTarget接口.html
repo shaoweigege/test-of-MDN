@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>EventTarget接口</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #ffc0cb;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<button id="btn1">触发click事件</button>
+<button id="btn2">触发dblclick事件</button>
+<script>
+  /*
+  * 所有节点对象都部署了EventTarget接口
+  * >给某个dom元素添加指定的事件监听处理函数
+  *   1.dom.addEventListener(type,handler,userCapture/options)
+  * >移除dom元素添加的事件的处理函数(handler必须是同一个函数->不能使用匿名函数添加)
+  *   2.dom.removeEventListener(type,handler)
+  * >让某个dom元素主动触发指定的事件
+  *   3.dom.dispatchEvent(new Event(eventName))
+  * */
+  const box = document.querySelector('.box')
+  box.addEventListener('click', () => {
+    console.log('box click')
+    box.style.backgroundColor = 'deeppink'
+  }, {
+    //是否在捕获阶段触发事件的回调函数
+    capture: false,
+    //回调函数是否只触发一次
+    once: false
+  })
+  box.addEventListener('dblclick', () => {
+    console.log('box dblclick')
+    box.style.backgroundColor = 'yellowgreen'
+  }, {
+    //是否在捕获阶段触发事件的回调函数
+    capture: false,
+    //回调函数是否只触发一次
+    once: false
+  })
+
+  const btn1 = document.getElementById('btn1')
+  const btn2 = document.getElementById('btn2')
+  btn1.onclick = () => {
+    box.dispatchEvent(new Event('click'))
+  }
+  btn2.onclick = () => {
+    box.dispatchEvent(new Event('dblclick'))
+  }
+  console.log(document.querySelector('html') === document.documentElement)
+
+
+</script>
+</body>
+</html>

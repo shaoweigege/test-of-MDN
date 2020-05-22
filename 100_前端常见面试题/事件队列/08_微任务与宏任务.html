@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>微任务&宏任务</title>
+</head>
+<body>
+<script>
+  /*
+  * 异步任务分为：1.微任务 2.宏任务
+  * 区别：
+  * 宏任务：setTimeout() setInterval()等定时器任务都属于宏任务 他们是在下一次任务队列中执行
+  * 微任务：promise的返回值的处理函数就是微任务 他们是在本次任务队列的末尾去执行
+  * */
+  setTimeout(function () {
+    console.log(1);
+  }, 0); //3.宏任务：在下一次事件循环立即执行
+
+  new Promise(function (resolve, reject) {
+    resolve(2);
+  }).then(console.log); //2.微任务：在本轮同步事件执行完后立即执行
+
+  console.log(3); //1.同步任务：最先执行
+</script>
+</body>
+</html>

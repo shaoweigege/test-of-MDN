@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Proxy</title>
+</head>
+<body>
+<script>
+  const proxy1 = new Proxy({}, {
+    get(target, propKey, receiver) {
+      console.log(`getting ${propKey}!`);
+      return Reflect.get(target, propKey, receiver);
+    },
+    set(target, propKey, value, receiver) {
+      console.log(`setting ${propKey}!`);
+      return Reflect.set(target, propKey, value, receiver);
+    }
+  });
+  proxy1.count = 1
+  ++proxy1.count;
+  console.log(proxy1);
+  console.log('****************************************');
+  const proxy2 = new Proxy({foo: 'bar'}, {
+    //target就是被代理的对象 propKey就是访问的属性名 receiver就是构造函数返回的Proxy实例
+    get(target, propKey, receiver) {
+      console.log(target, propKey, receiver)
+      return receiver;
+    }
+  });
+  proxy2.name;
+  console.log(proxy2)
+  console.log(proxy2.age === proxy2);
+</script>
+</body>
+</html>

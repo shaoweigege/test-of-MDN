@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>三栏布局</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: #fefefe;
+      display: flex;
+    }
+
+    .container .left {
+      width: 200px;
+      height: 100%;
+      background-color: pink;
+    }
+
+    .container .middle {
+      width: calc(100% - 400px);
+      height: 100%;
+      background-color: yellowgreen;
+    }
+
+    .container .right {
+      width: 200px;
+      height: 100%;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+<!--
+三栏布局：左右边宽度固定 中间宽度随屏幕自适应
+-->
+<div class="container">
+  <section class="left"></section>
+  <section class="middle"></section>
+  <section class="right"></section>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>layer.prompt()</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+<button id="btn">按钮</button>
+<script src="./layer/jquery.js"></script>
+<script src="./layer/layer.js"></script>
+<script>
+  document.getElementById('btn').onclick = function () {
+    let index = layer.prompt({
+      formType: 2, //输入框类型，支持0（文本）默认1（密码）2（多行文本）
+      value: `淡淡交汇过
+      各不留下印，
+      但是经历过
+      最温柔共振
+      `, //初始时的值，默认空字符
+    }, function (value) {
+      if (value.length > 0) {
+        console.log(value);
+        layer.close(index);
+      }
+    });
+  }
+</script>
+</body>
+</html>

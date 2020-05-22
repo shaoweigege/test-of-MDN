@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cookie</title>
+</head>
+<body>
+<button id="btn1">获取Cookie</button>
+<button id="btn2">设置Cookie</button>
+<script>
+  /*
+  推荐使用js-cookie操作浏览器的cookie
+
+  * 浏览器操作Cookie
+  * 1.document.cookie 读取所有可从此位置访问的cookie的值
+  * 2.document.cookie = 'key=value' 写一个新的cookie
+  *     其中：键值对形式的字符串
+  * */
+  document.getElementById('btn1').onclick = e => {
+    console.log(document.cookie)
+  }
+  document.getElementById('btn2').onclick = e => {
+    document.cookie = 'username=Tom'
+  }
+</script>
+</body>
+</html>
