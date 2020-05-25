@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>highlight.js</title>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+</head>
+<body>
+<pre>
+  <code>
+    const debounce = (fn,delay)=>{
+        let timer = null
+        return (...args)=>{
+          clearTimeout(timer)
+          timer = setTimeout(()=>{
+              fn.apply(this,args)
+          },delay)
+        }
+    }
+  </code>
+</pre>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+</body>
+</html>

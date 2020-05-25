@@ -1,43 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>canvas.context.drawImage</title>
-    <style>
-        canvas {
-            display: block;
-            border: 1px solid #eee;
-            background-color: #eee;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas.context.drawImage</title>
+  <style>
+    canvas {
+      display: block;
+      border: 1px solid #eee;
+      background-color: #eee;
+    }
 
-        /*#avatar {*/
-        /*    width: 100px;*/
-        /*    height: 100px;*/
-        /*}*/
-    </style>
+    /*#avatar {*/
+    /*    width: 100px;*/
+    /*    height: 100px;*/
+    /*}*/
+  </style>
 </head>
 <body>
 <canvas id="canvas" width="700" height="400"></canvas>
 <img src="./avatar.png" id="avatar" alt="">
 <script>
-    /*
-    * 这个版本的代码是有问题的 完善的代码见demo03-canvas.html
-    * */
-    const canvas = document.getElementById('canvas')
-    const context = canvas.getContext('2d')
+  const canvas = document.getElementById('canvas')
+  const context = canvas.getContext('2d')
 
-    const avatar = document.getElementById('avatar')
+  const avatar = document.getElementById('avatar')
+  //将图片画到canvas上->void ctx.drawImage(image, dx, dy, dWidth, dHeight);
+  //有时候图片的地址还没有加载成功 会造成在执行该代码时图片的高度和宽度为0 无法将图片画到canvas中
+  avatar.onload = function () {
     console.log(avatar.clientWidth, avatar.clientHeight)
     //获取图片的实际的宽高
     const avatarWidth = avatar.clientWidth
     const avatarHeight = avatar.clientHeight
-    //将图片画到canvas上
-    //void ctx.drawImage(image, dx, dy, dWidth, dHeight);
     context.drawImage(avatar, 0, 0, avatarWidth, avatarHeight)
-
     //获取裁剪区域的位置信息
     const clipX = avatarWidth / 4
     const clipY = avatarHeight / 4
@@ -47,8 +44,7 @@
     //void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     context.drawImage(avatar, clipX, clipY, clipWidth, clipHeight, avatarWidth, avatarHeight, clipWidth, clipHeight)
 
-    //获取被裁剪区域的canvas对应的imageData对象
-    //ImageData ctx.getImageData(sx, sy, sw, sh);
+    //获取被裁剪区域的canvas对应的imageData对象->ImageData ctx.getImageData(sx, sy, sw, sh);
     const clipImageData = context.getImageData(avatarWidth, avatarHeight, clipWidth, clipHeight)
     console.log(clipImageData)
 
@@ -57,19 +53,20 @@
     const clipCanvas = document.createElement('canvas')
     const clipContext = clipCanvas.getContext('2d')
     //将此canvas的宽高设置为跟图片一样大小
-    // clipCanvas.setAttribute('width', clipWidth)
-    // clipCanvas.setAttribute('height', clipHeight)
     clipCanvas.width = clipWidth
     clipCanvas.height = clipHeight
     clipContext.putImageData(clipImageData, 0, 0)
     //从clipCanvas得到被裁剪区域图片的DataURL字符串
     const clipURL = clipCanvas.toDataURL()
+    const clipBlob = clipCanvas.toBlob((blob) => {
+      console.log(URL.createObjectURL(blob))
+    })
     console.log(clipURL)
     //创建一个img标签
     const img = document.createElement('img')
     img.src = clipURL
     document.body.appendChild(img)
-
+  }
 </script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>quill</title>
+  <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+<div id="toolbar">
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">Italic</button>
+</div>
+
+<!-- Create the editor container -->
+<div id="editor">
+  <p>Hello World!</p>
+</div>
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+  var editor = new Quill('#editor', {
+    // debug: 'info',
+    // modules: {
+    //   toolbar: '#toolbar'
+    // },
+    // placeholder: 'Compose an epic...',
+    // readOnly: true,
+    theme: 'bubble'
+  });
+</script>
+</body>
+</html>

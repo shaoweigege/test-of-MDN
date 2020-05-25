@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Set</title>
+</head>
+<body>
+<script>
+  /*
+  * Set是es6新增的一种数据结构  用来存储一系列不重复的元素
+  * 构造函数可以接受一个数组作为参数 new Set([1,2,3,3,4,4,5])
+  * Set.prototype.add(value)
+  * Set.prototype.has(value) 判断set中是否有指定的值
+  * Set.prototype.size
+  *
+  * Set结构判断两个元素是否相同使用的是Same-Value-Zero equality 类似于js中的===符号 只不过NaN除外(如果添加两个NaN 只会有一个保留)
+  *
+  * 遍历Set结构：
+  * 由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值）所以keys()和values()行为完全一致
+  * Set.prototype.keys()
+  * Set.prototype.values()
+  * Set.prototype.entries()
+  * Set.prototype.forEach()
+  * Set结构遍历的顺序就是添加元素的顺序：适用于存储回调函数 遍历时按照添加的先后顺序进行调用
+  *
+  * */
+  let set = new Set()
+  set.add(1).add(2).add(2)
+  console.log(set)
+
+  //如果添加两个作用相同的匿名函数 set会认为这两个函数是不同的
+  set.add(x => x * x).add(x => x * x)
+  console.log(set.size)
+
+  console.log('******************************')
+  //使用Set结构可以轻易的模拟数学中的“并集”&“交集”&“差集”
+  let set1 = new Set([2, 3, 4])
+  let set2 = new Set([3, 4, 5])
+
+  //并集
+  function union_set(set1, set2) {
+    return new Set([...set1, ...set2])
+  }
+
+  console.log(union_set(set1, set2))
+
+  //交集
+  function intersect_set(set1, set2) {
+    return new Set([...set1].filter(item => set2.has(item)))
+  }
+
+  console.log(intersect_set(set1, set2))
+
+  function difference_set(set1, set2) {
+    return new Set([...set1].filter(item => !set2.has(item)))
+  }
+
+  console.log(difference_set(set1, set2))
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>两数之和</title>
+</head>
+<body>
+<script>
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8]
+  const target = 8
+
+  function findTarget(arr, target) {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] + arr[j] === target) {
+          return [i, j]
+        }
+      }
+    }
+  }
+
+  console.log(findTarget(arr, target))
+</script>
+</body>
+</html>
