@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>京东移动端首页</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .container {
+      height: 100%;
+      background-color: #eee;
+    }
+
+    .avatar-list {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #efefef;
+    }
+
+    .avatar-item {
+      width: 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+
+    img {
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+
+    span {
+      font-size: 0.12rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <section class="avatar-list">
+    <div class="avatar-item">
+      <img src="./images/1.png" alt="">
+      <span>头像1</span>
+    </div>
+    <div class="avatar-item">
+      <img src="./images/2.png" alt="">
+      <span>头像2</span>
+    </div>
+    <div class="avatar-item">
+      <img src="./images/3.png" alt="">
+      <span>头像3</span>
+    </div>
+    <div class="avatar-item">
+      <img src="./images/4.png" alt="">
+      <span>头像4</span>
+    </div>
+    <div class="avatar-item">
+      <img src="./images/5.png" alt="">
+      <span>头像5</span>
+    </div>
+  </section>
+</div>
+<script>
+  function autoSetRem() {
+    //理想视口的宽度
+    let idealWidth = window.screen.width
+    console.log(idealWidth)
+    //以iphone6,7,8为基准的设备的宽
+    let BASE_WIDTH = 375
+    /*
+    * 如果设计稿是以iphone6,7,8来设计的 那么设计稿上量取的像素值直接除以100就是对应rem的值
+    * eg:设计稿上量取的是40px 那么应该直接设置成0.4rem
+    * */
+    document.documentElement.style.fontSize = (idealWidth / BASE_WIDTH) * 100 + 'px';
+  }
+
+  window.onresize = autoSetRem
+  window.onload = autoSetRem
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=0.5">
+  <title>Title</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .box {
+      /*width: 750px;*/
+      height: 200px;
+      color: purple;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+<div class="box">Hello World</div>
+<script>
+  /*
+  * 移动端的视口
+  * 1.布局视口 document.body.clientWidth
+  * 2.视觉视口 window.innerWidth
+  * 3.理想视口 window.screen.width
+  *
+  * 1.屏幕分辨率
+  * 2.设备像素比 window.devicePixelRatio
+  * */
+  console.log(document.body.clientWidth)
+  console.log(window.innerWidth)
+  console.log(window.screen.width)
+  console.log(window.devicePixelRatio)
+</script>
+</body>
+</html>

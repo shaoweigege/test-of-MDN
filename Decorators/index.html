@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>装饰器</title>
+</head>
+<body>
+<script>
+  let sayHi = () => {
+    console.log('hello~')
+  }
+
+  const log = fn => {
+    return (...args) => {
+      console.log('fn is called')
+      return fn(args)
+    }
+  }
+
+  console.log(sayHi)
+  sayHi = log(sayHi)
+  console.log(sayHi)
+
+  sayHi()
+</script>
+</body>
+</html>
