@@ -32,6 +32,7 @@
   set.add(x => x * x).add(x => x * x)
   console.log(set.size)
 
+
   console.log('******************************')
   //使用Set结构可以轻易的模拟数学中的“并集”&“交集”&“差集”
   let set1 = new Set([2, 3, 4])
@@ -56,6 +57,16 @@
   }
 
   console.log(difference_set(set1, set2))
+
+  console.log('**********************************')
+  //在遍历Set结构的时候是无法改变元素的值的 但是可以有变通的办法
+  let set3 = new Set([10, 20, 30])
+  set3 = new Set([...set3].map(item => item * 2))
+  console.log(set3) //{20,40,60}
+
+  //或者
+  set3 = new Set(Array.from(set3, value => value * 2))
+  console.log(set3)
 </script>
 </body>
 </html>

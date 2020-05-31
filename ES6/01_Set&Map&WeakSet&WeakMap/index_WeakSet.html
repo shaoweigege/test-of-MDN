@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WeakSet</title>
+</head>
+<body>
+<script>
+  /*
+  * WeakSet也是es6新增的数据结构 其结构类似于Set 也是不重复的值的集合 但是有两个区别
+  *  区别1：WeakSet存储的值只能是对象 而不能是其他类型
+  *  区别2：WeakSet中的对象都是弱引用 即垃圾回收机制不考虑WeakSet对该对象的引用
+  *        也就是说，如果其他对象都不再引用该对象 那么垃圾回收机制会自动回收该对象所占用的内存，
+  *        不考虑该对象还存在于WeakSet之中
+  *  由于WeakSet中的对象随时可能被垃圾回收机制回收掉 因此es6规定WeakSet不可遍历
+  * */
+</script>
+</body>
+</html>
