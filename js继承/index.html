@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function Animal(name, age, gender) {
+    this.name = name
+    this.age = age
+    this.gender = gender
+
+    this.eat = () => {
+      console.log('动物爱吃肉')
+    }
+  }
+
+  //给Animal原型上添加属性&方法
+  Animal.prototype.hasFur = true
+
+  Animal.prototype.sleep = () => {
+    console.log('Animal is sleeping')
+  }
+
+  function Dog(name, age, gender) {
+    this.name = name
+    this.age = age
+    this.gender = gender
+
+    this.eat = () => {
+      Dog.prototype.eat()
+      console.log('And dogs like bones')
+    }
+  }
+
+  let a = new Animal('a1', 2, 'Male')
+  //Object.keys(obj)->无法获取obj对象原型上的属性
+  console.log(Object.keys(a))
+
+  //Object.getOwnPropertyNames(obj)->返回obj对象自身属性(不包括原型以及原型链)组成的数组
+  console.log(Object.getOwnPropertyNames(a))
+
+  //for-in遍历可以遍历出对象原型上的属性
+  for (let key in a) {
+    console.log(key)
+    //Object.prototype.hasOwnProperty(propName) 判断该属性是否是对象自身的属性
+    console.log(a.hasOwnProperty(key))
+  }
+
+  console.log(a.__proto__ === Animal.prototype)
+  console.log(Animal.prototype.__proto__ === Object.prototype)
+  console.log(Object.prototype.__proto__ === null)
+</script>
+</body>
+</html>

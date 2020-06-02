@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>设备像素比</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .box {
+      width: 100%;
+      background-color: pink;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  window.onload = function () {
+    console.log(document.querySelector('.box').clientWidth)
+  }
+</script>
+</body>
+</html>
