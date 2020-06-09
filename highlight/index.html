@@ -19,10 +19,48 @@
         }
     }
   </code>
+  <code>
+    {
+    "TradeCode": "Seal02",
+    "TradeID": "ff88233580",
+    "ReturnEdgeImg": 0,
+    "Return3CImg": 0,
+    "Para": {
+        "proc": 1,
+        "level": 2,
+        "lost": 60,
+        "fuzzy": 60,
+        "error_lost": 15,
+        "error_fuzzy": 15,
+        "scaling": 1,
+        "imgSource": 1
+    },
+    "Sample": {
+        "Color": 16,
+        "FileFormat": "jpg",
+        "DPI": 200,
+        "Code": "base64",
+        "data": "wrDDpsKxwr4xMDI3w5DDnsK4wrTDgcOLanBnw4rDvcK+w53Csc....."
+    },
+    "Check": {
+        "Color": 16,
+        "FileFormat": "jpg",
+        "DPI": 200,
+        "Code": "base64",
+        "data": "wrDDpsKxwr4xMDI3w5DDnsK4wrTDgcOLanBnw4rDvcK+w53Csc....."
+    },
+}
+  </code>
 </pre>
+<div>
+  <button id="btn">按钮</button>
+</div>
 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 <script>
-  hljs.initHighlightingOnLoad()
+  //hljs.initHighlightingOnLoad()
+  document.getElementById('btn').onclick = function () {
+    hljs.highlightBlock(document.querySelector('pre'))
+  }
 </script>
 </body>
 </html>
