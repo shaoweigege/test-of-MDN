@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #box {
+      width: 10px;
+      height: 10px;
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+  // let id
+  // const action = (time) => {
+  //   console.log(time)
+  //   id = window.requestAnimationFrame(action)
+  // }
+  // requestAnimationFrame(action)
+  // setTimeout(() => {
+  //   window.cancelAnimationFrame(id)
+  // }, 1 * 1000)
+
+  let start = null
+  const action = time => {
+    if (!start) start = time
+
+    if (time - start <= 1000) {
+      console.log('move')
+      requestAnimationFrame(action)
+    } else {
+      console.log('Time Up')
+    }
+  }
+  requestAnimationFrame(action)
+
+  // let start = null
+  // let element = document.getElementById('box')
+  // element.style.position = 'absolute'
+  //
+  // function step(timestamp) {
+  //   if (!start) start = timestamp
+  //   let progress = timestamp - start
+  //   element.style.left = Math.min(progress / 10, 200) + 'px'
+  //   if (progress < 2000) {
+  //     window.requestAnimationFrame(step)
+  //   }
+  // }
+  //
+  // window.requestAnimationFrame(step)
+</script>
+</body>
+</html>
