@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  选择图片：<input type="file" id="src-file">
+</div>
+<div>
+  原图：<img src="" id="src-img" alt="">
+</div>
+<div>
+  压缩后：<img src="" id="dest-img" alt="">
+</div>
+<script>
+  const fileInput = document.getElementById('src-file')
+  const srcImg = document.getElementById('src-img')
+  const destImg = document.getElementById('dest-img')
+  let quality = 0.1
+
+  // fileInput.addEventListener('change', e => {
+  //   //File对象 e.target.files[0]
+  //   let srcFile = e.target.files[0]
+  //   //console.log(e.target.files[0])
+  //   console.log('src-size:', srcFile.size)
+  //   let type = srcFile.type
+  //   if (!srcFile) return
+  //   let reader = new FileReader()
+  //   reader.onload = function (e) {
+  //     //base64格式的字符串
+  //     //console.log(e.target.result)
+  //     let srcBase = e.target.result
+  //     srcImg.src = srcBase
+  //     //获取图片的宽高信息
+  //     srcImg.onload = function () {
+  //       let width = srcImg.clientWidth
+  //       let height = srcImg.clientHeight
+  //       console.log(width, height)
+  //       //创建canvas标签
+  //       let canvas = document.createElement('canvas')
+  //       canvas.width = width
+  //       canvas.height = height
+  //       let context = canvas.getContext('2d')
+  //       context.drawImage(srcImg, 0, 0, width, height)
+  //       //得到压缩后的图片的base64格式的字符串
+  //       let destBase = canvas.toDataURL(type, quality)
+  //       // console.log(destBase)
+  //       destImg.src = destBase
+  //       destImg.onload = function (e) {
+  //         console.log(e)
+  //       }
+  //     }
+  //   }
+  //   reader.onerror = function (e) {
+  //     console.log(e)
+  //   }
+  //   reader.readAsDataURL(srcFile)
+  // })
+
+  /*
+  * 将文件转为base64格式的字符串
+  * @author chenMM
+  * @param {File} file:文件对应的File对象
+  * @return {Promise} Promise对象 1.value:文件对象的base64格式的字符串 2.reason:失败的原因
+  * */
+  const fileToBase64 = file => {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader()
+      reader.onload = e => {
+        resolve(e.target.result)
+      }
+      reader.onerror = e => {
+        reject(e)
+      }
+      reader.readAsDataURL(file)
+    })
+  }
+
+  /*
+  * 将base64格式的字符串转为文件对象
+  * @author chenMM
+  * @param {String} base64:base64格式的字符串
+  * @param {String} filename:目标文件名
+  * @return {Promise} Promise对象 value:File对象 reason:失败的原因
+  * */
+  const base64ToFile = (base64, filename) => {
+    return new Promise((resolve, reject) => {
+      //['data','image/png','base64','字符串']
+      let baseArray = base64.split(/[:;,]/)
+      //检查传入的参数是否合法
+      if (baseArray[0] !== 'data' || baseArray[2] !== 'base64') {
+        reject('传入的参数格式不合法')
+      }
+      let mime = baseArray[1]
+      let baseStr = atob(baseArray[3])
+      //创建缓冲对象Uint8Array
+      let buffer = new Uint8Array(baseStr.length)
+      for (let i = 0; i < buffer.length; i++) {
+        buffer[i] = baseStr.charCodeAt(i)
+      }
+      resolve(new File([buffer], filename, {type: mime}))
+    })
+  }
+</script>
+</body>
+</html>
