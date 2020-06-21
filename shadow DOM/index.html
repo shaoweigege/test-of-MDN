@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<span class="span-host">
+  <a href="">点我</a>
+</span>
+<script>
+  const span = document.querySelector('.span-host')
+  const shadowEl = span.attachShadow({mode: 'open'})
+
+  const link = document.createElement("a");
+  link.href = shadowEl.querySelector("a").href;
+  link.innerHTML =`<span aria-label="Twitter icon"></span>
+  ${span.querySelector("a").textContent}`
+
+  shadowEl.appendChild(link)
+</script>
+</body>
+</html>
