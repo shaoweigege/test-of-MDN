@@ -20,6 +20,15 @@
     type: 'text/plain'
   });
   console.log(blob2);
+
+  //保存Json对象
+  let stu = {
+    name: '林志玲',
+    age: 39,
+    married: true
+  }
+  let blob3 = new Blob([JSON.stringify(stu)], {type: 'application/json'})
+  console.log(blob3)
 </script>
 </body>
 </html>

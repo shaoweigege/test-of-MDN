@@ -22,6 +22,10 @@
       let imageNode = document.createElement('img');
       imageNode.src = imageURL;
       document.body.appendChild(imageNode);
+      imageNode.onload = function () {
+        //释放内存
+        URL.revokeObjectURL(imageURL)
+      }
     }
   };
 </script>

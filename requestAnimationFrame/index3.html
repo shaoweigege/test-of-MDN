@@ -22,7 +22,6 @@
     let progress = timestamp - startTime
     remainingTime = duration - timestamp
     let currentVal = formatVal(span.innerText)
-    // let step = Math.round((endVal - currentVal) / remainingTime)
     let step = Math.floor((endVal - startVal) * (progress / duration))
     console.log(step)
     if (remainingTime >= 0) {
