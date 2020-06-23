@@ -1,4 +1,4 @@
-### ArrayBuffer对象&Blob对象&File对象&FileList对象&FileReader对象&URL对象
+## ArrayBuffer对象&Blob对象&File对象&FileList对象&FileReader对象&URL对象
 
 #### 1.ArrayBuffer对象用于操作二进制内存
       let buffer = new ArrayBuffer(length:number);

@@ -24,6 +24,9 @@
         //console.log(btoa(e.target.result)) 转码之后好像也没什么用
         img.src = e.target.result
       }
+      reader.onprogress = function (e) {
+        console.log(e)
+      }
       reader.readAsDataURL(xhr.response)
       //这样也可以显示图片
       // img.src = URL.createObjectURL(xhr.response)

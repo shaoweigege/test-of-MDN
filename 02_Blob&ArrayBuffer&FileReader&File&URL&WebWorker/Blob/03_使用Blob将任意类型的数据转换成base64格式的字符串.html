@@ -8,9 +8,10 @@
 <script>
   /**
    * @author chenMM
+   * @date 2020-06-23
    * @param {Object} source
    * @param {Object} type 标识source的mime type
-   * @returns {Promise<unknown>}
+   * @returns {Promise<response,error>}
    */
   function toBase64(source, type) {
     return new Promise((resolve, reject) => {
@@ -23,6 +24,9 @@
       }
       reader.onerror = function (e) {
         reject(e)
+      }
+      reader.onprogress = function (e) {
+        console.log(e)
       }
       reader.readAsDataURL(blob)
     })
