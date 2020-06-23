@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let arr = [3, 1, 2, 100, 4, 200]
+
+  /*
+  * 这样是可以实现随机排序的
+  * */
+  function compare() {
+    return Math.random() - 0.5
+  }
+
+  arr.sort(compare)
+  console.log(arr)
+</script>
+</body>
+</html>

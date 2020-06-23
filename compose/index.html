@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function compose(...funcs) {
+    if (funcs.length === 0) {
+      return arg => arg
+    }
+
+    if (funcs.length === 1) {
+      return funcs[0]
+    }
+
+    //a:prevValue累计值,b:item当前值 prevValue也是一个函数
+    // return funcs.reduce((a, b) => (...args) => a(b(...args)))
+    return funcs.reduce((a, b) => {
+      console.log(a)
+      return (...args) => {
+        return a(b(args))
+      }
+    })
+  }
+
+  function f1() {
+    return 1
+  }
+
+  function f2() {
+    return 2
+  }
+
+  function f3() {
+    return 3
+  }
+
+  function f4() {
+
+  }
+
+  let f = compose(f1, f2, f3)
+  console.log(f)
+  console.log('*******************')
+  let arr = [1, 2, 3, 4]
+  /*
+  * Array.prototype.reduce(callback[,initialValue])
+  * 1.如果没有提供initialValue 则数组从下标为1的地方开始遍历
+  * 2.如果提供了initialValue 则数组从下标为0的地方开始遍历
+  * */
+
+  // arr.reduce((a, b) => {
+  //   console.log(a, b)
+  // })
+</script>
+</body>
+</html>
