@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let buffer = new ArrayBuffer(4) //4个字节
+
+  let uInt8Array = new Uint8Array(buffer) //每8位读一次(一个字节读一次)
+  uInt8Array[0] = 2
+  uInt8Array[1] = 1
+  uInt8Array[2] = 3
+  uInt8Array[3] = 7
+  console.log(uInt8Array)
+
+  let uInt16Array = new Uint16Array(buffer) //每16位读一次(两个字节读一次)
+  console.log(uInt16Array)
+
+  const BIG_ENDIAN = Symbol('BIG_ENDIAN')
+  const LITTLE_ENDIAN = Symbol('LITTLE_ENDIAN')
+
+  /**
+   * 判断计算机是小字节序还是大字节序
+   * @returns {symbol}
+   */
+  function getPlatformEndianness() {
+    let arr32 = Uint32Array.of(0x12345678);
+    let arr8 = new Uint8Array(arr32.buffer);
+    switch ((arr8[0] * 0x1000000) + (arr8[1] * 0x10000) + (arr8[2] * 0x100) + (arr8[3])) {
+      case 0x12345678:
+        return BIG_ENDIAN;
+      case 0x78563412:
+        return LITTLE_ENDIAN;
+      default:
+        throw new Error('Unknown endianness');
+    }
+  }
+
+  console.log(getPlatformEndianness())
+  console.log('****************************')
+  let encoder = new TextEncoder()
+  console.log(encoder.encode('Hello World').buffer)
+</script>
+</body>
+</html>
