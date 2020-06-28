@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //一般不直接将Promise实例作为参数 而是将Promise实例接待的信息(成功的值&失败的原因作为参数传递)
+
+  // try {
+  //   throw Error('An error occurs')
+  // } catch (e) {
+  //   console.log(e.message)
+  // }
+
+  //Promise会吃掉错误
+  // let p1 = new Promise((resolve, reject) => {
+  //   // resolve(100)
+  //   reject(new Error('An error occurs'))
+  // })
+  // p1
+  //     .then(data => console.log(data))
+  //     .catch(reason => console.log('reason', reason.message))
+
+  // console.log(Promise.allSettled)
+  let p1 = Promise.resolve(1)
+  let p2 = Promise.reject(2)
+  let p3 = new Promise(resolve => {
+    setTimeout(resolve, 3000, 3)
+  })
+  /*
+  * 1.Promise.allSettled()方法返回的永远都是成功状态的Promise实例
+  * 2.Promise.allSettled()返回值携带的成功的值是一个数组 每个元素是一个对象
+  *   {status:'fulfilled',value:'xxx'} or {status:'rejected',reason:'yyy'}
+  * */
+  let pAll = Promise.allSettled([p1, p2, p3])
+  pAll
+      .then(results => {
+        //results是一个数组
+        //1.过滤出所有成功的Promise实例
+        results.filter(item => item.status === 'fulfilled')
+        //2.过滤出所有失败的Promise实例
+        results.filter(item => item.status === 'rejected')
+      })
+      .catch(error => console.log(error))
+</script>
+</body>
+</html>
