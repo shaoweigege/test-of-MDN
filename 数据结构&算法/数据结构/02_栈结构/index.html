@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栈结构</title>
+</head>
+<body>
+<script>
+  //利用js的数组来模拟实现Stack结构
+  class Stack {
+    constructor() {
+      this.dataStore = [] //用来保存栈结构中存储的元素
+      this.top = 0 //表示栈顶元素的位置信息
+      // this.push = push //向栈中压入一个元素
+      // this.pop = pop //弹出栈顶的元素
+      // this.peek = peek //得到某一个下标处的元素的值
+      this.length = this.dataStore.length //栈中元素的个数
+    }
+
+    //向栈中压入一个元素
+    push(item) {
+      this.dataStore.push(item)
+      this.top++
+    }
+
+    //弹出栈顶的元素
+    pop() {
+      if (this.length === 0) {
+        return 'Stack is empty'
+      }
+      const item = this.dataStore.pop()
+      this.top--
+      return item
+    }
+
+    //得到某一个下标处的元素的值
+    peek(index) {
+      if (index > this.length - 1 || index < 0) {
+        return 'Stack index out of bounds'
+      }
+      return this.dataStore[index]
+    }
+  }
+</script>
+</body>
+</html>

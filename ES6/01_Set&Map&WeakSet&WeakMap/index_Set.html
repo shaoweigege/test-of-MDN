@@ -13,7 +13,8 @@
   * Set.prototype.has(value) 判断set中是否有指定的值
   * Set.prototype.size
   *
-  * Set结构判断两个元素是否相同使用的是Same-Value-Zero equality 类似于js中的===符号 只不过NaN除外(如果添加两个NaN 只会有一个保留)
+  * Set结构判断两个元素是否相同使用的是Same-Value-Zero equality
+  * 类似于js中的===符号 只不过NaN除外(如果添加两个NaN 只会有一个保留)
   *
   * 遍历Set结构：
   * 由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值）所以keys()和values()行为完全一致
@@ -67,6 +68,55 @@
   //或者
   set3 = new Set(Array.from(set3, value => value * 2))
   console.log(set3)
+
+  console.log(new Set(Array.from('123456', x => x)))
+
+  //给字符串去重
+  console.log([...new Set('abbccddeeachenlirong')].join(''))
+
+  console.log('***********************************************')
+  const foos = new WeakSet()
+
+  class Foo {
+    constructor() {
+      foos.add(this)
+    }
+
+    method() {
+      if (!foos.has(this)) {
+        throw new TypeError('Foo.prototype.method 只能在Foo的实例上调用！');
+      }
+    }
+  }
+
+  console.log('***********************************************')
+  let map1 = new Map()
+  map1.set('abc', ['a', 'b', 'c'])
+  map1.set('abc', ['a', 'b', 'c'])
+  map1.set(123, [1, 2, 3])
+  map1.set(123, [1, 2, 3])
+  map1.set([true], [true, true, true])
+  map1.set([true], [false, false, false])
+  let key1 = ['key', 'key']
+  map1.set(key1, [true, true, true, 123])
+  /*
+  * 如果Map的键是非基本数据类型 那么只有同一个引用才会被当做同一个键
+  * 如果是基本数据类型当做键 那么会将相同值的键当做同一个键
+  * */
+  console.log(map1.get('abc'), map1.get(123), map1.get([true]))
+  console.log(map1)
+
+  //对象转为Map
+  let obj = {name: 'Jack', age: 28, married: true}
+  console.log(Object.entries(obj))
+  console.log(new Map(Object.entries(obj)))
+  //Map转为对象
+  const map2 = new Map(Object.entries(obj))
+  let stu = {}
+  for (let [key, value] of map2) {
+    stu[key] = value
+  }
+  console.log(stu)
 </script>
 </body>
 </html>
