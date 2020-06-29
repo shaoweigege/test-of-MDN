@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //window.atob() window.btoa()
+  const str = 'hello world 123 你好'
+  //console.log(btoa(str))
+
+  //TextEncoder&TextDecoder
+  let encoder = new TextEncoder()
+  let uInt8Array = encoder.encode(str)
+  let reader1 = new FileReader()
+  reader1.onload = function (e) {
+    console.log(e.target.result)
+  }
+  reader1.readAsDataURL(new Blob([uInt8Array]))
+  let reader2 = new FileReader()
+  reader2.onload = function (e) {
+    console.log(e.target.result)
+  }
+  reader2.readAsDataURL(new Blob(['111']))
+</script>
+</body>
+</html>
