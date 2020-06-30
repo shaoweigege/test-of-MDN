@@ -56,6 +56,36 @@
   data.newMsg = 'abcdefg';
   console.log(data.msg);
 
+  console.log('****************************8')
+
+  /**
+   * @class Vue数据代理的原理(使用this来代理data的操作)
+   */
+  class MyVue {
+    constructor(options) {
+      this.options = options
+      Object.keys(this.options.data).forEach(item => {
+        let value = this.options.data[item]
+        Object.defineProperty(this, item, {
+          get() {
+            return value
+          },
+          set(newValue) {
+            options.data[item] = newValue
+          }
+        })
+      })
+    }
+  }
+
+  const vm = new MyVue({
+    data: {
+      username: '林志玲'
+    }
+  })
+  console.log(vm.username)
+  vm.username = 'Jerry'
+  console.log(vm.options)
 </script>
 </body>
 </html>

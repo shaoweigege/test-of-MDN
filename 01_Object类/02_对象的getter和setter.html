@@ -9,21 +9,38 @@
 </head>
 <body>
 <script>
-  //对象的getter和setter用来创建伪属性,不可能在具有真实值的属性上同时拥有一个 setter 器。
+  //对象的getter和setter用来创建伪属性,不可能在具有真实值的属性上同时拥有一个setter器。
   let data = {
     names: [],
     //对象中本来没有name这个属性,利用getter&setter可以创造出name这个属性(伪属性)
     set name(name) {
-      this.names.push(name);
+      this.names.push(name)
     },
     get name() {
-      return this.names.length;
+      return this.names.length
     }
-  };
-  data.name = '古天乐';
-  data.name = '刘德华';
-  data.name = '林志玲';
-  console.log(data.names);
+  }
+  data.name = '古天乐'
+  data.name = '刘德华'
+  data.name = '林志玲'
+  console.log(data.names)
+
+  console.log('*************************')
+  let data1 = {
+    names: []
+  }
+  Object.defineProperty(data1, 'name', {
+    get() {
+      return this.names.length
+    },
+    set(v) {
+      this.names.push(v)
+    }
+  })
+  data1.name = 'Jack'
+  data1.name = 'Jerry'
+  data1.name = 'Rose'
+  console.log(data1.names)
 </script>
 </body>
 </html>

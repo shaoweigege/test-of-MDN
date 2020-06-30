@@ -10,53 +10,55 @@
 <body>
 <script>
   // writable 和 configurable的区别
-  let per = {};
+  let per = {}
   Object.defineProperty(per, 'age', {
     value: 33,
     writable: true, // 是否可以修改 per.age++
     enumerable: true, // 是否可以遍历
     configurable: false, // 是否可以被删除
-  });
-  console.log(per);
-  per.age = 44;
-  per.age++;
-  console.log(per);
-  delete per.age;
-  console.log(per);
-  console.log('**************************************');
-  let stu = {firstName: 'Cris', lastName: 'Paul'};
+  })
+  console.log(per)
+  per.age = 44
+  per.age++
+  console.log(per)
+  delete per.age
+  console.log(per)
+
+  console.log('**************************************')
+
+  let stu = {firstName: 'Cris', lastName: 'Paul'}
   Object.defineProperty(stu, 'fullName', {
     get() {
-      return this.firstName + '--' + this.lastName;
+      return this.firstName + '--' + this.lastName
     },
     set(value) {
-      let arr = value.split('--');
-      this.firstName = arr[0];
-      this.lastName = arr[1];
+      let arr = value.split('--')
+      this.firstName = arr[0]
+      this.lastName = arr[1]
     }
-  });
-  console.log(stu.fullName);
-  stu.fullName = 'Kobe--Brant';
-  console.log(stu);
-  console.log(Object.keys(stu));
+  })
+  console.log(stu.fullName)
+  stu.fullName = 'Kobe--Brant'
+  console.log(stu)
+  console.log(Object.keys(stu))
 
   // 深度监视一个对象的属性的getter&setter的功能函数
   function deepObserveObject(obj) {
-    if (!obj || typeof obj !== 'object') return;
+    if (!obj || typeof obj !== 'object') return
     Object.keys(obj).forEach(key => {
       if (typeof obj[key] === 'object') {
         deepObserveObject(obj[key])
       } else {
-        //在添加getter&setter监视器之前保存改属性对应的值
-        let value = obj[key];
+        //在添加getter&setter监视器之前保存该属性对应的值
+        let value = obj[key]
         Object.defineProperty(obj, key, {
           writable: true, //可以修改
           configurable: false, //不可以被删除
           get() {
-            return value;
+            return value
           },
           set(newValue) {
-            value = newValue;
+            value = newValue
           }
         })
       }
@@ -64,17 +66,17 @@
   }
 
   // 实现数据代理
-  function Vue(options) {
-    const self = this;
+  function MyVue(options) {
+    const self = this
     Object.keys(options.data).forEach(key => {
       Object.defineProperty(self, key, {
         writable: true,
         configurable: false,
         get() {
-          return options.data[key];
+          return options.data[key]
         },
         set(newValue) {
-          options.data[key] = newValue;
+          options.data[key] = newValue
         }
       })
     })
