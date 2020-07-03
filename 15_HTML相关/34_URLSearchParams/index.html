@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // let str = 'username=chenMM&password=123456'
+  // let query = new URLSearchParams(str)
+  // console.log(query.get('username'))
+  // console.log(query.get('password'))
+
+  let param1 = new URLSearchParams('?name=林志玲&age=40')
+  let param2 = new URLSearchParams({name: '林志玲', age: 40})
+  let param3 = new URLSearchParams([['foo', 1], ['bar', 3]])
+  console.log(param1.toString(),param1.get('name'))
+  console.log(param2.toString())
+  console.log(param3.toString())
+</script>
+</body>
+</html>
