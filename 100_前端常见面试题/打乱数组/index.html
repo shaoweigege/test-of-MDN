@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>打乱数组</title>
 </head>
+
 <body>
-<script>
-  /*
-  * 这样的写法不起作用
-  * */
-  let arr = [1, 2, 3, 4, 5]
-  arr.sort((item1, item2) => {
-    if (item1 > item2) {
-      return Math.random() > 0.5
-    } else {
-      return Math.random() > 0.5
-    }
-  })
-  console.log(arr)
-</script>
+  <script>
+    /* 
+    Array.prototype.sort(callback) 该方法用于给制定的数组进行排序 callback接收两个参数 并且需要返回一个数值
+    
+    */
+    let arr = [1, 2, 3, 4, 5]
+    arr.sort((item1, item2) => item1 - item2)
+    console.log(arr)
+  </script>
 </body>
+
 </html>
