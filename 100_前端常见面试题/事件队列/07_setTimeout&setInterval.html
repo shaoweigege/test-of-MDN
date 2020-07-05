@@ -40,7 +40,7 @@
   console.log(setInterval(() => {
   }, 0))
 
-  //防抖:在一段时间内多洗触发了某一事件，只对最后一次做处理
+  //防抖:在一段时间内多次触发了某一事件，只对最后一次做处理
   const debounce = (fn, delay) => {
     let timer = null
     return (...args) => {
@@ -51,7 +51,7 @@
       }, delay)
     }
   }
-  //节流：在一段时间内多次触发了某一事件，规定必须间隔一定的时间才能再次触发
+  //节流:在一段时间内多次触发了某一事件，规定必须间隔一定的时间才能再次触发
   const throttle = (fn, delay) => {
     let flag = true
     return (...args) => {

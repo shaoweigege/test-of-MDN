@@ -6,13 +6,13 @@
 </head>
 <body>
 <script>
-  //1.分配一段连续的内存地址 大小为32个字节 每个字节的值默认都是 0
+  //1.分配一段连续的内存地址 大小为32个字节(一个字节占8位bit) 每一位的值默认都是 0
   //2.ArrayBuffer不具有读写功能 只能通过DataView&TypedArray来进行读写
   let buffer = new ArrayBuffer(32)
 
   let dataView = new DataView(buffer)
   console.log(dataView.getUint8(0))
-  console.log(dataView.getUint8(31))//长度最多是32-1
+  console.log(dataView.getUint8(31))
 
 </script>
 </body>
