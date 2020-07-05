@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Map&Reduce</title>
 </head>
+
 <body>
-<script>
-  let arr = [1, 3, 5, 7, 9]
-  console.log(arr.reduce((prev, item) => {
-    prev = prev * 10 + item
-    return prev
-  }, 0))
-  console.log(arr.reduceRight((prev, item) => {
-    prev = prev * 10 + item
-    return prev
-  }, 0))
-</script>
+  <script>
+    let arr = [1, 3, 5, 7, 9]
+    console.log(arr.reduce((prev, item) => {
+      prev = prev * 10 + item
+      return prev
+    }, 0))
+    console.log(arr.reduceRight((prev, item) => {
+      prev = prev * 10 + item
+      return prev
+    }, 0))
+    //不提供初始值
+    const sum = arr.reduce((prev, item, index) => {
+      console.log(prev, item, index)
+      return prev + item
+    })
+    console.log(sum)
+
+    /**
+     * 实现将一组函数从右向左依次执行的工具函数
+     * @author chenMM
+     * @param {Array} 将要被执行的一组函数组成的数组
+     * @return {Function} 返回值是一个函数对象
+     * */
+    function compose(funcs) {
+      if (funcs.length === 0) return arg => arg
+      if (funcs.length === 1) return funcs[0]
+      return funcs.reduce((a, b) => (...args) => a(b(...args)))
+    }
+
+    //Test
+    const addOne = x => x + 1
+    const double = x => x * 2
+    const fn = compose([double, addOne])
+    console.log(fn(5))
+  </script>
 </body>
+
 </html>
