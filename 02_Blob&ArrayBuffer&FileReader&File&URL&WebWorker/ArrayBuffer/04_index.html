@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const buf = new ArrayBuffer(32) //这里的参数单位是字节
+
+  //ArrayBuffer并不是一个构造函数 而是一组构造函数
+  //允许对同一段内存建立多种视图 并且如果一个视图修改了内存会影响其他的操作相同内存的视图
+  const x1 = new Uint8Array(buf) //每8位(一个字节)读取一次
+  console.log(x1.length) //长度是32
+  x1[0] = 255
+  console.log(x1[0])
+
+  const x2 = new Uint16Array(buf) //每2个字节读取一次
+  console.log(x2.length) //长度是16
+  console.log(x2[0])
+
+  //ArrayBuffer.prototype.byteLength -> 返回ArrayBuffer对象内存的字节长度
+  console.log(buf.byteLength)
+
+  //ArrayBuffer.prototype.slice(index1,index2) -> 返回指定区间的拷贝
+  const buf1 = buf.slice(0, 1)
+  console.log(buf1.byteLength)
+  console.log(buf1)
+
+</script>
+</body>
+</html>
