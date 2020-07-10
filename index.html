@@ -36,6 +36,14 @@
   let i = 10
   f1(i)
   console.log(i)
+  console.log('**************************************')
+  let username = '林志玲'
+  let encoder = new TextEncoder()
+  let buf = encoder.encode(username)
+  // username.length表示字符串的字符数
+  // 而buf.length代表该字符串的二进制表现形式所占的字符数(在UTF-8字符编码下,一个中文字符一般占据3个字节数)
+  console.log(username.length, buf.length)
+
 </script>
 </body>
 </html>
