@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise.prototype.finally()</title>
+</head>
+<body>
+<script>
+  let p = new Promise(((resolve, reject) => {
+    setTimeout(reject, 300, 99)
+  }))
+  p
+      .then(data => console.log(data))
+      .catch(error => console.error(error))
+      .finally(() => {
+        console.log('finally')
+      })
+</script>
+</body>
+</html>
