@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red {
+      fill: palevioletred;
+      stroke: #00d9ff;
+      stroke-width: 5pt;
+    }
+
+    .fancy {
+      fill: firebrick;
+      stroke: #00d9ff;
+      stroke-width: 5px;
+    }
+
+    .pink {
+      fill: pink;
+    }
+
+    .line1 {
+      stroke-width: 5pt;
+      stroke: #00d9ff;
+    }
+  </style>
+</head>
+<body>
+<svg width="100" height="100" viewBox="0 50 50 50">
+  <circle id="my_circle" cx="50" cy="50" r="50"/>
+</svg>
+<svg width="300" height="180">
+  <circle cx="30" cy="50" r="25" class="pink"/>
+  <circle cx="90" cy="50" r="25" class="red"/>
+  <circle cx="150" cy="50" r="25" class="fancy"/>
+</svg>
+<svg width="300" height="180">
+  <line x1="10" y1="10" x2="200" y2="100" class="line1"/>
+</svg>
+<svg width="300" height="180">
+  <polyline points="3,3 30,28 3,53 35,83 100,200" fill="pink" stroke="pink"/>
+</svg>
+<svg width="300" height="180">
+  <rect x="0" y="0" height="100" width="200" style="stroke: #70d5dd; fill: #dd524b"/>
+</svg>
+<svg width="300" height="180">
+  <ellipse cx="60" cy="60" ry="40" rx="20" stroke="black" stroke-width="5" fill="silver"/>
+  <line x1="60" y1="60" x2="100" y2="100" stroke-width="5" stroke="#000"/>
+</svg>
+<svg width="300" height="180">
+  <polygon fill="green" stroke="orange" stroke-width="3" points="0,0 50,0 80,80 0,100 0,0"/>
+</svg>
+<svg width="300" height="180">
+  <path d="
+  M 18,3
+  L 46,3
+  L 46,40
+  L 61,40
+  L 32,108
+  L 3,40
+  L 18,40
+  Z
+"/>
+</svg>
+<svg width="300" height="180">
+  <text x="50" y="25">Hello World</text>
+</svg>
+
+<svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
+  <circle id="myCircle1" cx="5" cy="5" r="4"/>
+
+  <use href="#myCircle1" x="10" y="0" fill="blue"/>
+  <use href="#myCircle1" x="20" y="0" fill="white" stroke="blue"/>
+</svg>
+<svg width="300" height="100">
+  <g id="myCircle2">
+    <text x="25" y="20">圆形</text>
+    <circle cx="50" cy="50" r="20"/>
+  </g>
+
+  <use href="#myCircle2" x="100" y="0" fill="blue"/>
+  <use href="#myCircle2" x="200" y="0" fill="white" stroke="blue"/>
+</svg>
+<hr>
+<svg width="300" height="100">
+  <defs>
+    <g id="myCircle">
+      <text x="25" y="20">圆形</text>
+      <circle cx="50" cy="50" r="20"/>
+    </g>
+  </defs>
+
+  <use href="#myCircle" x="0" y="0"/>
+  <use href="#myCircle" x="100" y="0" fill="blue"/>
+  <use href="#myCircle" x="200" y="0" fill="white" stroke="blue"/>
+</svg>
+<hr>
+<svg width="500" height="500">
+  <defs>
+    <pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <circle fill="#bee9e8" cx="50" cy="50" r="35"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#dots)"/>
+</svg>
+<hr>
+<svg viewBox="0 0 100 100" width="100" height="100">
+  <image xlink:href="github.jpg" width="50%" height="50%"/>
+</svg>
+<hr>
+<svg width="500px" height="500px">
+  <rect x="0" y="0" width="100" height="100" fill="#feac5e">
+    <animate attributeName="x" from="0" to="500" dur="20s" repeatCount="indefinite"/>
+    <animate attributeName="y" from="0" to="500" dur="20s" repeatCount="indefinite"/>
+  </rect>
+</svg>
+<hr>
+<svg width="500px" height="500px">
+  <rect x="250" y="250" width="50" height="50" fill="#4bc0c8">
+    <animateTransform attributeName="transform" type="rotate" begin="0s" dur="10s" from="0 200 200" to="360 400 400"
+                      repeatCount="indefinite"/>
+  </rect>
+</svg>
+<script>
+  /*
+  * 1.svg也是一种html标签 可以使用js和css进行操作
+  *
+  * 2.svg元素和canvas元素一样 默认的尺寸是300px*150px 可以使用width&height属性进行自定义宽高
+  *
+  * 3.viewBox属性用来指定展示的某一部分 viewBox由4个值确定:左上角横坐标 左上角纵坐标 宽 高
+  *   注意:截取之后的图形会进行等比缩放(占用的面积不变)
+  *        eg:原本的svg长宽分别是x,y那么截取后的svg的长宽还是x,y.但是被截取的部分的面积被缩放了
+  *
+  * 4.svg的css属性与网页的css属性有所不同:
+  *   4.1 - fill:填充色
+  *   4.2 - stroke:描边色
+  *   4.3 - stroke-width:描边宽度
+  *
+  * 5.对于polyline来说 fill属性就是在起点和终点之间连一条线 这条线与折线围成的面积用该颜色来填充
+  *
+  * 6.path标签用于绘制路径(理论上可以绘制任意的形状)
+  *   d属性用来描述要绘制的形状 值是一个字符串
+  *     M:move-to 移动到某一点
+  *     L:line-to 画直线到某一点
+  *     Z:闭合路径
+  * */
+</script>
+</body>
+</html>

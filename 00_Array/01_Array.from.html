@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array.from</title>
+</head>
+<body>
+<script>
+  /*
+  * Array.from(arrayLike[,mapFn[,thisArg]])从一个类似数组或者可迭代对象创建一个新的、浅拷贝的数组实例
+  * 参数ArrayLike可以是一个伪数组对象或者可迭代对象或者一个真实的数组
+  * 1.伪数组对象：拥有length属性的对象和若干列索引属性的对象
+  * 2.可迭代对象：字符串 数组 Map Set 对象...
+  *
+  * 如果提供了第二个参数mapFn 那么返回的新数组的每个元素都会执行该回调函数
+  *   Array.from(arrayLike,mapFn,thisArg) === Array.from(arrayLike).map(mapFn,thisArg)
+  *
+  * 第三个参数用来绑定执行回调函数时的this
+  * */
+  const str = 'Jack'
+  const arr1 = Array.from(str)
+  console.log(arr1)
+
+  const obj = {length: 10}
+  const arr2 = Array.from(obj, (item, index) => {
+    console.log(item, index)
+    return index
+  })
+  console.log(arr2)
+
+  const nodes = {0: 'a', 1: 'b', 2: 'c', length: 3}
+  const arr3 = Array.from(nodes)
+  console.log(arr3)
+
+  const numbers = [1, 2, 3, 4, 5]
+  console.log(Array.from(numbers, x => x + x))
+
+  console.log(Array.from({length: 10}, () => {
+    return Array.from({length: 10}, () => {
+      return [Math.random(), Math.random()]
+    })
+  }))
+
+  console.log(Array.from({length: 5}, () => Array.from({length: 5}, () => [Math.round(Math.random()), Math.round(Math.random())])))
+
+  /*
+  * 自己实现类似python中的range(start,end,step)方法
+  *
+  * */
+  console.log('*********************************')
+  const range = (start, end, step = 1) => {
+    const obj = {}
+    let total = 0
+    for (let i = start; i <= end; i += step) {
+      obj[total] = i
+      total++
+    }
+    obj.length = total
+    return Array.from(obj)
+  }
+
+  console.log(range(0, 10, 2))
+  console.log(range('A'.charCodeAt(0), 'Z'.charCodeAt(0)).map(x => String.fromCharCode(x)))
+
+  //自定义函数 只映射传入的第一个参数
+  String.prototype.fromCharCodeFirst = (...items) => {
+    return String.fromCharCode(items[0])
+  }
+
+  console.log(range('A'.charCodeAt(0), 'Z'.charCodeAt(0)).map(String.prototype.fromCharCodeFirst))
+</script>
+</body>
+</html>

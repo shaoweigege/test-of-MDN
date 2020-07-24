@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>trim()&trimRight()&trimStart()</title>
+</head>
+<body>
+<script>
+  /*
+  * String.prototype.trim() 返回一个去除两端的空格的新的字符串
+  *
+  * String.prototype.trimLeft() 返回一个去除开头的空格的新的字符串
+  * String.prototype.trimStart() 返回一个去除开头的空格的新的字符串
+  *
+  * String.prototype.trimRight() 返回一个去除末尾空格的新的字符串
+  * String.prototype.trimEnd() 返回一个去除末尾空格的新的字符串
+  *
+  * */
+
+  const str = '   Hello World   '
+  console.log(str.trimLeft(), '----')
+  console.log(str.trimStart(), '----')
+  console.log(str.trim(), '----')
+  console.log(str.trimEnd(), '----')
+  console.log(str.trimRight(), '----')
+</script>
+</body>
+</html>

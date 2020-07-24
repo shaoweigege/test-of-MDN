@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String.prototype.charCodeAt()&String.fromCharCode()</title>
+</head>
+<body>
+<script>
+  /*
+  * 1.String.prototype.charCodeAt(index) -->返回字符串指定下标处的字符所对应的数值
+  *
+  * 2.String.fromCharCode(number1[,...numbers]) -->将一系列数值转成对应位置上的字符
+  *
+  * */
+
+  console.log(String.fromCharCode(65))
+  console.log('Z'.charCodeAt(0))
+
+  String.prototype.fromCharCodeFirst = (...items) => {
+    return String.fromCharCode(items[0])
+  }
+</script>
+</body>
+</html>
