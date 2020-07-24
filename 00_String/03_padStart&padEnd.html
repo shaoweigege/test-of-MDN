@@ -29,6 +29,14 @@
   // setInterval(() => {
   //   console.log(formatDate())
   // }, 1000)
+
+  const formatDateNew = () => {
+    //格式：2020-07-24T05:38:38.726Z
+    const dateString = new Date().toISOString()
+    const year = dateString.substr(0, 10)
+    const time = dateString.substr(11, 8)
+    return year + ' ' + time
+  }
 </script>
 </body>
 </html>
