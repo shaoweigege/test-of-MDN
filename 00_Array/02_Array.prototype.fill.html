@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array.prototype.fill()</title>
+</head>
+<body>
+<script>
+  /*
+  * Array.prototype.fill(value[,start[,end]) 包左不包右
+  *
+  * 使用指定的元素从开始位置一直填充到结束位置
+  *
+  * 1.如果只提供一个参数 那么会从头替换到尾
+  *
+  * 2.如果提供了value和start两个参数 那么会从start(包括)处替换至尾
+  *
+  * 3.如果提供了value start end三个参数 那么会从start(包括)处替换至end(不包括)处
+  *   如果提供的end>数组的length 那么就相当于只提供了两个参数的情况
+  *
+  * */
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  console.log(array.fill(100, 5, 7))
+</script>
+</body>
+</html>
