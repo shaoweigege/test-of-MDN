@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TextEncoder&TextDecoder</title>
+</head>
+<body>
+<script>
+  //new TextEncoder()返回一个编码器 就是一个对象
+  //调用encoder.encode(字符串) 返回一个使用UTF-8编码集对指定字符串进行编码后的Uint8Array数组(字节数组)
+  let encoder = new TextEncoder()
+  const name1 = 'Jack'
+  const name2 = '刘德华111'
+  console.log(encoder.encode(name1).length)
+  console.log(encoder.encode(name2))
+  console.log(encoder.encode(name2)) //[229, 136, 152, 229, 190, 183, 229, 141, 142]
+
+
+  //new TextDecoder()返回一个解码器 就是一个对象
+  //调用decoder.decode(ArrayBuffer|ArrayBuffer[,options])
+  //返回一个使用UTF-8或者其他指定的编码集对指定的字节数组进行解码后的结果(字符串)
+  const arr = [229, 136, 152, 229, 190, 183, 229, 141, 142]
+  const uInt8Array = Uint8Array.of(...arr)
+  console.log(uInt8Array)
+  const decoder = new TextDecoder()
+  console.log(decoder.decode(uInt8Array)) //刘德华
+  console.log(decoder.decode(uInt8Array).length) //3
+
+  console.log(name2.charCodeAt(0))
+  console.log(name2.charCodeAt(1))
+  console.log(name2.charCodeAt(2))
+
+  //ArrayBuffer对象只是表示一段实实在在的内存地址 本身不具备读写的能力 只能通过DataView或者TypedArray来进行读写操作
+  //而且在同一段内存低地址上可以建立多种不同的视图(读写的方式) 对内存地址的修改会影响到其他的视图
+  const buf = new ArrayBuffer(32)  //创建一个长度为32字节的内存地址
+  console.log(buf)
+
+  //以无符号的8位(1字节)为最小单位进行读写该内存地址 一次读写1个字节(共需要32次)
+  const uInt8Array1 = new Uint8Array(buf)
+  console.log(uInt8Array1) //长度为32的数组 数组的每个元素都是0
+
+  //以无符号的16位(2字节)为最小单位进行读写该内存 一次读写2个字节(共需要16次)
+  const uInt16Array1 = new Uint16Array(buf)
+  console.log(uInt16Array1) //长度为16的数组 数组的每个元素都是0
+
+  const buf2 = encoder.encode(name2).buffer
+  console.log(buf2)
+
+  const uInt8Array2 = new Uint8Array(buf2)
+  console.log(uInt8Array2)
+
+  const uInt16Array2 = new Uint16Array(buf2)
+  console.log(uInt16Array2)
+
+  console.log(decoder.decode(uInt16Array2))
+
+
+</script>
+</body>
+</html>
