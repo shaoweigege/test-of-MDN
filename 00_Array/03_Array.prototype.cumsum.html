@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array.prototype.cumsum</title>
+</head>
+<body>
+<script>
+  /*
+  * 自己实现d3.cumsum(array[,accessor])
+  * */
+
+  Array.prototype.cumsum = (arr, accessor) => {
+    let s = 0
+    return arr.map(item => s += accessor ? accessor(item) : item)
+  }
+
+  console.log(Array.prototype.cumsum([1, 2, 3, 4, 5, 10]))
+
+  const profit = [
+    {date: '2020-01', money: 2000},
+    {date: '2020-02', money: 3000},
+    {date: '2020-03', money: 4000},
+    {date: '2020-04', money: 5000},
+    {date: '2020-05', money: 6000},
+    {date: '2020-06', money: 2000},
+    {date: '2020-07', money: 2800},
+  ]
+
+  console.log(Array.prototype.cumsum(profit, d => d.money))
+</script>
+</body>
+</html>
