@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //斐波那契数列 0 1 1 2 3 5 8 13.。。
+  let a = 0, b = 1, i = 1
+  //打印出斐波那契数列的前10个数
+  while (i <= 10) {
+    console.log(a)
+    const arr = [b, a + b]
+    a = arr[0]
+    b = arr[1]
+    i++
+  }
+</script>
+</body>
+</html>
