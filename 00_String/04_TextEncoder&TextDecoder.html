@@ -31,7 +31,7 @@
   console.log(name2.charCodeAt(2))
 
   //ArrayBuffer对象只是表示一段实实在在的内存地址 本身不具备读写的能力 只能通过DataView或者TypedArray来进行读写操作
-  //而且在同一段内存低地址上可以建立多种不同的视图(读写的方式) 对内存地址的修改会影响到其他的视图
+  //而且在同一段内存地址上可以建立多种不同的视图(读写的方式) 对内存地址的修改会影响到其他的视图
   const buf = new ArrayBuffer(32)  //创建一个长度为32字节的内存地址
   console.log(buf)
 
