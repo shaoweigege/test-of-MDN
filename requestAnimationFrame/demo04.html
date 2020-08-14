@@ -19,9 +19,10 @@
   const update = timestamp => {
     if (!startTime) {
       startTime = timestamp
-      span.innerText = 0 + ''
+      span.innerText = startVal + ''
     }
-    let progress = timestamp - startTime
+    let progress = timestamp - startTime //progress就是动画已经运行的时长
+    //最重要的就是下面这一步
     let step = (endVal - startVal) * (progress / duration)
     const currentVal = startVal + step
     span.innerText = Math.floor(currentVal) + ''
