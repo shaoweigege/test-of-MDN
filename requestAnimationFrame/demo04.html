@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>window.requestAnimationFrame④</title>
+</head>
+<body>
+<span id="text"></span>
+<script>
+  /*
+  * 改进版的自己实现的数字动画效果
+  * */
+  const span = document.getElementById('text')
+  let startVal = 0 //开始的数值
+  let endVal = 2020 //结束时需要显示的数值
+  let startTime //开始进行动画时的时间值
+  let duration = 1500 //总共的耗时
+
+  const update = timestamp => {
+    if (!startTime) {
+      startTime = timestamp
+      span.innerText = 0 + ''
+    }
+    let progress = timestamp - startTime
+    let step = (endVal - startVal) * (progress / duration)
+    const currentVal = startVal + step
+    span.innerText = Math.floor(currentVal) + ''
+    if (progress <= duration) {
+      window.requestAnimationFrame(update)
+    } else {
+      span.innerText = endVal + ''
+    }
+  }
+
+  window.requestAnimationFrame(update)
+</script>
+</body>
+</html>

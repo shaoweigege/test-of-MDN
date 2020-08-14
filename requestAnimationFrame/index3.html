@@ -7,11 +7,14 @@
 <body>
 <span id="number"></span>
 <script>
+  /*
+  * 最初版本自己实现的数字动画效果 改进版见demo04.html
+  * */
   const span = document.getElementById('number')
-  let startVal = 0
-  let endVal = 2020
-  let startTime, remainingTime
-  let duration = 3000
+  let startVal = 0 //开始的数值
+  let endVal = 2020 //结束时需要显示的数值
+  let startTime, remainingTime //开始时的时间 剩余的时间
+  let duration = 3000 //总共的耗时
 
   const count = timestamp => {
     if (!startTime) {
@@ -19,28 +22,22 @@
       span.innerText = '0.00'
     }
     // (this.endVal - this.startVal) * (progress / this.duration)
-    let progress = timestamp - startTime
-    remainingTime = duration - timestamp
-    let currentVal = formatVal(span.innerText)
+    let progress = timestamp - startTime //progress是指当前动画已经进行了的总时长
+    remainingTime = duration - timestamp //剩余时间
+
+    //每次执行动画时起始数字都是从startVal开始的，只不过增加的幅度是越来越大的
     let step = Math.floor((endVal - startVal) * (progress / duration))
-    console.log(step)
+
+    // console.log(step)
     if (remainingTime >= 0) {
       span.innerText = (startVal + step) + ''
+      console.log(startTime + step)
       requestAnimationFrame(count)
     } else {
       span.innerText = endVal + ''
     }
   }
   requestAnimationFrame(count)
-
-  /**
-   *
-   * @param {String} val
-   * @returns {Number} Number(val)
-   */
-  function formatVal(val) {
-    return Number(val)
-  }
 </script>
 </body>
 </html>

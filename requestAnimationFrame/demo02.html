@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>window.requestAnimationFrame②</title>
+  <style>
+    .box {
+      height: 10000px;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  window.onscroll = function (e) {
+    // console.log(e.timeStamp)
+    window.requestAnimationFrame(function () {
+      console.log(e.timeStamp)
+    })
+  }
+</script>
+</body>
+</html>

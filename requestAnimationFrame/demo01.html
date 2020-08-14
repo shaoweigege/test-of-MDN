@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>window.requestAnimationFrame①</title>
+  <style>
+    .box {
+      width: 30px;
+      height: 30px;
+      background-color: #ccc;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<hr>
+<button id="btn">click</button>
+<script>
+  /*
+  * window.requestAnimationFrame()的作用是：将一些任务放在浏览器下一次重新渲染的时候执行
+  * 一般来说 浏览器一秒钟的刷新次数是60次
+  * */
+  const btn = document.getElementById('btn')
+  const divs = document.querySelectorAll('.box')
+  btn.addEventListener('click', function () {
+    divs.forEach(function (div) {
+      let width = div.clientWidth
+      let height = div.clientHeight
+      // 直接更新元素的属性 bad
+      // div.style.width = width * 2 + 'px'
+      // div.style.height = height * 2 + 'px'
+      // 将更新操作推迟到下一次浏览器的重新渲染 good
+      window.requestAnimationFrame(function () {
+        div.style.width = width * 2 + 'px'
+        div.style.height = height * 2 + 'px'
+      })
+    })
+  })
+</script>
+</body>
+</html>

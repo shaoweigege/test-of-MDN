@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>window.requestAnimationFrame③</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: tomato;
+      margin: 100px auto;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<button id="btn">click</button>
+<button id="btn2">cancel</button>
+<script>
+  const div = document.querySelector('.box')
+  // 让该元素每一帧旋转一度
+  const button = document.getElementById('btn')
+  const button2 = document.getElementById('btn2')
+  let degree = 0
+  let animationID, startTime
+
+  button.onclick = function () {
+    // 直接进行事件处理 bad
+    // rotate()
+    // 将事件处理推迟到浏览器下一次渲染时执行 good
+    window.requestAnimationFrame(rotate)
+  }
+
+  button2.onclick = function () {
+    window.cancelAnimationFrame(animationID)
+  }
+
+  function rotate() {
+    div.style.transform = `rotate(${degree}deg)`
+    animationID = window.requestAnimationFrame(function (timestamp) {
+      if (!startTime) startTime = timestamp
+      if (degree <= 180) {
+        rotate()
+        console.log('动画已经运行了：', timestamp - startTime, '毫秒')
+        degree++
+      }
+    })
+  }
+</script>
+</body>
+</html>
