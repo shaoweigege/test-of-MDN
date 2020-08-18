@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      left: 0;
+      top: 50px;
+      background-color: tomato;
+    }
+  </style>
+</head>
+<body>
+<button id="start">start</button>
+<button id="end">end</button>
+<hr>
+<div class="box"></div>
+<script>
+  const startBtn = document.querySelector('#start')
+  const endBtn = document.querySelector('#end')
+  const box = document.querySelector('.box')
+  let start
+  //定义动画函数
+  const animate = timestamp => {
+    if (!start) start = timestamp
+    let progress = timestamp - start
+    box.style.left = Math.round(progress / 10) + 'px'
+    if (progress < 2000) {
+      window.requestAnimationFrame(animate)
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    window.requestAnimationFrame(animate)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.js"></script>
+</head>
+<body>
+<input type="text">
+<button id="btn">click</button>
+<script>
+  /*
+  * URL中只能出现两种字符
+  * 1.URL元字符: , : # & $ = ;
+  * 2.语义字符: 0-9 a-z A-Z - _
+  *
+  * 进行数据传输时不需要显示的调用encodeURI()&encodeURIComponent()方法 浏览器会自动将网址中的不合法字符转成合法的URL字符
+  *
+  * */
+  const button = document.querySelector('#btn')
+  // button.onclick = function () {
+  //   axios.get('http://localhost:5400', {
+  //     params: {
+  //       //username: encodeURI('林志玲')
+  //       username: '林志玲'
+  //     }
+  //   }).then(response => {
+  //     console.log(response.data)
+  //   })
+  // }
+
+  // button.onclick = function () {
+  //   let xhr = new XMLHttpRequest()
+  //   xhr.onload = function (response) {
+  //     console.log(response.data)
+  //   }
+  //   xhr.onerror = function (error) {
+  //     console.log(error)
+  //   }
+  //   xhr.open('GET', 'http://localhost:5400?username=林志玲')
+  //   xhr.send()
+  // }
+
+  button.onclick = function(){
+    document.querySelector('input[type=text]').value='广州123'
+  }
+</script>
+</body>
+</html>
