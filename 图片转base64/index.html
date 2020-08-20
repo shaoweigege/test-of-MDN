@@ -26,7 +26,7 @@
         reader.onerror = function () {
           reject('读取文件二进制数据失败')
         }
-        reader.readAsArrayBuffer(xhr.response)
+        reader.readAsBinaryString(xhr.response)
       }
       xhr.onerror = function () {
         reject('获取指定路径的图片失败')

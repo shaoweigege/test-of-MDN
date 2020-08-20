@@ -9,6 +9,9 @@
 <button id="btn">按钮</button>
 <script>
     const fileInput = document.getElementById('file')
+    fileInput.addEventListener('input',e=>{
+        console.log(e.target.files)
+    })
     document.getElementById('btn').addEventListener('click', e => {
         // fileInput.click()
         //用下面这种方式可以兼容chrome&Safari&fireFox ie不支持
