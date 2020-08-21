@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #file {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">click</button>
+<input type="file" id="file">
+<img src="" alt="" id="img">
+<script>
+  /*
+  * 这样的写法可以兼容到IE10 IE9以及以下不兼容(主要是不识别e.target.files)
+  * */
+  console.log('Hello IE')
+  var file = document.getElementById('file')
+  var btn = document.getElementById('btn')
+  var img = document.getElementById('img')
+
+  btn.onclick = function () {
+    file.click()
+  }
+
+  file.onchange = function (e) {
+    console.log(e.target.files[0])
+    var reader = new FileReader()
+    reader.onload = function (e1) {
+      img.src = e1.target.result
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
+</script>
+</body>
+</html>

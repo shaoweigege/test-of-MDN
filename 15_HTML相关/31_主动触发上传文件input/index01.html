@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+  <style>
+    .box {
+      position: relative;
+      width: 100px;
+      height: 20px;
+      border: 1px solid #0C0C0C;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    #file {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="box">按钮</div>
+<input type="file" id="file">
+<img src="" alt="" id="img">
+<script>
+  console.log(1111111111)
+  let fileInput = document.getElementById('file')
+  let img = document.getElementById('img')
+  let button = document.querySelector('.box')
+
+  button.onclick = function () {
+    console.log('click')
+    //最关键的步骤
+    fileInput.click()
+  }
+
+  fileInput.onchange = function (e) {
+    console.log(e.target.files)
+    let reader = new FileReader()
+    reader.onload = function (e1) {
+      img.src = e1.target.result
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
+  console.log(22222222)
+</script>
+</body>
+</html>
