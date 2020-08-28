@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>底部渐入框</title>
+  <style>
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .footer-area {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      height: 50px;
+      background-color: #e1e1e8;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    .footer-area.chosen {
+      animation: fadeOut 1s forwards;
+    }
+
+    .footer-area .footer-left {
+      width: calc(100% - 200px);
+      padding-left: 30px;
+      color: #131313;
+      font-size: 14px;
+    }
+
+    .footer-area .footer-right {
+      width: 150px;
+      padding-right: 20px;
+    }
+
+    .footer-area .footer-right button {
+      width: 70px;
+      height: 30px;
+      border: none;
+      outline: none;
+      border-radius: 15px;
+      background-color: #FF4949;
+      color: #fff;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /*定义入场动画*/
+    @keyframes fadeIn {
+      from {
+        bottom: -50px;
+      }
+      to {
+        bottom: 0;
+      }
+    }
+
+    /*定义离场动画*/
+    @keyframes fadeOut {
+      from {
+        bottom: 0;
+      }
+      to {
+        bottom: -50px;
+      }
+    }
+  </style>
+</head>
+<body>
+<section class="footer-area">
+  <div class="footer-left">
+    <span>该网站需要使用cookie以获取最佳体验</span>
+  </div>
+  <div class="footer-right">
+    <button id="accept">接受</button>
+    <button id="decline">拒绝</button>
+  </div>
+</section>
+<script>
+  const acceptBtn = document.getElementById('accept')
+  const declineBtn = document.getElementById('decline')
+  const footerArea = document.querySelector('.footer-area')
+
+  acceptBtn.onclick = function () {
+    footerArea.classList.add('chosen')
+  }
+
+  declineBtn.onclick = function () {
+    footerArea.classList.add('chosen')
+  }
+</script>
+</body>
+</html>

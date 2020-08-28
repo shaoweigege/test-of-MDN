@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    h1 {
+      font: bold 5em "Georgia", serif;
+      color: #90a4ae;
+    }
+
+    .z-text {
+      /* Tip: Apply CSS transforms here */
+      /* rotateX() == up/down */
+      /* rotateY() == left/right */
+      transform: rotateX(15deg) rotateY(-30deg);
+    }
+
+    .z-layer:not(:first-child) {
+      color: #455a64;
+    }
+  </style>
+  <script src="./ztext.min.js"></script>
+</head>
+<body>
+<h1>
+  <span class="hero-text">CSS</span>
+</h1>
+<script>
+  let ztxt = new Ztextify(".hero-text", {
+    depth: "30px",
+    layers: 2, //一共有几层
+    fade: true,
+    direction: "forwards",
+    event: "pointer",
+    eventRotation: "35deg"
+  });
+</script>
+</body>
+</html>

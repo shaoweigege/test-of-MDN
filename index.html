@@ -51,6 +51,155 @@
     return a + b
   })
 
+  console.log('*******************************')
+
+  /**
+   * 通过传入xml的内容字符串来解析xml
+   * @param xmlString xml字符串
+   * @returns xml的Document对象
+   */
+  function getXmlDocumentByXmlString(xmlString) {
+    var xmlDoc = null;
+    if (window.DOMParser) {
+      var parser = new DOMParser();
+      xmlDoc = parser.parseFromString(xmlString, "text/xml");
+    } else {
+      //IE
+      xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+      xmlDoc.async = "false";
+      xmlDoc.loadXML(xmlString);
+    }
+    return xmlDoc;
+  }
+
+  /**
+   * 通过传入xml文件路径来解析xml文档
+   * @param xmlFilePath xml文档路径，如：files/test.xml
+   * @returns xml的Document对象
+   */
+  function getXmlDocumentByFilePath(xmlFilePath) {
+    //xmlDocument对象
+    var xmlDoc = null;
+    //xmlhttp对象
+    var xmlhttp = null;
+    if (window.XMLHttpRequest) {
+      //IE7+, FireFox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      //IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.open("GET", xmlFilePath, false);
+    xmlhttp.send();
+    xmlDoc = xmlhttp.responseXML;
+    return xmlDoc;
+  }
+
+  /**
+   * 将XML的Document对象转换为JSON字符串
+   * @param xmlDoc xml的Document对象
+   * @return string
+   */
+  function convertToJSON(xmlDoc) {
+    //准备JSON字符串和缓存（提升性能）
+    var jsonStr = "";
+    var buffer = new Array();
+
+    buffer.push("{");
+    //获取xml文档的所有子节点
+    var nodeList = xmlDoc.childNodes;
+
+    generate(nodeList);
+
+    /**
+     * 中间函数，用于递归解析xml文档对象，并附加到json字符串中
+     * @param node_list xml文档的的nodeList
+     */
+    function generate(node_list) {
+
+      for (var i = 0; i < node_list.length; i++) {
+        var curr_node = node_list[i];
+        //忽略子节点中的换行和空格
+        if (curr_node.nodeType == 3) {
+          continue;
+        }
+        //如果子节点还包括子节点，则继续进行遍历
+        if (curr_node.childNodes.length > 1) {
+          buffer.push("\"" + curr_node.nodeName + "\": {");
+          generate(curr_node.childNodes);
+        } else {
+          var firstChild = curr_node.childNodes[0];
+
+          if (firstChild != null) {
+            //nodeValue不为null
+            buffer.push("\"" + curr_node.nodeName + "\":\"" + firstChild.nodeValue + "\"");
+          } else {
+            //nodeValue为null
+            buffer.push("\"" + curr_node.nodeName + "\":\"\"");
+          }
+
+        }
+        if (i < (node_list.length - 2)) {
+          buffer.push(",");
+        } else {
+          break;
+        }
+      }
+      //添加末尾的"}"
+      buffer.push("}");
+    }
+
+    jsonStr = buffer.join("");
+    return jsonStr;
+  }
+
+  console.log('*****************************')
+  let xml = `
+    <user>
+      <name>林志玲</name>
+      <age>28</age>
+      <married>true</married>
+      <出票日期>贰零壹叁陆壹拾柒</出票日期>
+    </user>
+  `
+  let xml2 = `
+<票据信息>
+<票据名称>CDHP</票据名称>
+<汇票票号>20634730</汇票票号>
+<出票日期>贰零壹叁陆壹拾柒</出票日期>
+<出票人全称>黄中能源峰峰集团有限公司</出票人全称>
+<出票人账号>131081511010003819</出票人账号>
+<付款行全称>郑州分行安阳分行营业部</付款行全称>
+<收款人全称>龚中能源峰峰集团邮郭宝峰矿业有限公司</收款人全称>
+<收款人账号>032852011000267</收款人账号>
+<收款人开户银行>德县下庄店信用社</收款人开户银行>
+<大写金额>伍拾万元整</大写金额>
+</票据信息>
+  `
+  console.log(xml2.length)
+  let parser = new DOMParser()
+  stringContainingHTMLSource = '<span>Hello World</span>'
+  let doc1 = parser.parseFromString(stringContainingHTMLSource, "text/html")
+  console.log(doc1)
+
+  let doc2 = parser.parseFromString(xml2, 'text/xml')
+  // console.log(doc2.childNodes)
+  // console.log(doc2.childNodes[0].childNodes)
+
+  console.log(doc2.childNodes.length)
+  let resultJson
+  if (doc2.childNodes.length > 0) {
+    let nodes = doc2.childNodes
+    let childNodes = nodes[0].childNodes
+    for (let j = 0; j < childNodes.length; j++) {
+      if (j % 2 === 1) {
+        console.log(childNodes[j].nodeName,':',childNodes[j].innerHTML)
+        // resultJson[childNodes[j].nodeName] = childNodes[j].innerHTML
+      }
+    }
+  }
+
 </script>
 </body>
 </html>

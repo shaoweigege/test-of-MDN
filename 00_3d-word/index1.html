@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="ztext.min.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<span class="img-box" data-z data-z-depth="40px">
+  CSS
+</span>
+<script>
+  new Ztextify(".img-box", {
+    depth: "100px", //z轴的深度
+    layers: 12, //一共有几层
+    fade: true,
+    perspective: '700px', //视角到屏幕的距离
+    direction: "forwards",
+    event: "scroll",
+    eventRotation: "35deg"
+  })
+</script>
+</body>
+</html>
