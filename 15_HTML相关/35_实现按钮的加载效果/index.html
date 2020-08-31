@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实现按钮的加载效果</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #btn {
+      position: relative;
+      outline: none;
+      padding: 0 15px;
+      height: 40px;
+      line-height: 34px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #dcdfe6;
+      color: #606266;
+      text-align: center;
+    }
+
+    #btn:hover {
+      color: #409eff;
+      border-color: #c6e2ff;
+      background-color: #ecf5ff;
+    }
+
+    #btn img {
+      position: absolute;
+      top: calc(50% - 8px);
+      left: 8%;
+      width: 16px;
+      height: 16px;
+    }
+
+    #btn img.loading {
+      animation: rotateImage 2s linear infinite;
+    }
+
+    #btn span {
+      margin-left: 10px;
+    }
+
+    @keyframes rotateImage {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+<button id="btn">
+  <img src="./loading.png" alt="" class="loading">
+  <span>默认按钮</span>
+</button>
+</body>
+</html>
