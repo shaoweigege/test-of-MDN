@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<br/>
+<?xml version="1.0"?>
+<school xmlns="http://www.w3.org/1999/xhtml">
+  <name>清华大学</name>
+  <address>北京市</address>
+</school>
+<?xml version="1.0"?>
+<people xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <person>
+    <name first="george" last="bush"/>
+    <address street="1600 pennsylvania avenue" city="washington" country="usa"/>
+    <phoneNumber>202-456-1111</phoneNumber>
+  </person>
+  <person>
+    <name first="tony" last="blair"/>
+    <address street="10 downing street" city="london" country="uk"/>
+    <phoneNumber>020 7925 0918</phoneNumber>
+  </person>
+</people>
+<script>
+  let serializer = new XMLSerializer()
+
+  let userDom = document.createElement('用户')
+  let idDom = document.createElement('证件号')
+  let nameDom = document.createElement('姓名')
+  idDom.innerHTML = 1
+  nameDom.innerHTML = '刘德华'
+  userDom.append(idDom, nameDom)
+  document.body.appendChild(userDom)
+
+  let userXML = serializer.serializeToString(userDom)
+  console.log(userXML)
+</script>
+</body>
+</html>

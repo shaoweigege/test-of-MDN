@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  * XML相关的操作：
+  * 1.XMLSerializer 将DOM树转换成包含XML的字符串
+  * 2.DOMParser 将一个包含XML的字符串解析为DOM树
+  *
+  * */
+
+  let XMLString = '<a id="a"><b id="b">hey!</b></a>'
+  let parser = new DOMParser()
+  //xmlDom就是一个document对象
+  let xmlDom = parser.parseFromString(XMLString, "application/xml")
+  console.log(xmlDom.getElementById('a'), xmlDom.documentElement)
+  console.log(xmlDom.documentElement.nodeName === "parsererror" ? "解析错误" : xmlDom.documentElement.nodeName)
+
+  console.log(document.documentElement)
+  //2.将dom结构序列化成XML字符串
+  let htmlDom = document.documentElement
+  let serializer = new XMLSerializer()
+  let htmlXML = serializer.serializeToString(htmlDom)
+  console.log(htmlXML)
+
+  //2.1
+  let divDom = document.createElement('div')
+  let spanDom = document.createElement('span')
+  spanDom.innerHTML = 'Hello World'
+  divDom.appendChild(spanDom)
+  divDom.setAttribute('data-cmm', 'ChenMM')
+  let divXML = serializer.serializeToString(divDom)
+  console.log(divXML)
+  document.write(divXML)
+
+  //2.2
+  let userDom = document.createElement('用户')
+  let idDom = document.createElement('证件号')
+  let nameDom = document.createElement('姓名')
+  idDom.innerHTML = 1
+  nameDom.innerHTML = '刘德华'
+  userDom.append(idDom, nameDom)
+  let userXML = serializer.serializeToString(userDom)
+  console.log(userXML)
+  document.write(userXML)
+</script>
+</body>
+</html>
