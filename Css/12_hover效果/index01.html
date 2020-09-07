@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 100px;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      text-transform: uppercase;
+      color: #4361ee;
+      font-weight: bold;
+      position: relative;
+      outline: none;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
+
+    button::before, button::after {
+      box-sizing: inherit;
+      position: absolute;
+      content: '';
+      border: 2px solid transparent;
+      width: 0;
+      height: 0;
+    }
+
+    button::after {
+      bottom: 0;
+      right: 0;
+    }
+
+    button::before {
+      top: 0;
+      left: 0;
+    }
+
+    button:hover::after, button:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    button:hover::before {
+      border-top-color: #4361ee;
+      border-right-color: #4361ee;
+      /*
+      下面的写法表示:先进行宽度的过渡,耗时0.3s;最后进行高度的过渡,耗时0.3s。最终,总耗时0.6s 结束过渡效果。
+      */
+      transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+    }
+
+    button:hover::after {
+      border-bottom-color: #4361ee;
+      border-left-color: #4361ee;
+      /*
+      此处一定要设置border-color的延迟时间为0.3+0.3=0.6s 因为上面的宽和高进行过渡的总耗时为0.6s
+      */
+      transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s, height 0.3s ease-out 1s;
+    }
+
+    .demo {
+      width: 100px;
+      height: 50px;
+      background-color: tomato;
+    }
+
+    .demo:hover {
+      width: 300px;
+      height: 100px;
+      transition: width 1s ease-out, height 1s ease-out 1s;
+    }
+  </style>
+</head>
+<body>
+<div class="btn-container">
+  <button>Click Me</button>
+</div>
+
+<div class="demo"></div>
+<hr>
+</body>
+</html>
