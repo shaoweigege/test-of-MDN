@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #circle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 100px;
+    }
+
+    .btn-container {
+      position: relative;
+    }
+
+    button {
+      border: 0;
+      border-radius: 50px;
+      color: white;
+      background: #5f55af;
+      padding: 15px 20px 16px 20px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #f72585 50%, #5f55af 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all 2s ease;
+    }
+
+    button:hover {
+      background-position: left bottom;
+    }
+
+    .demo {
+      width: 500px;
+      height: 150px;
+      background: linear-gradient(to right bottom, red, yellow, blue);
+    }
+
+    #div3 {
+      width: 500px;
+      height: 150px;
+      background: linear-gradient(-110deg, #a0a 30%, rgba(0, 0, 0, 0) 30%), url('./nasa.jpg');
+      background-size: cover;
+      background-position: top left;
+    }
+
+    /*
+    原理:背景颜色使用渐变色 左边与右边的颜色不同 一开始背景位置是right bottom 当鼠标悬空时背景的位置变成了left bottom
+        再使用过渡效果 最终就好像背景色在平移一样
+    */
+    .div4 {
+      width: 300px;
+      height: 150px;
+      background: linear-gradient(to right bottom, tomato 50%, steelblue 50%);
+      background-size: 200% 200%;
+      background-position: right bottom;
+      transition: all 2s ease;
+    }
+
+    .div4:hover {
+      background-position: left top;
+    }
+  </style>
+</head>
+<body>
+<div id="circle-btn">
+  <div class="btn-container">
+    <button>Hover me</button>
+  </div>
+</div>
+<hr>
+<div class="demo"></div>
+<hr>
+<div id="div3"></div>
+<hr>
+<div class="div4"></div>
+</body>
+</html>
