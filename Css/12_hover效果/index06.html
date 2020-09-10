@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>输入框获得焦点后弹簧效果</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 100px;
+      margin: 100px auto;
+      /*background-color: pink;*/
+      position: relative;
+    }
+
+    .box #username {
+      position: absolute;
+      top: 0;
+      right: 0;
+      outline: none;
+      width: 200px;
+      height: 34px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      border: none;
+      padding-left: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: width 0.3s ease;
+    }
+
+    .box #username::placeholder {
+      color: rgba(202, 202, 202, 1);
+    }
+
+    .box #username:focus {
+      width: 290px;
+      /*margin-left: -100px;*/
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <input type="text" id="username" placeholder="董狐体育" autocomplete="off">
+</div>
+</body>
+</html>

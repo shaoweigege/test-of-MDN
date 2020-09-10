@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>模拟输入框手动输入文字</title>
+</head>
+<body>
+<label for="username">
+  <input type="text" id="username">
+</label>
+<button id="btn">Click</button>
+<script>
+  const username = '宇宙无敌第一帅哥'
+  const usernameInput = document.getElementById('username')
+  const button = document.getElementById('btn')
+
+  button.onclick = function () {
+    let times = 0
+    const SPEED_NUM = 15
+
+    function wordDance() {
+      times++
+      console.log('for debug')
+      if (times <= username.length * SPEED_NUM) {
+        if (times % SPEED_NUM === 0) {
+          usernameInput.setAttribute('placeholder', username.substring(0, times / SPEED_NUM) + '|')
+        }
+        //浏览器下一次重绘比上一次多写一个字 一般的浏览器大概是一秒钟重绘60次 大约16ms重绘一次
+        //浏览器的重绘评率是无法改变的 只能延长完成动画的总时长 通过常数 `SPEED_NUM` 来控制
+        window.requestAnimationFrame(wordDance)
+      } else {
+        usernameInput.setAttribute('placeholder', username)
+      }
+    }
+
+    usernameInput.setAttribute('placeholder', '')
+    window.requestAnimationFrame(wordDance)
+  }
+</script>
+</body>
+</html>
