@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全屏API</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  /*
+  * FullScreen接口
+  * 1.document.fullscreenElement-->返回当前处于全屏中的元素 如果没有元素处于全屏中 则返回null
+  *
+  * 2.document.fullscreenEnabled-->判断浏览器是否支持全屏模式 返回布尔值
+  *
+  * 3.element.requestFullscreen()-->让元素全屏显示 返回一个promise对象 在元素成功进入全屏后状态变为resolved
+  *
+  * 4.document.onfullscreenchange-->监听全屏状态发生变化的回调函数
+  *
+  * 5.document.onfullscreenerror-->监听全屏出错的回调函数
+  *
+  * 6.document.exitFullscreen()-->退出全屏
+  * */
+  const boxDiv = document.querySelector('.box')
+  boxDiv.onclick = function () {
+    console.log(document.fullscreenElement)
+    if (boxDiv.requestFullscreen) {
+      boxDiv.requestFullscreen()
+          .then(() => {
+            console.log(document.fullscreenElement)
+            console.log('fullScreened')
+          })
+    } else {
+      console.log('fullscreen is illegal')
+    }
+  }
+</script>
+</body>
+</html>
