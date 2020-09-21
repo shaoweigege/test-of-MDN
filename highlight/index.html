@@ -5,9 +5,23 @@
   <title>highlight.js</title>
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <style>
+    .box {
+      width: 300px;
+      height: 500px;
+      border: 1px solid tomato;
+      overflow: auto;
+    }
+
+    .box pre {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  </style>
 </head>
 <body>
-<pre>
+<div class="box">
+  <pre>
   <code>
     const debounce = (fn,delay)=>{
         let timer = null
@@ -52,15 +66,16 @@
 }
   </code>
 </pre>
+</div>
 <div>
   <button id="btn">按钮</button>
 </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 <script>
-  //hljs.initHighlightingOnLoad()
-  document.getElementById('btn').onclick = function () {
-    hljs.highlightBlock(document.querySelector('pre'))
-  }
+    //hljs.initHighlightingOnLoad()
+    document.getElementById('btn').onclick = function () {
+        hljs.highlightBlock(document.querySelector('pre'))
+    }
 </script>
 </body>
 </html>
