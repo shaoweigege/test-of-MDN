@@ -19,7 +19,7 @@
   //new TextDecoder()返回一个解码器 就是一个对象
   //调用decoder.decode(ArrayBuffer|ArrayBuffer[,options])
   //返回一个使用UTF-8或者其他指定的编码集对指定的字节数组进行解码后的结果(字符串)
-  const arr = [229, 136, 152, 229, 190, 183, 229, 141, 142]
+  const arr = [229, 136, 152, 229, 190, 183, 229,  141, 142]
   const uInt8Array = Uint8Array.of(...arr)
   console.log(uInt8Array)
   const decoder = new TextDecoder()

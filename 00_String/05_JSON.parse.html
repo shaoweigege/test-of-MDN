@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let str = '{"name":"林志玲","age":29,"married":true'
+  let per = {
+    name: '林志玲',
+    age: 29,
+    married: true
+  }
+  console.log(JSON.stringify(per))
+  try {
+    console.log(JSON.parse(str))
+  } catch (e) {
+    console.log('JSON格式错误')
+  }
+</script>
+</body>
+</html>
