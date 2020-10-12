@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css中的attr()函数</title>
+  <style>
+    html {
+      font-size: 10px;
+    }
+
+    /**
+    attr()函数:attr(属性 属性单位,默认值)-->目前主流的浏览器只支持接受属性一个值 后两个都不接受
+
+     */
+    p.p1 {
+      color: attr(data-color color, deeppink);
+    }
+
+    p.p2:before {
+      content: attr(data-text) " 你好 ";
+    }
+  </style>
+</head>
+<body>
+<p class="p1" data-color="#f5f5f5">Hello World</p>
+<p class="p2" data-text="hello">world</p>
+</body>
+</html>

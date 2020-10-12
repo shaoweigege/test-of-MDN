@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css中的var()函数</title>
+  <style>
+    :root {
+      font-size: 20px;
+      font-weight: bold;
+      --color: deeppink;
+    }
+
+    p.p1 {
+      color: var(--color, darkblue);
+    }
+  </style>
+</head>
+<body>
+<p class="p1">Hello World</p>
+</body>
+</html>
