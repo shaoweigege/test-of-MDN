@@ -1,6 +1,10 @@
 css文本
 1.文本对齐方式
     text-align:left|right|center(文本居中对齐)|justify(文本两端对齐)
+    --2020-10-14 chenMM新增:
+    text-align:justify;只能对块级元素中的文字有效果。对行内元素无效。
+    text-align-last:justify;规定多行文字的最后一行在水平方向上也是两端对齐，如果只有一行文字那么这一行就算作是最后一行。
+    
 
 2.文本装饰属性
 >text-decoration:underline(下划线)|overline(上划线)|line-through(中划线)|none(无)

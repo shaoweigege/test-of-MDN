@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文本的水平对齐方式</title>
+  <style>
+    div.box {
+      width: 30vw;
+      background-color: steelblue;
+      text-align: justify;
+      word-break: break-all;
+      text-justify: distribute;
+    }
+
+    span.word1 {
+      background-color: deeppink;
+      color: #fff;
+      letter-spacing: 5px;
+    }
+
+    div.word2 {
+      width: 30vw;
+      background-color: steelblue;
+      color: #fff;
+      letter-spacing: 5px;
+      text-align: justify-all;
+      text-justify: inter-ideograph;
+    }
+
+    div.word3 {
+      width: 30vw;
+      background-color: steelblue;
+      color: #fff;
+      letter-spacing: 5px;
+      text-align: justify-all;
+      text-align-last: justify;
+    }
+
+    .username, .password {
+      padding: 0 5px;
+      text-align-last: justify;
+      background-color: steelblue;
+      width: 80px;
+      color: #fff;
+    }
+
+    .username span, .password span {
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <span class="word1">使用银行票据识别技术，对交易双方在贸易结算时产生的银行票据进行自动识别，可应用于企业记账及财务核算等场景，能够有效控制业务风险，提升财务核算效率，实现财税报销自动化。</span>
+</div>
+<hr>
+<div class="word2">使用银行票据识别技术，对交易双方在贸易结算时产生的银行票据进行自动识别，可应用于企业记账及财务核算等场景，能够有效控制业务风险，提升财务核算效率，实现财税报销自动化。</div>
+<hr>
+<div class="word3">使用银行票据识别技术</div>
+<hr>
+<div class="username">
+  <span>用户名</span>
+</div>
+<div class="password">
+  <span>密码</span>
+</div>
+</body>
+</html>
