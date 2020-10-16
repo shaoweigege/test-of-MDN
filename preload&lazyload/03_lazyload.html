@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图片懒加载的原理</title>
+  <style>
+    html, body {
+      width: 1900px;
+      height: 2300px;
+      background-color: #efefef;
+    }
+  </style>
+</head>
+<body>
+<script>
+  window.onscroll = function () {
+    //获取页面的滚动距离(距离顶端,距离左侧)
+    console.log(document.documentElement.scrollTop, document.documentElement.scrollLeft)
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vertical-align</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+    }
+
+    .box img {
+      border: 1px solid #333;
+      vertical-align: sub;
+    }
+
+    .box span {
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+<p>1.使行内元素盒模型与其行内元素容器垂直对齐</p>
+<p>2.垂直对齐表格单元内容</p>
+<hr>
+<div class="box">
+  <span>头像照片</span>
+  <img src="./avatar.png" alt="">
+</div>
+</body>
+</html>
