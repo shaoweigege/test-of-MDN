@@ -56,5 +56,13 @@
   <div class="item"></div>
   <div class="item"></div>
 </div>
+<button id="btn">click</button>
+<input type="text" id="q">
+<script>
+  let btn = document.getElementById('btn')
+  btn.onclick = function () {
+    document.getElementById('q').value = 'Hello World'
+  }
+</script>
 </body>
 </html>
