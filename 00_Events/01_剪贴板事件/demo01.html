@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>剪贴板事件</title>
+  <style>
+    *::selection {
+      /*color: tomato;*/
+      /*background-color: #eee;*/
+      /*padding: 2px 5px;*/
+      /*border: 1px solid #333;*/
+    }
+  </style>
+</head>
+<body>
+<p>Hello World</p>
+<input type="text">
+<script>
+  window.addEventListener('copy', e => {
+    console.log('copy事件触发', e.target.innerText)
+  })
+
+  window.addEventListener('paste', e => {
+    console.log('paste事件触发', e.target)
+  })
+</script>
+</body>
+</html>

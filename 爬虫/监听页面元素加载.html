@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: tomato;
+    }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  window.onload = function () {
+    console.log('onload事件触发')
+  }
+  setTimeout(() => {
+    let span = document.createElement('span')
+    span.innerText = 'Hello World'
+    document.body.appendChild(span)
+  }, 2000)
+</script>
+</body>
+</html>

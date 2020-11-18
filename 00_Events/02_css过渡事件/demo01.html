@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css过渡事件</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      color: #ecf5ff;
+      font-size: 12px;
+      text-align: center;
+      line-height: 100px;
+      background-color: tomato;
+      transition: all 2s ease-in;
+    }
+
+    .box.change {
+      width: 300px;
+      font-size: 20px;
+      color: #1E9FFF;
+    }
+  </style>
+</head>
+<body>
+<div class="box">Hello World</div>
+<button id="btn">click</button>
+<script>
+  let button = document.getElementById('btn')
+  button.onclick = function () {
+    document.querySelector('.box').classList.toggle('change')
+  }
+
+  window.addEventListener('transitionstart', e => {
+    console.log('transitionstart', e.target)
+  })
+
+  window.addEventListener('transitionend', e => {
+    console.log('transitionend', e.target)
+  })
+</script>
+</body>
+</html>
