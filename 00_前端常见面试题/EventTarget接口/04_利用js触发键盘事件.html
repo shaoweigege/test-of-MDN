@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>利用js触发键盘事件</title>
+  <style>
+    body {
+      height: 2000px;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+  window.addEventListener('keydown', e => {
+    // console.log(e.key)
+    if (e.key === 'F9') {
+      console.log('F9键被按下')
+    }
+  })
+
+  let button = document.getElementById('btn')
+  button.onclick = function () {
+    // 利用js来触发键盘被按下事件-->此处模拟按下F9键
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'F9'
+    }))
+  }
+</script>
+</body>
+</html>
