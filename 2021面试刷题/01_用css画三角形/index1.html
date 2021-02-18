@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用css画三角形</title>
+  <style>
+      /*
+      用css实现三角形就是通过设置边框的粗度和颜色 下面是四个方向都有三角形 如果想实现某一个方向的三角形
+      将其他三个方向的边框颜色设置成transparent即可
+      */
+      .box {
+          box-sizing: border-box;
+          width: 100px;
+          height: 100px;
+          margin: 100px auto;
+          background-color: pink;
+          border-top: 50px solid green;
+          border-left: 50px solid yellow;
+          border-right: 50px solid tomato;
+          border-bottom: 50px solid deeppink;
+      }
+  </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
