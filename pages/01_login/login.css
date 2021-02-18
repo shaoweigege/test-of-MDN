@@ -1,0 +1,94 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif, "Microsoft YaHei UI";
+}
+html *,
+body * {
+  box-sizing: border-box;
+}
+.up {
+  width: 100%;
+  height: 50%;
+  background-color: #677edc;
+}
+.down {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background-color: #f8f8f8;
+}
+.down .company-name {
+  position: absolute;
+  text-align: center;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  color: #2A3A87;
+  font-size: 14px;
+}
+.login-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  min-width: 400px;
+  min-height: 250px;
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+}
+.login-container .username-box,
+.login-container .password-box,
+.login-container .button-box {
+  width: 85%;
+  height: 35px;
+  background-color: #fff;
+  border-radius: 8px;
+  position: relative;
+}
+.login-container .username-box input,
+.login-container .password-box input,
+.login-container .button-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding-left: 35px;
+}
+.login-container .username-box img,
+.login-container .password-box img,
+.login-container .button-box img {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+}
+.login-container .button-box {
+  background-color: #314BC1;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container .button-box:focus {
+  background-color: #2441d7;
+  border: 1px solid #2441d7;
+}
+/*# sourceMappingURL=login.css.map */
