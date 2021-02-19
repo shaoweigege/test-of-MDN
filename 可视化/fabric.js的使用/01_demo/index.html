@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>fabric.js的使用</title>
+  <script src="../lib/fabric.min.js"></script>
+  <style>
+      /*#canvas {
+          width: 500px;
+          height: 300px;
+          background-color: pink;
+      }*/
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+  let canvas = new fabric.Canvas('canvas', {
+    // isDrawingMode: true
+  })
+  // let canvas = new fabric.StaticCanvas('canvas')
+  canvas.setBackgroundColor('pink')
+  canvas.setWidth(500)
+  canvas.setHeight(300)
+  let rect = new fabric.Rect({
+    left: 100,
+    top: 100,
+    fill: 'tomato',
+    width: 120,
+    height: 120
+  })
+  // rect.hasBorders = false
+  rect.lockRotation = true
+  canvas.add(rect)
+
+  // let line = new fabric.Line([50, 50, 150, 200], {
+  //   color: 'deeppink'
+  // })
+  // canvas.add(line)
+</script>
+</body>
+</html>
