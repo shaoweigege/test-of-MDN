@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      .outer {
+          margin: 200px auto;
+          width: 380px;
+          height: 200px;
+          border: 1px solid tomato;
+      }
+
+      .outer .inner {
+          width: 380px;
+          height: 200px;
+          font-size: 20px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 200px;
+          background-color: lightblue;
+          /**
+          1.元素的变形是以自身为定位的,而且在旋转之后,translateX和translateY还是沿着旋转后的元素的X轴和Y轴;
+          2.所以最好是先进行位移操作,后进行旋转操作;
+          3.默认的变换中心点是 center center,可以通过设置不同的中心点来达到不同的变换目的;
+          */
+          transform: translateY(-100%) rotate(90deg);
+          transform-origin: 0 100%;
+      }
+  </style>
+</head>
+<body>
+<div class="outer">
+  <div class="inner">ABCDEFG</div>
+</div>
+</body>
+</html>

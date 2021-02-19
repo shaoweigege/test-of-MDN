@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浮动与清除浮动</title>
+  <style>
+      /*
+      原因：由于内层元素设置了float属性 所以内层元素会脱离标准流 导致外层元素没有内容 因此外层元素的高度会是0
+      解决方法三：给浮动元素的容器添加:after伪元素，然后给这个伪元素设置clear:both的属性也可以达到清除浮动的效果。
+      */
+      .news {
+          background-color: gray;
+          border: solid 1px black;
+      }
+
+      .news:after {
+          content: '020';
+          width: 0;
+          height: 0;
+          display: block;
+          visibility: hidden;
+          clear: both;
+      }
+
+      .news .inner {
+          width: 100px;
+          height: 100px;
+          background-color: pink;
+          float: left;
+      }
+
+      .news p {
+          float: right;
+      }
+  </style>
+</head>
+<body>
+<div class="news">
+  <div class="inner"></div>
+  <p>some text</p>
+</div>
+</body>
+</html>
