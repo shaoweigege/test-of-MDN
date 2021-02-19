@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用闭包实现计数器</title>
+</head>
+<body>
+<span id="span">0</span>
+<button id="btn">click</button>
+<script>
+  function createCounter() {
+    let number = 0
+    return function () {
+      return ++number
+    }
+  }
+
+  let counter = createCounter()
+
+  const button = document.getElementById('btn')
+  const span = document.getElementById('span')
+
+  button.onclick = function () {
+    let number = counter()
+    span.innerText = number + ''
+  }
+</script>
+</body>
+</html>

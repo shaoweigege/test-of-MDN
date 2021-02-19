@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js中的继承</title>
+</head>
+<body>
+<script>
+  function Person(name, age) {
+    // 这里定义的属性是属于实例属性(每个实例都单独拥有的属性,修改实例属性不会影响到其他的实例对象)
+    this.name = name
+    this.age = age
+  }
+
+  // 这里添加原型属性(所有实例共享的属性,修改原型属性会影响到其他实例对象的原型属性)
+  Person.prototype.say = function () {
+    console.log('人都会说话')
+  }
+  const p1 = new Person('Jack', 34)
+  const p2 = new Person('Rose', 30)
+  console.log(p1)
+  console.log(p2)
+  Person.prototype.say = function () {
+    console.log('有些小孩子不会说话')
+  }
+  p1.say()
+  p2.say() // 也会发生改变
+</script>
+</body>
+</html>

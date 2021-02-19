@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浅拷贝&深拷贝</title>
+</head>
+<body>
+<script>
+  /*
+  * copy()方法实现浅拷贝:浅拷贝只能拷贝基本数据类型 引用数据类型还是共用的
+  * */
+  function copy(p, c) {
+    c = c || {}
+    for (let key in p) {
+      c[key] = p[key]
+    }
+    return c
+  }
+
+  let p1 = {
+    name: 'Jack',
+    age: 20,
+    hobby: ['吃饭', '睡觉', '打豆豆']
+  }
+  let c1 = copy(p1)
+  console.log(c1.hobby)
+  c1.hobby.push('画画')
+  console.log(p1, c1) // p1.hobby也会改变
+
+  /*
+  * deepCopy()方法实现深拷贝:既拷贝基本数据类型也拷贝引用数据类型
+  * */
+  function deepCopy(p, c) {
+    c = c || {}
+    for (let key in p) {
+      // 判断p[key]是基本数据类型还是引用数据类型
+      if (typeof p[key] === 'object') {
+        // 引用数据类型==>需要递归调用方法
+        c[key] = p[key].constructor === Array ? [] : {}
+        deepCopy(p[key], c[key])
+      } else {
+        // 基本数据类型
+        c[key] = p[key]
+      }
+    }
+    return c
+  }
+
+  let p2 = {
+    name: 'Jack',
+    age: 20,
+    hobby: ['吃饭', '睡觉', '打豆豆']
+  }
+  let c2 = deepCopy(p2)
+  console.log(c2, p2)
+  console.log(c2.hobby)
+  c2.hobby.push('画画')
+  console.log(c2.hobby, p2.hobby)
+</script>
+</body>
+</html>

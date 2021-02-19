@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js中的继承</title>
+</head>
+<body>
+<script>
+  function Animal() {
+    this.species = '动物'
+  }
+
+  function Cat(name, color) {
+    this.name = name
+    this.color = color
+  }
+
+  // 继承之前
+  console.log(Animal.prototype.constructor === Animal)
+  console.log(Cat.prototype.constructor === Cat)
+
+  //  方法一：利用构造函数绑定实现继承
+  function Dog(name, color) {
+    // 这里只是调用了Animal()方法 并没有将Animal当做构造函数来使用
+    Animal.call(this) // 此处传入的this是Dog实例 所以此处调用Animal函数,函数内部的this就变成了Dog实例了
+    this.name = name
+    this.color = color
+  }
+
+  // 方法二：利用prototype实现继承
+  function Sheep(name, color, weight) {
+    this.name = name
+    this.color = color
+    this.weight = weight
+  }
+
+  Sheep.prototype = new Animal()
+  Sheep.prototype.constructor = Sheep
+  console.log(Sheep.prototype.constructor)
+  console.log(Animal.prototype.constructor)
+  console.log(new Sheep('多利', 'tomato', 25))
+</script>
+</body>
+</html>
