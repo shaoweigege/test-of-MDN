@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js中的数据类型</title>
+</head>
+<body>
+<script>
+  /*
+  * ES5有六种数据类型:
+  *   基本数据类型: Number String Boolean
+  *   引用数据类型: Object null undefined
+  * ES6新增了一种基本数据类型
+  *   基本数据类型:Symbol(用来创建独一无二的值)
+  *
+  * 基本数据类型都是直接调用函数 Number(10) String('Jack') Symbol('foo') Boolean(true) 返回的都是基本数据类型的变量 所以不需要new
+  * 引用数据类型是需要使用new命名的 new Object() 返回的是引用数据类型(对象)
+  * */
+  let s1 = String('Jack')
+  let s2 = new String('Jack')
+  console.log(typeof s1)
+  console.log(typeof s2)
+  console.log(s1 === s2)
+  console.log(s1 === s2.toString())
+</script>
+</body>
+</html>
