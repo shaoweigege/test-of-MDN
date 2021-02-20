@@ -2,41 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>fabric.js的使用</title>
+  <title>fabric.js的使用-fabric.Line</title>
   <script src="../lib/fabric.min.js"></script>
-  <style>
-      /*#canvas {
-          width: 500px;
-          height: 300px;
-          background-color: pink;
-      }*/
-  </style>
 </head>
 <body>
 <canvas id="canvas"></canvas>
 <script>
   let canvas = new fabric.Canvas('canvas', {
-    // isDrawingMode: true
+    width: 500,
+    height: 300,
+    backgroundColor: '#a7a7a7'
   })
-  // let canvas = new fabric.StaticCanvas('canvas')
-  canvas.setBackgroundColor('pink')
-  canvas.setWidth(500)
-  canvas.setHeight(300)
-  let rect = new fabric.Rect({
-    left: 100,
-    top: 100,
-    fill: 'tomato',
-    width: 120,
-    height: 120
-  })
-  // rect.hasBorders = false
-  rect.lockRotation = true
-  canvas.add(rect)
 
-  // let line = new fabric.Line([50, 50, 150, 200], {
-  //   color: 'deeppink'
-  // })
-  // canvas.add(line)
+  let line = new fabric.Line([10, 10, 50, 100], {
+    backgroundColor: 'deeppink',
+    stroke: 'tomato', // 设置描边颜色
+    strokeDashArray: [5, 5], // 设置虚线样式
+    // strokeLineCap: 'square', // butt/round/square
+    strokeWidth: 20, // 设置线宽
+    left: 100, // 左上角距离左边的距离
+    top: 100, // 左上角距离顶部的距离
+    angle: 45, // 旋转角度
+    flipX: true,
+    flipY: true,
+    opacity: 0.5,
+  })
+  canvas.add(line)
+  line.center()
+  console.log(line.toDataURL())
+  console.log(line.toJSON())
+  console.log(line.toString())
+  console.log(line.toSVG())
 </script>
 </body>
 </html>
