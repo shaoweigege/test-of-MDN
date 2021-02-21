@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>addEventListener</title>
+	<style>
+      body {
+          height: 3000px;
+      }
+
+      .box {
+          width: 500px;
+          height: 500px;
+          border: 1px solid tomato;
+      }
+	</style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+  /*
+  * 事件有三个阶段:
+  *   1.事件捕获阶段:从最外层dom元素开始向下渗透;
+  *   2.事件目标阶段:达到最内层的dom元素(event.target);
+  *   3.事件冒泡阶段:事件又从最内层的dom元素开始一层层的向外层传播,直到最外层的元素;
+  *
+  * domTarget.addEventListener('eventName',eventHandler,options)
+  * options可以包含如下属性:
+  *   1.capture:Boolean 表明事件处理函数会在该事件在捕获阶段到达该元素时处理 默认是false
+  *   2.once:Boolean 表明该事件处理函数只会执行一次 执行完以后自动移除eventHandler 默认是false
+  *   3.passive:Boolean 如果设置为true 则eventHandler中永远不会调用event.preventDefault()
+  *                     如果在eventHandler中还是调用了preventDefault() 那么客户端将会忽略并且给出警告
+  *                     默认为false
+  * 	关于passive的理解:
+  * 			比如移动端的touch事件,touch事件的默认行为是滚动浏览器,但是浏览器必须要等到eventHandler执行完才能知道
+  * 			处理函数中有没有调用event.preventDefault()来禁止默认行为,也就是说浏览器需要等待eventHandler执行完才能判断接下来的行为,
+  * 			如果的确需要禁止默认行为,那么这个等待就是值得的;但是如果不需要禁止默认行为,那么这个等待就是毫无意义的浪费时间(在移动端还可能造成成页面的卡顿)
+  * 			有80%的滚动事件监听器是不会阻止默认行为的,也就是说大部分情况下,浏览器是白等了(会造成页面卡顿)。
+  * 			所以,passive监听器诞生了,passive的意思是“顺从的”,表示它不会对事件的默认行为说no,
+  * 			浏览器知道了一个监听器是passive的,它就可以在两个线程里同时执行监听器中的JavaScript代码和浏览器的默认行为了(这样页面就不会卡顿了)
+  * */
+  window.addEventListener('scroll', e => {
+    // e.preventDefault() 这里调用preventDefault()方法会报错
+    // setTimeout(() => {
+    //   console.log('passive:true')
+    // }, 3000)
+    // 即使这里有非常耗时的代码 也不会造成页面的卡顿
+  }, {passive: true})
+
+  window.addEventListener('click', e => {
+    console.log('click')
+  }, {once: true})
+
+  document.querySelector('.box').addEventListener('touchstart', (e) => {
+    console.log('touchstart')
+    console.log()
+    e.preventDefault()
+  }, {passive: false})
+
+  // 空函数执行在 0.01-0.09ms之间
+  function f() {
+  }
+
+  console.time('f')
+  f()
+  console.timeEnd('f')
+
+</script>
+</body>
+</html>
