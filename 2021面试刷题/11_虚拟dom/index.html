@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>虚拟dom</title>
+</head>
+<body>
+<script>
+  // 创建VNode类(就是个容器 用来存储需要创建的节点的信息:标签名称 属性 子节点)
+  function VNode(tagName, props = {}, children = []) {
+    if (!(this instanceof VNode)) {
+      return new VNode(tagName, props, children)
+    }
+    this.tagName = tagName
+    this.props = props
+    this.children = children
+  }
+
+  // 创建dom元素的工具函数 接收一个VNode类的对象
+  function createElements(vNode) {
+    let el
+    if(vNode.tagName){
+      // 创建标签节点
+      el = document.createElement(vNode.tagName)
+    }else{
+
+    }
+  }
+</script>
+</body>
+</html>

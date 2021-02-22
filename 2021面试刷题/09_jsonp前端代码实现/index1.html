@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jsonp前端代码实现</title>
+</head>
+<body>
+<script>
+  // 创建script标签
+  let script = document.createElement('script')
+
+  // 创建回调函数
+  function fn(data) {
+    console.log(data)
+  }
+
+  // 给script标签添加src属性
+  script.src = 'http://localhost:5400/jsonp_demo'
+
+  script.onload = function (e) {
+    console.dir(e.target)
+  }
+
+  script.onerror = function (error) {
+    console.log(error)
+  }
+  // 将script标签添加到页面中
+  document.body.appendChild(script)
+
+</script>
+</body>
+</html>

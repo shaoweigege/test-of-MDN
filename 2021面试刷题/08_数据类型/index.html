@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>js中的数据类型</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 </head>
 <body>
 <script>
@@ -22,6 +23,14 @@
   console.log(typeof s2)
   console.log(s1 === s2)
   console.log(s1 === s2.toString())
+
+  setTimeout(function () {
+    console.log(this.name)
+  }.bind({name: 'Jack'}))
+
+  setTimeout.call(function () {
+    console.log(1111)
+  })
 </script>
 </body>
 </html>
