@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>虚拟dom</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  function VNode(tagName, props = {}, children = []) {
+    if (!(this instanceof VNode)) {
+      return new VNode(tagName, props, children)
+    }
+    this.tagName = tagName
+    this.props = props
+    this.children = children
+  }
+
+  function createElements(vNode) {
+    // 创建标签
+    let el
+    if (vNode.tagName !== 'text') {
+      // 创建标签
+      el = document.createElement(vNode.tagName)
+      //	添加attribute
+      Object.keys(vNode.props).forEach(prop => {
+        el.setAttribute(prop, vNode.props[prop])
+      })
+      // 添加children属性
+      vNode.children.forEach(child => {
+        el.appendChild(createElements(child))
+      })
+    } else {
+      // 创建文本
+      el = document.createTextNode(vNode.children[0])
+    }
+    return el
+  }
+
+  // 工具函数:将虚拟dom挂载到指定的页面元素中
+  function render(el, dom) {
+    if (typeof dom === 'string') {
+      // 是一个选择器
+      document.querySelector(dom).appendChild(el)
+    } else {
+      // dom就是一个dom对象
+      dom.append(el)
+    }
+  }
+
+  // 测试
+  let vNode = new VNode('div', {class: 'box', id: 'first'}, [
+    new VNode('span', {class: 'tomato', id: 'second'}, [
+      new VNode('text', {}, ['Hello World'])
+    ])
+  ])
+  // console.log(vNode)
+  // console.log(createElements(vNode))
+  let v = new VNode('text', {}, ['hello'])
+  console.log(createElements(v))
+
+  render(createElements(vNode), '#app')
+</script>
+</body>
+</html>
