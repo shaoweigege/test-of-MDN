@@ -22,9 +22,14 @@
   }
 
   //更新fragment中的所有节点（li的内容）
-  Array.prototype.slice.call(fragment.childNodes).forEach(node => {
-    if (node.nodeType === 1) {//取得元素节点
-      node.textContent = 'test2' //重新赋值为test2
+  // Array.prototype.slice.call(fragment.childNodes).forEach(node => {
+  //   if (node.nodeType === 1) {//取得元素节点
+  //     node.textContent = 'test2' //重新赋值为test2
+  //   }
+  // })
+  fragment.childNodes.forEach(child => {
+    if (child.nodeType === 1) {
+      child.innerText = 'test3'
     }
   })
   // 将fragment插入到ul

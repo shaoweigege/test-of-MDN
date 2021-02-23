@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DocumentFragment</title>
+</head>
+<body>
+<ul id="box"></ul>
+<script>
+  const fruits = ['apple', 'peach', 'melon']
+  const fragment = new DocumentFragment()
+  const ul = document.getElementById('box')
+
+  fruits.forEach(fruit => {
+    let li = document.createElement('li')
+    li.innerText = fruit
+    fragment.appendChild(li)
+  })
+  // fragment对象被添加进真实的dom元素中后fragment中的元素就没有了 成了一个空的fragment对象
+  ul.appendChild(fragment)
+  console.dir(fragment)
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>textContent&innerText</title>
+</head>
+<body>
+<div class="test" id="test">
+  test
+  <div>
+                <span style="display: none;">
+                    test
+                </span>
+  </div>
+  <p>
+    hi
+  </p>
+</div>
+<script type="text/javascript">
+  /*
+  * textContent会计算隐藏的元素中的文本内容
+  * innerText不会计算隐藏元素中的文本内容
+  * 取innerText的时候回触发一次reflow 因为需要计算最新的样式 代价比较大
+  * 取textContent的时候不用计算最新的样式 因此效率比较高
+  *
+  * */
+  let testDiv = document.getElementById('test');
+  console.log(testDiv.textContent);
+  console.log('---------------')
+  console.log(testDiv.innerText);
+  console.log('--------------')
+  console.log(testDiv.innerHTML)
+</script>
+</body>
+</html>

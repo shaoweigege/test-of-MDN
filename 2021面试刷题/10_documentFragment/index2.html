@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DocumentFragment</title>
+</head>
+<body>
+<button id="btn">click</button>
+<ul id="box">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const button = document.getElementById('btn')
+  const ul = document.getElementById('box')
+  // 创建一个空的DocumentFragment对象的方法 1.document.createDocumentFragment() 2.new DocumentFragment()
+  // let fragment = document.createDocumentFragment()
+  let fragment = new DocumentFragment()
+
+  button.addEventListener('click', e => {
+    fragment.appendChild(ul.firstElementChild)
+    console.log(fragment)
+  })
+</script>
+</body>
+</html>
