@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function Timer() {
+    // 此处的this就是Timer实例对象
+    this.s1 = 0
+    this.s2 = 0
+    // 箭头函数:此箭头函数中的this就是Timer实例
+    setInterval(() => this.s1++, 1000)
+    // 普通函数:此普通函数中的this指向函数运行时的全局对象 即window对象
+    setInterval(function () {
+      this.s2++
+    }, 1000)
+  }
+
+  let timer = new Timer()
+
+  // 3100ms以后 timer.s1被更新了三次 而timer.s2一次也没有被更新
+  setTimeout(() => console.log('s1: ', timer.s1), 3100) // 3
+  setTimeout(() => console.log('s2: ', timer.s2), 3100) // 0
+</script>
+</body>
+</html>
