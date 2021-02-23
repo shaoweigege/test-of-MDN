@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>虚拟dom2</title>
+	<style>
+      #first {
+          width: 200px;
+          height: 200px;
+          text-align: center;
+          line-height: 200px;
+          border: 1px solid deeppink;
+      }
+
+      #second {
+          color: tomato;
+      }
+	</style>
+</head>
+<body>
+<!--<div id="app"></div>-->
+<script>
+  // 创建VNode类 用来存储虚拟dom标签的信息
+  function VNode(tagName, props, children) {
+    // 使VNode()===new VNode()
+    if (!(this instanceof VNode)) {
+      return new VNode(tagName, props, children)
+    }
+    this.tagName = tagName
+    this.props = props
+    this.children = children
+  }
+
+  // 工具函数:根据VNode对象创建dom对象(在内存中)
+  function createElements(vNode) {
+    let el
+    let {tagName, props, children} = vNode
+    if (!tagName) {
+      // 创建文本节点(文本节点就是最内层的节点了 不再需要考虑子节点)
+      el = document.createTextNode(children)
+    } else {
+      // 创建标签节点(标签节点可能有子节点 因此需要考虑children)
+      el = document.createElement(tagName)
+      // 给标签节点添加属性
+      Object.keys(props).forEach(prop => {
+        el.setAttribute(prop, props[prop])
+      })
+      // 给标签节点添加子节点(如果需要的话)
+      children.forEach(child => {
+        // child也是VNode类型
+        el.appendChild(createElements(child))
+      })
+    }
+    return el
+  }
+
+  // 工具函数:将内存中的dom对象挂载到页面的指定的dom元素中
+  function render(vDom, dom) {
+    if (document.querySelector(dom)) {
+      // 页面中有挂载目标
+      document.querySelector(dom).appendChild(vDom)
+    } else {
+      // 如果挂载的目标在页面中找不到 则自己创建一个
+      document.body.prepend(document.createElement('div').appendChild(vDom))
+    }
+  }
+
+  // 测试:
+  let vNode = VNode('div', {id: 'first', class: 'box'}, [
+    VNode('span', {id: 'second', class: 'tomato'}, [
+      VNode(null, {}, 'Hello Rose!!!')
+    ])
+  ])
+  let el = createElements(vNode)
+  render(el, '#app')
+</script>
+</body>
+</html>
