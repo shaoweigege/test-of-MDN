@@ -5,9 +5,11 @@
   <title>虚拟dom</title>
 </head>
 <body>
+<div id="app"></div>
 <script>
   // 创建VNode类(就是个容器 用来存储需要创建的节点的信息:标签名称 属性 子节点)
   function VNode(tagName, props = {}, children = []) {
+    // 使得 new VNode() === VNode()
     if (!(this instanceof VNode)) {
       return new VNode(tagName, props, children)
     }
@@ -18,14 +20,46 @@
 
   // 创建dom元素的工具函数 接收一个VNode类的对象
   function createElements(vNode) {
+    let {tagName, props, children} = vNode
     let el
-    if(vNode.tagName){
+    if (tagName === 'text') {
+      // 创建文本节点
+      el = document.createTextNode(children[0])
+    } else if (tagName === 'comment') {
+      // 创建注释节点
+      el = document.createComment(children[0])
+    } else {
       // 创建标签节点
-      el = document.createElement(vNode.tagName)
-    }else{
-
+      el = document.createElement(tagName)
+      // 给标签节点添加属性
+      Object.keys(props).forEach(prop => {
+        el.setAttribute(prop, props[prop])
+      })
+      // 给这个标签添加子节点
+      children.forEach(child => {
+        // child也是VNode类型
+        el.appendChild(createElements(child))
+      })
     }
+    // 将该元素返回出去
+    return el
   }
+
+  // 工具函数:将内存中的dom元素挂载到页面中指定的dom元素中
+  function mount(vDom, selector) {
+    document.querySelector(selector).appendChild(vDom)
+  }
+
+  // 测试:
+  let vNode = VNode('div', {class: 'box', id: 'first'}, [
+    VNode('comment', {}, ['This is comment']),
+    VNode('span', {class: 'username', id: 'second'}, [
+      VNode('text', {}, ['Hello World'])
+    ])
+  ])
+
+  let vDom = createElements(vNode)
+  mount(vDom, '#app')
 </script>
 </body>
 </html>

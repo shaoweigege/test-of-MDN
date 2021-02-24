@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>17_MutationObserver</title>
+</head>
+<body>
+<div id="box" contenteditable="">
+
+</div>
+<script>
+  // 新建一个变动观察器实例 接收一个callback 该callback接收两个参数 第一个参数是变动的数组 第二个参数是观察器本身
+  let observer = new MutationObserver(function (mutations, observer) {
+    console.log(mutations)
+    // mutations.forEach(mutation => {
+    //   console.log(mutation)
+    // })
+  })
+
+  // MutationObserver.prototype.observe(target,opts) 用来启动监听
+  // 其中opts中必须指定至少一种变化 否则会报错
+  observer.observe(document.querySelector('#box'), {
+    childList: true, // 子节点的变化
+    attributes: true, // 属性的变化
+    characterData: true, // 节点内容或者节点文本的变化
+    subtree: true,
+    attributeOldValue: true,
+    characterDataOldValue: true
+  })
+</script>
+</body>
+</html>
