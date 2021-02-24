@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>document.createTextNode()</title>
+</head>
+<body>
+<div id="target"></div>
+<script>
+  function escapeHtml(str) {
+    let div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    // 返回div元素的innerHTML属性
+    console.log(div.innerHTML)
+    return div.innerHTML
+  }
+
+  let userWebsite = '" onmouseover="alert(\'derp\')" "'
+  let profileLink = '<a href="' + escapeHtml(userWebsite) + '">Bob</a>'
+
+  let div = document.getElementById('target')
+  div.innerHTML = profileLink
+
+  // document.createTextNode()会对html标签进行转义处理 但是不会对引号进行转义
+  let span = document.createTextNode('<span onmouseover="alert(123)">Bob</span>')
+  console.log(span)
+  document.body.appendChild(span)
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>document.readyState</title>
+</head>
+<body>
+<iframe id="editor" src="about:blank"></iframe>
+<!--<img src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" alt="">-->
+<script>
+  document.addEventListener('readystatechange', _ => {
+    console.log(document.readyState)
+    if (document.readyState === 'complete') {
+      console.log('document加载完成了')
+      // document.designMode = 'on'
+    }
+  })
+  let editor = document.getElementById('editor')
+  editor.contentDocument.designMode = 'on'
+
+  console.log(document.getElementsByTagName('*'))
+  console.log(document.querySelectorAll('*'))
+</script>
+</body>
+</html>

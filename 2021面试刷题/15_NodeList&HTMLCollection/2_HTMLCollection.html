@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTMLCollection</title>
+</head>
+<body>
+<script>
+  /*
+  * 1.HTMLCollection也能够存储一系列的节点只不过只能存储元素类型的节点
+  *
+  * 2.返回该类型的主要是document对象的一些属性操作:
+  *     document.links
+  *     document.images
+  *     document.forms
+  *     document.getElementsByTagName()
+  *     document.getElementByClassName()
+  *
+  * 3.HTMLCollection实例都是`动态`集合 即页面中元素的变化都会反映到HTMLCollection实例中
+  * */
+  console.log(document.links)
+  console.log(document.forms)
+  console.log(document.images)
+  console.log(document.getElementsByClassName('box'))
+  console.log(document.getElementsByTagName('div'))
+</script>
+</body>
+</html>

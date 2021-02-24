@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>document.createAttribute()</title>
+</head>
+<body>
+<div id="first"></div>
+<script>
+  // document.createAttribute(属性名称) 创建一个属性节点
+  let attrNode = document.createAttribute('class')
+  let div = document.getElementById('first')
+  attrNode.value = 'box'
+  console.log(attrNode)
+
+  // 将创建的属性节点添加到dom元素中
+  div.setAttributeNode(attrNode)
+  console.log(attrNode)
+</script>
+</body>
+</html>

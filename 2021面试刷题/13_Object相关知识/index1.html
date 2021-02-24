@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object.create()</title>
+</head>
+<body>
+<script>
+  let obj = {
+    name: 'Jack'
+  }
+  // Object.create(obj) 返回一个空对象 该空对象的原型指向obj
+  let newObj1 = Object.create(obj)
+  console.log(newObj1)
+
+  // Object.assign()是真的去复制对象的属性
+  let newObj2 = Object.assign(obj)
+  console.log(newObj2)
+</script>
+</body>
+</html>

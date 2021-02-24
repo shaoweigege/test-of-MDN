@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>childNodes</title>
+</head>
+<body>
+<ul id="box">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const box = document.getElementById('box')
+  console.log(box.childNodes)
+
+  let span = document.createElement('text')
+  span.textContent = 'Hello World'
+  console.log(span.isConnected) // 用来判断节点是否被添加到文档中
+  document.body.appendChild(span)
+  console.log(span.isConnected)
+
+  // 克隆节点(如果克隆的节点以及其子节点中有id属性 最好修改一下避免冲突)
+  let cloneBox = box.cloneNode(true)
+  console.log(cloneBox)
+  document.body.appendChild(cloneBox)
+</script>
+</body>
+</html>

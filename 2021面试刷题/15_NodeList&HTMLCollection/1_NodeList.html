@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeList</title>
+</head>
+<body>
+<ul>
+  <!--This is comment-->
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  /*
+  *  document.querySelectAll() 返回的是`静态`NodeList集合
+  *     后续的元素的属性改变是不会反映该返回值上的
+  *  Node.childNodes 返回的是`动态`的NodeList集合
+  *     后续的元素的属性是会反映到该返回值上的
+  * */
+  const lis = document.querySelectorAll("li")
+  console.log(lis)
+  console.log(lis instanceof NodeList)
+
+  const ul = document.querySelector('ul')
+  console.log(ul.childNodes)
+  console.log(ul.childNodes instanceof NodeList)
+  /*
+  * NodeList实例其实是伪数组对象 可以使用Array.prototype.slice.call()方法将其转化成数组
+  * */
+  const ulChildArr = Array.prototype.slice.call(ul.childNodes)
+  console.log(ulChildArr)
+</script>
+</body>
+</html>

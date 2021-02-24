@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3_Node.prototype.normalize()</title>
+</head>
+<body>
+<div id="box"></div>
+<script>
+  /*
+  * Node.prototype.normalize()用于清除子节点中的空的文本节点并且合并子节点中所有的文本节点
+  * */
+  const div = document.getElementById('box')
+  let msg1 = document.createTextNode('<Message 1>')
+  let msg2 = document.createTextNode('Message 2')
+  let msg3 = document.createTextNode('')
+  div.appendChild(msg1)
+  div.appendChild(msg2)
+  div.appendChild(msg3)
+  console.log(div.childNodes.length) //3
+  // 合并文本节点并且清除空的文本节点
+  div.normalize() // div中本来有两个相邻的文本节点 经过合并以后只剩下一个文本节点
+  console.log(div.childNodes.length) //1
+
+  let comment = document.createComment('This is comment')
+  div.appendChild(comment)
+</script>
+</body>
+</html>
