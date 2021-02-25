@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>堆栈</title>
+</head>
+<body>
+<script>
+  function Node(element) {
+    this.element = element
+    this.next = null
+  }
+
+  function Stack() {
+    this.head = new Node('HEAD')
+  }
+
+  Stack.prototype.push = function (element) {
+    let newNode = new Node(element)
+    newNode.next = this.head
+    this.head = newNode
+  }
+
+  Stack.prototype.pop = function () {
+    // 判断当前的head是不是头部链表
+    if (this.head.next) {
+      this.head = this.head.next
+      return this.head
+    }
+    return null
+  }
+
+  // 测试代码
+  let s1 = new Stack()
+  s1.push('林志玲')
+  s1.push('刘德华')
+  s1.push('康宁')
+  console.log(s1)
+</script>
+</body>
+</html>
