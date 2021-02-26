@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  * 在 js 中经常会出现嵌套调用这种情况，如 a.b.c.d.e，但是这么写很容易抛出异常。
+  * 你需要这么写 a && a.b && a.b.c && a.b.c.d && a.b.c.d.e，但是显得有些啰嗦与冗长了。
+  * 特别是在 graphql 中，这种嵌套调用更是难以避免。
+  * 这时就需要一个 get 函数，使用 get(a, 'b.c.d.e',defaultVal) 简单清晰，并且容错性提高了很多。
+  * */
+  // 自己实现(不考虑数组的情况)
+  function get(obj, path, defaultVal = undefined) {
+    let paths = path.split('.')
+    for (let path in paths) {
+      if (obj[path]) {
+        obj = obj[path]
+      }
+    }
+    return obj[path] || defaultVal
+  }
+
+  let obj = {
+    b: {
+      c: {
+        d: {
+          e: 'hello'
+        }
+      }
+    }
+  }
+  console.log(get(obj, 'b.c.d.e', 'Jack'))
+  console.log(get(obj, 'b.c.d.e.f', 'Jack'))
+  console.log(obj)
+</script>
+</body>
+</html>

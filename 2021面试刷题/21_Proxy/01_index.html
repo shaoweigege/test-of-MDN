@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  * 手写用 ES6proxy 如何实现 arr[-1] 的访问
+  * */
+  let arr = [1, 2, 3, 4, 55]
+  let proxy = new Proxy(arr, {
+    get(target, prop) {
+      if (Number(prop) < 0) {
+        let length = target.length
+        return target[length + Number(prop)]
+      }
+      return target[prop]
+    }
+  })
+
+  // console.log(arr[4])
+  console.log(proxy[4])
+  console.log(proxy[-1])
+  console.log(proxy[-2])
+  console.log(proxy[-3])
+</script>
+</body>
+</html>
