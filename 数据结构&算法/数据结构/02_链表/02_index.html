@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实现双向列表</title>
+</head>
+<body>
+<script>
+  function Node(element) {
+    this.element = element
+    this.prev = null
+    this.next = null
+  }
+
+  function LinkedList() {
+    this.head = new Node('HEAD')
+  }
+
+  LinkedList.prototype.find = function (element) {
+    let currNode = this.head
+    while (currNode.element !== element) {
+      currNode = currNode.next
+    }
+    return currNode
+  }
+
+  LinkedList.prototype.insert = function (newElement, element) {
+    let currNode = this.find(element)
+    let newNode = new Node(newElement)
+    // 1.向末尾添加
+    if (currNode.next === null) {
+      newNode.prev = currNode
+      currNode.next = newNode
+    } else {
+      newNode.next = currNode.next
+      newNode.prev = currNode
+      currNode.next = newNode
+      newNode.next.prev = newNode
+    }
+  }
+
+  LinkedList.prototype.remove = function (element) {
+    let targetNode = this.find(element)
+    targetNode.prev.next = targetNode.next
+    targetNode.next.prev = targetNode.prev
+  }
+
+  LinkedList.prototype.display = function () {
+    let currNode = this.head
+    while (currNode.next !== null) {
+      currNode = currNode.next
+      console.log(currNode.element)
+    }
+  }
+
+  // 测试代码
+  let names = new LinkedList()
+  names.insert('Jack', 'HEAD')
+  names.insert('Rose', 'Jack')
+  names.insert('Foo', 'Rose')
+  names.insert('Bar', 'Foo')
+  names.display()
+  console.log(names)
+
+</script>
+</body>
+</html>

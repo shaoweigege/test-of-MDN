@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实现链表结构</title>
+</head>
+<body>
+<script>
+  /*
+  * 链表中的每个元素叫做节点
+  *   单向链表:每个节点分为两个部分,一部分存储值,另一部分存储后一个元素的地址
+  * */
+  function Node(element) {
+    this.element = element
+    this.next = null
+  }
+
+  function LinkedList() {
+    // 创建链表的头部节点 所有的操作都是从头节点开始进行的
+    this.head = new Node('HEAD')
+  }
+
+  LinkedList.prototype.find = function (element) {
+    let currNode = this.head
+    while (currNode.element !== element) {
+      currNode = currNode.next
+    }
+    return currNode
+  }
+
+  LinkedList.prototype.findPrevious = function (element) {
+    let currNode = this.head
+    let prevNode = this.head
+    while (currNode.element !== element) {
+      prevNode = currNode
+      currNode = currNode.next
+    }
+    return prevNode
+  }
+
+  // 在目标节点后面插入元素
+  LinkedList.prototype.insert = function (newElement, element) {
+    let newNode = new Node(newElement)
+    let currNode = this.find(element)
+    // 将新创建的节点的next属性指向当前节点的next
+    newNode.next = currNode.next
+    // 将当前节点的next属性指向新创建的节点
+    currNode.next = newNode
+    return this
+  }
+
+  // 从链表中删除一个节点
+  LinkedList.prototype.remove = function (element) {
+    let prevNode = this.findPrevious(element)
+    // prev.next就是当前的节点    prev.next.next就是下一个节点
+    prevNode.next = prevNode.next.next
+  }
+
+  LinkedList.prototype.display = function () {
+    let currNode = this.head
+    while (currNode.next !== null) {
+      console.log(currNode.next.element)
+      currNode = currNode.next
+    }
+  }
+
+  // 测试代码
+  let cities = new LinkedList()
+  cities
+      .insert('香港', 'HEAD')
+      .insert('澳门', '香港')
+      .insert('台湾', '澳门')
+  cities.display()
+  console.log(cities)
+  cities.remove('香港')
+  cities.display()
+  console.log(cities)
+</script>
+</body>
+</html>

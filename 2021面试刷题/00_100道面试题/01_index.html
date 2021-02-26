@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  * 写一个 mySetInterVal(fn, a, b),每次间隔 a,a+b,a+2b,...,a+nb 的时间,然后写一个 myClear,停止上面的 mySetInterVal
+  * */
+
+  /*
+  * 核心知识:
+  *   setInterval(fn,delay) 传入的delay是不会变的 因此只会间隔固定的时间触发fn
+  *   使用setTimeout(fn,delay)可以模拟setInterval()的功能 并且间隔的时间也是可以变化的
+  * */
+  function My() {
+    if (!(this instanceof My)) {
+      return new My()
+    }
+    // 延时器运行的次数
+    this.time = 0
+    // 延时器返回的id
+    this.timeId = 0
+  }
+
+  My.prototype.mySetInterVal = function (fn, a, b) {
+    this.timeId = setTimeout(() => {
+      fn()
+      this.time++
+      console.log(this.time)
+      this.mySetInterVal(fn, a, b)
+    }, a + b * this.time)
+  }
+
+  My.prototype.myClear = function () {
+    this.time = 0
+    clearTimeout(this.timeId)
+    this.timeId = 0
+    console.log('停止了')
+  }
+
+  // 测试
+  let my = My()
+  my.mySetInterVal(function () {
+    console.log('1000,2000')
+  }, 1000, 2000)
+
+  setTimeout(function () {
+    my.myClear()
+  }, 10 * 1000)
+</script>
+</body>
+</html>

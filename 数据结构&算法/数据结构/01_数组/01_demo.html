@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>练习一</title>
+</head>
+<body>
+<script>
+  /*
+  * 创建一个记录学生成绩的对象,提供一个添加成绩的方法,以及一个显示学生平均成绩的方法
+  * */
+  function Student() {
+    this.scores = []
+  }
+
+  // 向成绩数组中添加一个成绩数据
+  Student.prototype.add = function (score) {
+    this.scores.push(score)
+    // 可以链式调用
+    return this
+  }
+
+  // 获取该学生的平均成绩
+  Student.prototype.getAverageScore = function () {
+    let sum = 0
+    let length = this.scores.length
+    for (let i = 0; i < length; i++) {
+      sum += this.scores[i]
+    }
+    return (sum / length).toFixed(2)
+  }
+</script>
+</body>
+</html>
