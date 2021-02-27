@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  /*
+	* 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）
+	* */
+  function ListNode(value, next) {
+    this.value = value
+    this.next = next || null
+  }
+
+  function reversePrint(head) {
+    let res = []
+    while (head && head.value) {
+      res.unshift(head.value)
+      head = head.next
+    }
+    return res
+  }
+
+  // 测试 head = [1,3,2]
+  let node1 = new ListNode(2, null)
+  let node2 = new ListNode(3, node1)
+  let node3 = new ListNode(1, node2)
+  console.log(reversePrint(node3))
+
+</script>
+</body>
+</html>

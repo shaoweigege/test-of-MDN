@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  /*
+	* 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，
+	* 调用 min、push及pop的时间复杂度都是 O(1)
+	* */
+  function MinStack() {
+    this.store = []
+    this.minimum = []
+  }
+
+  MinStack.prototype.push = function (x) {
+    // 判断此时此刻的this.minimum的值
+    let length = this.minimum.length
+    if (!length) {
+      this.minimum.push(x)
+    } else if (x <= this.minimum[length - 1]) {
+      this.minimum.push(x)
+    }
+    this.store.push(x)
+    return this
+  }
+
+  MinStack.prototype.pop = function () {
+    let popVal = this.store.pop()
+    let length = this.minimum.length
+    if (popVal <= this.minimum[length - 1]) {
+      this.minimum.pop()
+    }
+  }
+  MinStack.prototype.top = function () {
+    return this.store[this.store.length - 1]
+  }
+  MinStack.prototype.min = function () {
+    return this.minimum[this.minimum.length - 1]
+  }
+
+  let minStack = new MinStack()
+  minStack.push(-2).push(0).push(-3).push(-3)
+  console.log(minStack)
+  minStack.pop()
+  console.log(minStack)
+  minStack.pop()
+  console.log(minStack)
+  minStack.pop()
+  console.log(minStack)
+</script>
+</body>
+</html>
