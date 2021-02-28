@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>箭头函数</title>
+	<meta charset="UTF-8">
+	<title>箭头函数</title>
 </head>
 <body>
 <script>
@@ -17,7 +17,7 @@
 
   let id = 21
 
-  // 因为setTimeout的回调函数使用箭头函数写的 因此箭头函数中的this就指向外层代码块中的this 也就是foo函数中的this
+  // 因为setTimeout的回调函数是用箭头函数写的 因此箭头函数中的this就指向外层代码块中的this 也就是foo函数中的this
   // 而foo函数中的this由于call方法被绑定成了{id:42} 因此箭头函数中的this也变成了{id:42}
   foo.call({id: 42})
 
@@ -33,6 +33,9 @@
   console.log(per.self) // window对象
   per.f1() // per对象
   per.f2() // window对象
+  console.log('***********')
+  // 箭头函数:即使使用了call或者apply或者bind方法进行this绑定 也不会改变箭头函数中this的指向
+  per.f2.call({name: 'chenMM'}) // window对象
 
   function Dog(name, age) {
     this.name = name

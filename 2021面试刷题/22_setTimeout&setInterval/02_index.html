@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  let obj = {
+    msg: 'hello world',
+    show() {
+      console.log(Array.from(arguments))
+    }
+  }
+
+  setTimeout(function () {
+    obj.show()
+  }, 1000, 'Foo', 'Bar')
+
+</script>
+</body>
+</html>

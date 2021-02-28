@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  /*
+	*  箭头函数即使使用call或者apply或者bind方法进行this的绑定 箭头函数内部的this指向也不会发生变化
+	* 	它们的第一个参数会被忽略 一定要注意
+	* */
+  let obj = {
+    self: this,
+    f: (...rest) => {
+      console.log(this)
+      console.log(rest)
+    },
+    g() {
+      console.log(this)
+    }
+  }
+
+  console.log(obj.self)
+
+  obj.g()
+  obj.g.call('foo', 'bar')
+
+  console.log(new String('foo') === 'foo') // false 一个是对象类型 一个是原始数据类型
+  console.log(String('foo') === 'foo') // true
+
+  // this 指向window
+  obj.f('foo', 'bar')
+
+  // this指向window 而第一个参数foo会被忽略掉 所以最终rest只有一个元素
+  // 使用call或者apply或者bind方法绑定箭头函数中的this时 不会成功 并且第一个参数会被忽略掉
+  obj.f.call('foo', 'bar')
+
+  let outer = {
+    inner: {
+      self: this
+    }
+  }
+  console.log(outer.inner.self) //window对象
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  /*
+	*  Number.parseInt === parseInt 这两个函数的机制是一样的
+	* 	 parseInt(string,radix)
+	* 	string是一个字符串 如果传入的不是字符串 会首先使用toString()转换成字符串 字符串开头的空白将会被忽略
+	* 	radix是一个[2,36]范围之间的整数(如果没有传入 那么浏览器会根据string的长相来决定radix的值)
+	* 	如果string的第一个非空字符是加号或者减号,浏览器是可以理解的
+	*
+	* 	返回值:
+	* 		如果转换成功 将会返回一个整数数值(十进制数)
+	* 		如果传入的radix不在2-36这个范围 小于2或者大于36 返回NaN
+	* 		如果string的第一个非空字符不是数值 返回NaN
+	* */
+
+  console.log(parseInt('-123', 10)) // -123
+  console.log(parseInt('1001', 2)) // 将‘1001’当做二进制数 结果返回9(十进制的数)
+  console.log(parseInt('0xffffff', 16))
+  console.log(parseInt('0xffffff'))
+  console.log(parseInt('1001'))
+  console.log(parseInt('1001,110')) // 不认识字符串里的逗号 所以直接返回1001
+  console.log(9e2) // 900
+  console.log(9e-2) // 900
+  console.log(parseInt('9e2abc')) // 不认识字符串中的e(科学计数法)
+  console.log(parseInt('9-2')) // 9 减号不在字符串的开头 parseInt不认识
+  console.log(parseInt(' -9abc')) // -9
+
+  /*
+	*  Number.parseFloat === parseFloat 两者的机制是相同的
+	* 	parseFloat(string)
+	* 	parseFloat()可以识别:正负号&e/E
+	* */
+  console.log(parseFloat('-314e-2'))
+  console.log(parseFloat('-314E-2'))
+</script>
+</body>
+</html>

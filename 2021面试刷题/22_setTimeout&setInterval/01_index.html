@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  // 使用var声明的变量默认添加在window对象上作为属性
+  // 使用let声明的变量不会添加到window对象上作为属性
+  let obj = {
+    msg: 'hello world',
+    show() {
+      console.log(this.msg)
+    }
+  }
+
+  let msg = '你好'
+
+  setTimeout(obj.show, 1000)
+
+  console.log(window.msg)
+</script>
+</body>
+</html>
