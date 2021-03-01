@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math.min&Math.max</title>
+</head>
+<body>
+<script>
+  /*
+  *  Math.min(value1[,value2,...])
+  *   1.返回一组数中的最小值
+  *   2.如果其中有一个参数无法被转换成数值 则返回NaN
+  *   3.如果没有传入参数 直接返回Infinity(无穷大)
+  *
+  *   Math.max(value1[,value2,...])
+  *   1.返回一组数中的最大值
+  *   2.如果其中有一个参数无法转换成数值 则返回NaN
+  *   3.如果没有传入参数 直接返回-Infinity(负无穷)
+  * */
+  console.log(Math.min(1, 2, 3, 4, 5))
+  console.log(Math.max(1, 2, 3, 4, 5))
+
+  console.log(Math.min() < Math.max()) // false
+
+  console.log(Math.max(1, 2, 3, 4, '')) // Number('')返回0
+  console.log(Math.max(1, 2, 3, 4, 'abc')) // NaN Number('abc')返回NaN
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout&setInterval</title>
+</head>
+<button id="btn">clear</button>
+<body>
+<script>
+  /*
+  *  setTimeout&setInterval返回的timeId是递增的正整数,而且这两个函数在同一个window对象里共用一个标识池
+  *  使用setTimeout来模拟setInterval
+  * */
+
+  function _setInterval(func, delay) {
+    let intervalId = 0
+
+    function f() {
+      intervalId = setTimeout(function () {
+        func()
+        f()
+      }, delay)
+    }
+
+    f()
+
+    return intervalId
+  }
+
+  _setInterval(function () {
+    console.log('chenMM')
+  }, 2000)
+
+</script>
+</body>
+</html>

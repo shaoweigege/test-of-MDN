@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>for循环的判断条件执行的次数</title>
+</head>
+<body>
+<script>
+  let proxy = new Proxy([1, 2, 3, 4, 5], {
+    // target就是被代理的对象本身 prop就是当前访问的属性
+    get(target, prop) {
+      // console.log(target, prop)
+      console.log(prop)
+      return target[prop]
+    }
+  })
+  // console.log(proxy.length)
+
+  // 在循环的判断中 proxy.length 这个获取属性的操作被执行了 proxy.length+1 次
+  for (let i = 0; i < proxy.length; i++) {
+    // console.log(111)
+  }
+  console.log('**********')
+  // 这么写的话 proxy.length获取属性的操作只执行一次
+  for (let i = 0, length = proxy.length; i < length; i++) {
+
+  }
+</script>
+</body>
+</html>

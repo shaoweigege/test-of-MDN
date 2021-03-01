@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>call&apply&bind的一些知识点</title>
+</head>
+<body>
+<script>
+  /*
+  *  Function.prototype.call()
+  *  Function.prototype.apply()
+  *  Function.prototype.bind()
+  *  如果函数不是箭头函数 是普通函数
+  *   1.那么在非严格模式下第一个参数如果传的是null和undefined 那么会被替换为window对象
+  *   2.如果传入的第一个参数是原始类型的值 则会被包装成对象
+  *   3.普通函数中的this是在调用时才确定的
+  *
+  *  如果函数是箭头函数
+  *   1.那么传入的第一个参数会被忽略
+  *   2.而且箭头函数中的this指向永远不会发生改变 在定义的时候就已经确定了
+  *
+  * */
+  function f1() {
+    console.log(this)
+  }
+
+  f1.call('abc') // String对象‘abc’
+  f1.call(100)  // Number对象100
+  f1.call(true) // Boolean对象true
+  f1.call(NaN) // Number对象NaN
+
+  let f2 = () => {
+    console.log(this) // 这里的this始终都是window对象
+  }
+</script>
+</body>
+</html>
