@@ -12,25 +12,45 @@
   *  使用setTimeout来模拟setInterval
   * */
 
-  function _setInterval(func, delay) {
-    let intervalId = 0
+  function My() {
+    // 保存定时器的id 用于清理
+    this.intervalId = 0
+    // 用来标识是否需要清理下一次的定时器
+    this.clear = false
+  }
+
+  My.prototype.setInterval = function (func, delay) {
+    let self = this
+    let timerId = 0
+    self.intervalId++
 
     function f() {
-      intervalId = setTimeout(function () {
-        func()
-        f()
+      timerId = setTimeout(function () {
+        if (self.clear) {
+          clearTimeout(timerId)
+        } else {
+          func()
+          f()
+        }
       }, delay)
     }
 
     f()
-
-    return intervalId
+    return self.intervalId
   }
 
-  _setInterval(function () {
+  My.prototype.clearInterval = function () {
+    this.clear = true
+  }
+
+  let my = new My()
+  my.setInterval(function () {
     console.log('chenMM')
   }, 2000)
 
+  document.getElementById('btn').addEventListener('click', function () {
+    my.clearInterval()
+  })
 </script>
 </body>
 </html>

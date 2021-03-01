@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  *  [0,0,3,1,0,0,2,4,0,0]
+  * */
+
+  function moveZeroToEnd(arr) {
+    // 定义非零数值的下标
+    let idx = 0
+    for (let i = 0, length = arr.length; i < length; i++) {
+      if (arr[i] !== 0) {
+        // 避免第一个就是非零数值
+        if (idx !== i) {
+          // 这是第idx个非零数值
+          arr[idx] = arr[i]
+          // 将这个值设置为0
+          arr[i] = 0
+        }
+        idx++
+      }
+    }
+  }
+
+  let arr = [40, 0, 0, 3, 1, 0, 0, 2, 4, 0, 0, 50]
+  moveZeroToEnd(arr)
+  console.log(arr)
+</script>
+</body>
+</html>
