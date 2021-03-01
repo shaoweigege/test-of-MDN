@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>==&===</title>
+</head>
+<body>
+<script>
+  /*
+  *  相等: ==
+  *   比较规则:
+  *       1.如果两个操作数都是对象类型,则仅当两个操作数指向同一个内存地址时才返回true;
+  *       2.如果一个操作数是null,另一个操作数是undefined,则返回true;
+  *         即null==null null==undefined undefined==undefined
+  *       3.如果两个操作数是不同类型的,则会在尝试比较之前将它们转换成相同的类型:
+  *         3.1 当数字跟字符串比较时:会将字符串转换成数值 1=='1' 会先将字符串1转换成数字1 所以最后返回true
+  *         3.2 如果操作数之一是Boolean值,则将布尔值转换成数值 1==true 会先将true转换成数字1 所以最后返回true
+  *         3.3 如果一个操作数是对象,另一个操作数是数字或者字符串,会尝试使用对象的valueOf()和toString()方法将对象转换成原始值
+  *       4.如果两个操作数类型相同,则比较它们的值
+  *         对于数值来说 -0==+0 返回true
+  *         对于NaN来说 任何值都跟它不等
+  *
+   */
+  var length = 10
+
+  function fn() {
+    console.log(this.length)
+  }
+
+  var obj = {
+    length: 2,
+    show: function (fn) {
+      this.length = 3
+      fn() // 这个fn执行的时候 函数内部的this就是window对象 而window.length = 10
+      // arguments = {0:fn,length:1}
+      // arguments[0] = arguments.0 所以fn函数内部的this就是arguments对象 而arguments.length = 1
+      arguments[0]()
+    }
+  }
+  obj.show(fn)
+
+</script>
+</body>
+</html>

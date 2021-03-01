@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>变量提升</title>
+</head>
+<body>
+<script>
+  /*
+  *  函数表达式被提升到最上面 因此先声明的getName函数会被后声明的给覆盖掉
+  * */
+  var getName = function () {
+    console.log(1)
+  }
+
+  function getName() {
+    console.log(2)
+  }
+
+  console.log(getName)
+
+  function Dog(name, age) {
+    this.name = name
+    this.age = age
+    this.color = '黑色'
+    return this
+  }
+
+  Dog.prototype.color = '红色'
+  console.log(new Dog('Rocky', 2).color)
+</script>
+</body>
+</html>
