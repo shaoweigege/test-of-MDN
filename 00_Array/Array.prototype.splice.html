@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  * Array.prototype.splice(start[,deleteCount,item1,item2,...])
+  * start:开始的下标
+  * deleteCount:要删除的元素的个数
+  * item1,item2,...:要添加进数组的元素,如果不指定,那么splice将只会删除数组的元素
+  *
+  * splice可以实现在数组的任意位置新增元素,亦可以取代push和unshift方法
+  * splice也可以实现将任意下标的值删除
+  * splice也可以实现将任意下标的值替换掉,替换成一个其他的值或者多个其他的值
+  * */
+  let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  // let arr2 = arr1.splice(0, 5, 11, 12)
+  // console.log(arr1, arr2)
+  let arr2 = arr1.splice(0, 0, 100)
+  console.log(arr1, arr2)
+</script>
+</body>
+</html>
