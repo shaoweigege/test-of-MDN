@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>typeof&instanceof</title>
+</head>
+<body>
+<script>
+  /*
+  *  typeof用来判断原始类型 不使用new命令生成的类型
+  *   1.Number 2.String 3.Boolean 4.undefined 5.Symbol 6.BigInt
+  *   还可以判断函数类型 typeof (()=>{}) === 'function'
+  *  instanceof用来判断对象类型
+  *   1.Array 2.Object 3.Set 4.Map 5.WeakSet 6.WeakMap 7.null 8.Date
+  * */
+  console.log(typeof Number(10))
+  console.log(typeof (() => {
+  }))
+  console.log(typeof new String(12344))
+
+  console.log((() => {
+  }) instanceof Function)
+
+  console.log({} instanceof Object)
+
+  console.log([] instanceof Array)
+
+  console.log(null instanceof Object)
+</script>
+</body>
+</html>
