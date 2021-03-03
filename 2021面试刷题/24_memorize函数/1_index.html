@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>memorize函数</title>
+</head>
+<body>
+<script>
+  /*
+  *  缓存函数 就是将一些需要大量计算的函数调用后的结果缓存起来
+  *   第一次调用需要大量计算
+  *   之后的每次调用都是从缓存中读取结果
+  *
+  *   利用空间换取时间
+  * */
+  // 普通函数
+  function multiply(m, n) {
+    console.log('计算中...')
+    return Math.pow(m, n)
+  }
+
+  // 缓存函数
+  function memorize(f) {
+    // 创建缓存对象
+    let cache = {}
+    // 返回一个函数
+    return function () {
+      // 利用参数的长度和参数组成的字符串来确定唯一标识
+      let key = 'abc' + arguments.length + Array.prototype.slice.call(arguments).join(',')
+      // 判断缓存对象中是否已经有了这个键
+      console.log(key)
+      if (cache[key]) {
+        return cache[key]
+      } else {
+        return cache[key] = f.apply(this, Array.prototype.slice.call(arguments))
+      }
+    }
+  }
+
+  // 测试
+  console.log(multiply(2, 3))
+  let memorizeMultiply = memorize(multiply)
+  console.log(memorizeMultiply(2, 3))
+  console.log(memorizeMultiply(2, 3))
+  console.log(memorizeMultiply(2, 3))
+  console.log(memorizeMultiply(2, 3))
+  console.log({
+    'a,b,c': 100
+  })
+</script>
+</body>
+</html>
