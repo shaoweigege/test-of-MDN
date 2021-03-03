@@ -14,13 +14,32 @@
    * @return {number}
    */
   let firstUniqChar = function (s) {
-
+    // 判断特殊情况
+    if (s.length === 0 || s.length === 1) return s.length - 1
+    // 利用对象来记录每个字符出现的次数 然后再遍历原始的字符串 找到第一个obj[s[i]] === 1的下标
+    let obj = {}
+    for (let val of s) {
+      if (!obj[val]) {
+        obj[val] = 1
+      } else {
+        obj[val]++
+      }
+    }
+    for (let i = 0; i < s.length; i++) {
+      if (obj[s[i]] === 1) {
+        return i
+      }
+    }
+    return -1
   }
-  console.log(firstUniqChar('leetcode'))
-  console.log(firstUniqChar('letecode'))
-  console.log(firstUniqChar('loveleetcode'))
-  console.log(firstUniqChar('bcd'))
-  console.log(firstUniqChar(''))
+  console.log(firstUniqChar('leetcode')) //0
+  console.log(firstUniqChar('letecode')) //0
+  console.log(firstUniqChar('loveleetcode')) //2
+  console.log(firstUniqChar('eleoopapae')) //1
+  console.log(firstUniqChar('"aadadaad"'))
+  console.log(firstUniqChar('bcd')) // 0
+  console.log(firstUniqChar('')) // -1
+  console.log(firstUniqChar('cc')) // -1
 </script>
 </body>
 </html>
