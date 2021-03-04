@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>验证回文串</title>
+</head>
+<body>
+<script>
+  /*
+  * 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。本题中，我们将空字符串定义为有效的回文串
+  *
+  * 输入: "A man, a plan, a canal: Panama"
+  * 输出: true
+  *
+  * 输入: "race a car"
+  * 输出: false
+  * */
+  /**
+   * @param {string} s
+   * @return {boolean}
+   */
+  console.log('0'.charCodeAt(0)) // 48
+  console.log('9'.charCodeAt(0)) // 57
+  console.log('a'.charCodeAt(0)) // 97
+  console.log('z'.charCodeAt(0)) // 122
+  console.log('A'.charCodeAt(0)) // 65
+  console.log('Z'.charCodeAt(0)) // 90
+  console.log(','.charCodeAt(0)) // 44
+  console.log(' '.charCodeAt(0)) // 32
+  console.log(':'.charCodeAt(0)) // 32
+
+  const isPalindrome = function (s) {
+    // 先转化成小写字母
+    s = s.toLowerCase()
+    // 双指针 一前一后
+    let i = 0, j = s.length - 1
+    while (i < j) {
+      if (!isNumberOrLetter(s[i])) {
+        i++
+        continue
+      }
+      if (!isNumberOrLetter(s[j])) {
+        j--
+        continue
+      }
+      if (s[i] !== s[j]) {
+        return false
+      }
+      i++
+      j--
+    }
+    return true
+  }
+  // 判断字符是否是数字或者小写字母
+  const isNumberOrLetter = function (s) {
+    const code = s.charCodeAt(0)
+    return (code >= 48 && code <= 57) || (code >= 97 && code <= 122)
+  }
+  console.log(isNumberOrLetter(','))
+
+  // Test
+  console.log(isPalindrome('A man, a plan, a canal: Panama'))
+  console.log(isPalindrome('"A man, a plan, a canal: Panama"'))
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  *  Function.length === 1
+  *
+  *  Function.prototype.length
+  *
+  *  arguments.length
+  *
+  * */
+  function f1(a, b, c) {
+
+  }
+
+  function f2(a, b = 2, c) {
+
+  }
+
+  function f3(a = 0, b, c) {
+
+  }
+
+  console.log(f1.length, f2.length, f3.length) // 3 , 1  , 0
+  console.log(f1.name, f2.name, f3.name) // 3 , 1  , 0
+  console.log(Function.length)
+  console.dir(f1)
+</script>
+</body>
+</html>
