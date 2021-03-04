@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>最长公共前缀</title>
+</head>
+<body>
+<script>
+  /*
+  * 输入：strs = ["flower","flow","flight"]
+  * 输出："fl"
+  *
+  * 输入：strs = ["dog","racecar","car"]
+  * 输出：""
+  * 解释：输入不存在公共前缀。
+  *
+  * 0 <= strs.length <= 200
+  * 0 <= strs[i].length <= 200
+  * strs[i] 仅由小写英文字母组成
+  *
+  * */
+  /**
+   * @param {string[]} strs
+   * @return {string}
+   */
+  const longestCommonPrefix = function (strs) {
+    // 先找到长度最短的字符串
+    let shortStr = strs[0]
+    for (let i = 1; i < strs.length; i++) {
+      if (strs[i].length < shortStr.length) {
+        shortStr = strs[i]
+      }
+    }
+    // 找到了最短的字符串 然后开始遍历这个最短字符串
+    // 从最短的字符串的第一个下标开始遍历
+    let startIdx = 0, endIdx = startIdx
+    for (let i = 0; i < shortStr.length; i++) {
+      // 遍历strs数组
+      for (let j = startIdx; j < strs.length; j++) {
+        // 遍历strs数组判断 strs.substr(startIdx,j+1)是否是每个数组成员的子串
+        if (strs[j].indexOf(shortStr.substring(startIdx, j + 1)) < 0) {
+          startIdx = i
+          // 直接跳出内层循环
+          break
+        }
+        endIdx++
+      }
+    }
+    return [startIdx, endIdx]
+  }
+  // Test
+  console.log(longestCommonPrefix(["flower", "flow", "flight"]))
+  console.log(longestCommonPrefix(["dog", "racecar", "car"]))
+  console.log(longestCommonPrefix(["foo", "far", "foj"]))
+</script>
+</body>
+</html>
