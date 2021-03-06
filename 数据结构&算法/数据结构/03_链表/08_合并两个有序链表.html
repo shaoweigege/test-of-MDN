@@ -58,19 +58,51 @@
 
   // 使用循环
   const mergeTwoLists1 = function (l1, l2) {
-    let head = new ListNode()
-    let temp = head
-    while (l1 && l2) {
-      if (l1.val <= l2.val) {
-        temp.next = new ListNode(l1.val)
+    let dummy = new ListNode(null)
+    let curr = dummy
+    while (l1 || l2) {
+      if (l1 && !l2) {
+        curr.next = new ListNode(l1.val)
+        l1 = l1.next
+      } else if (l2 && !l1) {
+        curr.next = new ListNode(l2.val)
+        l2 = l2.next
+      } else if (l1.val <= l2.val) {
+        curr.next = new ListNode(l1.val)
         l1 = l1.next
       } else {
-        temp.next = new ListNode(l2.val)
+        curr.next = new ListNode(l2.val)
         l2 = l2.next
       }
-      temp = temp.next
+      curr = curr.next
     }
-    return head
+    return dummy.next
+  }
+
+  const mergeTwoLists2 = function (l1, l2) {
+    let dummy = new ListNode(null)
+    let curr = dummy
+    while (l1 && l2) {
+      if (l1.val <= l2.val) {
+        curr.next = new ListNode(l1.val)
+        l1 = l1.next
+      } else {
+        curr.next = new ListNode(l2.val)
+        l2 = l2.next
+      }
+      curr = curr.next
+    }
+    while (l1) {
+      curr.next = new ListNode(l1.val)
+      l1 = l1.next
+      curr = curr.next
+    }
+    while (l2) {
+      curr.next = new ListNode(l2.val)
+      l2 = l2.next
+      curr = curr.next
+    }
+    return dummy.next
   }
 
   // Test
@@ -85,7 +117,7 @@
     }
   }
   let l2 = {
-    val: 1,
+    val: 2,
     next: {
       val: 4,
       next: {
@@ -94,11 +126,15 @@
       }
     }
   }
-  console.log(mergeTwoLists(l1, l2))
-  console.log(mergeTwoLists(new ListNode(11, null), new ListNode(2, null)))
+  // console.log(mergeTwoLists(l1, l2))
+  // console.log(mergeTwoLists(new ListNode(11, null), new ListNode(2, null)))
   console.log('*************************')
   console.log(mergeTwoLists1(l1, l2))
   console.log(mergeTwoLists1(new ListNode(11, null), new ListNode(2, null)))
+  console.log(mergeTwoLists1(
+      new ListNode(-9, new ListNode(3)),
+      new ListNode(5, new ListNode(7)))
+  )
 </script>
 </body>
 </html>
