@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监测对象的变化</title>
+</head>
+<body>
+<script>
+  /*
+	*
+	* */
+  // 判断一个变量是否是object类型
+  function isObject(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+  }
+
+  function deepObserve(obj, callback) {
+    Object.keys(obj).forEach(prop => {
+      // 监听obj的prop属性
+      // 在设置属性监听之前获取obj[prop]
+      let oldVal = obj[prop]
+      Object.defineProperty(obj, prop, {
+        // 数据属性
+        // value: oldVal, value属性跟get属性是相同的作用 只能使用一个
+        configurable: true, // 该属性是否能被delete语句删除
+        enumerable: true, // 该属性是否能倍for...in遍历
+        // writable: true, writable属性跟set属性是相同的作用 只能使用一个
+        // 访问器属性
+        get() {
+          return oldVal
+        },
+        set(newVal) {
+          // 判断新值跟旧值是否相同
+          if (newVal !== oldVal) {
+            // 执行回调函数
+            callback.call(this, prop, oldVal, newVal)
+            oldVal = newVal
+          }
+        }
+      })
+      // 判断obj[prop]的值是不是对象类型
+      if (isObject(obj[prop])) {
+        // 递归调用监听函数
+        deepObserve(obj[prop], callback)
+      }
+    }, this)
+  }
+
+  console.log(Object.prototype.toString.call([]))
+  console.log(Object.prototype.toString.call({}))
+  console.log(Object.prototype.toString.call(1))
+  console.log(Object.prototype.toString.call('1'))
+  console.log(Object.prototype.toString.call(true))
+  console.log(Object.prototype.toString.call(null))
+  console.log(Object.prototype.toString.call(undefined))
+  console.log(Object.prototype.toString.call(NaN))
+  // Test
+  let per = {
+    name: 'Jack',
+    age: 20,
+    married: true,
+    wife: {
+      name: 'Rose',
+      age: 18,
+      married: true,
+      hobbies: ['吃饭', '睡觉', '打豆豆']
+    }
+  }
+  deepObserve(per, function (prop, oldVal, newVal) {
+    console.log(prop, '发生变化', oldVal, newVal)
+  })
+  setTimeout(function () {
+    per.age++
+    per.wife.name = 'Helen'
+    console.log(per)
+    setTimeout(function () {
+      per.age++
+      console.log(per)
+    })
+  }, 1000)
+</script>
+</body>
+</html>

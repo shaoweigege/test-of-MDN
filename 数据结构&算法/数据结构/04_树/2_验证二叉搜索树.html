@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>验证二叉搜索树</title>
+	<meta charset="UTF-8">
+	<title>验证二叉搜索树</title>
 </head>
 <body>
 <script>
@@ -33,16 +33,19 @@
    * @return {boolean}
    */
   const isValidBST = function (root) {
-    // 每一个节点都假设它是搜索树
-    let flag = true
+    // isValidBST(root)=root.val>root.left.val&&root.val<root.right.val&&isValidBST(root.left)&&isValidBST(root.right)
+    if (!root) return false
     if (root.left) {
-      flag = (root.val > root.left.val) && isValidBST(root.left)
+      return (root.val > root.left.val) && isValidBST(root.left)
     }
     if (root.right) {
-      flag = (root.val < root.right.val) && isValidBST(root.right)
+      return (root.val < root.right.val) && isValidBST(root.right)
     }
-    return flag
   }
+  // Test
+  let root = new TreeNode(2, new TreeNode(1), new TreeNode(3))
+  console.log(isValidBST(root))
+  console.log(1 > 2 && true)
 </script>
 </body>
 </html>

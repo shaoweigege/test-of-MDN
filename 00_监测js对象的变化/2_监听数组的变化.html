@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监听数组的变化</title>
+</head>
+<body>
+<script>
+  const methods = ['push', 'pop', 'shift', 'unshift', 'slice', 'splice', 'sort', 'reverse']
+  const arrayProto = Object.create(Array.prototype)
+
+  // 给Array.prototype添加以上的属性的监听
+  methods.forEach(method => {
+    // 记录原生的逻辑
+    const original = Array.prototype[method]
+
+    Object.defineProperty(arrayProto, method, {
+      value: function (...args) {
+        const result = original.apply(this, args)
+        console.log('change')
+        return result
+      }
+    })
+  }, this)
+  let arr = [1, 2, 3]
+  // 这是最重要的一步 将数组的__proto__属性指向自己刚刚创建的代理数组原型上
+  arr.__proto__ = arrayProto
+  arr.push(4)
+  console.log(arr)
+
+  let obj = {}
+  Object.defineProperty(obj, 'key', {
+    // value属性的值可以使任意类型
+    // value: function (...args) {
+    //
+    // }
+    get(...args) {
+      console.log('hello')
+			return '111'
+    }
+  })
+  console.log(obj.key)
+</script>
+</body>
+</html>
