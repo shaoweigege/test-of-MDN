@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>hello World</title>
+</head>
+<body>
+<div>
+  <p>This is sub frame</p>
+  <button id="btn">click sub</button>
+</div>
+<script>
+  window.onload = function () {
+    // 访问父窗体中定义的全局变量
+    console.log(window.parent.per)
+    // 添加事件监听(监听来自父页面发送的消息)
+    window.addEventListener('message', function (e) {
+      let {data, origin} = e
+      console.log(e)
+      console.log(data, '---', origin)
+      //  访问localStorage数据
+      const parent_user = localStorage.getItem('parent_user')
+      console.log(parent_user)
+      // 子窗口设置localStorage数据
+      localStorage.setItem('child_user', JSON.stringify({name: '小学生'}))
+    })
+
+    const button = document.getElementById('btn')
+    button.addEventListener('click', function () {
+      // 子页面向父页面发送消息
+      window.parent.postMessage('你好,我是子页面发送的消息', 'http://localhost:63342')
+    })
+  }
+</script>
+</body>
+</html>

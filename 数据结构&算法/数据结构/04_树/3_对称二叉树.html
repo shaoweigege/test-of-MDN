@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对称二叉树</title>
+</head>
+<body>
+<script>
+  /*
+  * 给定一个二叉树，检查它是否是镜像对称的。
+  *
+        1
+       / \
+      2   2
+     / \ / \
+    3  4 4  3
+
+        1
+       / \
+      2   2
+       \   \
+       3    3
+  * */
+  /**
+   * Definition for a binary tree node.
+   * function TreeNode(val, left, right) {
+   *     this.val = (val===undefined ? 0 : val)
+   *     this.left = (left===undefined ? null : left)
+   *     this.right = (right===undefined ? null : right)
+   * }
+   */
+  function TreeNode(val, left, right) {
+    this.val = (val === undefined ? 0 : val)
+    this.left = (left === undefined ? null : left)
+    this.right = (right === undefined ? null : right)
+  }
+
+  /**
+   * @param {TreeNode} root
+   * @return {boolean}
+   */
+  const isSymmetric = function (root) {
+    return check(root, root)
+  }
+
+  // 判断两个TreeNode是否对称
+  function check(p, q) {
+    // 此处一定要先判断!p&&!q后判断!p||!q 如果顺序颠倒则会导致check(null,null)返回的结果完全不同
+    if (!p && !q) return true
+    if (!p || !q) return false
+    return p.val === q.val && check(p.left, q.right) && check(p.right, q.left)
+  }
+
+  // Test
+  let treeNode = new TreeNode(
+      1,
+      new TreeNode(
+          2,
+          new TreeNode(3),
+          new TreeNode(4)
+      ),
+      new TreeNode(
+          2,
+          new TreeNode(4),
+          new TreeNode(3)
+      )
+  )
+  console.log(isSymmetric(treeNode))
+
+  console.log('********************************')
+
+  function f1(p, q) {
+    if (!p && !q) return true
+    if (!p || !q) return false
+  }
+
+  function f2(p, q) {
+    if (!p || !q) return false
+    if (!p && !q) return true
+  }
+
+  // Test
+  console.log(f1(null, null)) // true
+  console.log(f2(null, null)) // false
+</script>
+</body>
+</html>

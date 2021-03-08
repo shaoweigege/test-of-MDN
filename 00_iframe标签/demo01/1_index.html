@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父窗体</title>
+  <style>
+    iframe {
+      width: 500px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <p>This is super frame</p>
+  <button id="btn">click super</button>
+</div>
+<iframe id="child-frame" src="./2_index.html" frameborder="1"></iframe>
+<script>
+  // 定义全局变量 只有全局变量才可以在子窗体中获取到
+  window.per = {
+    name: 'Jack'
+  }
+  // 监听来自子页面的事件
+  window.addEventListener('message', function (e) {
+    console.log(e)
+    let {data, origin} = e
+    console.log(origin, '---', data)
+    // 读取localStorage数据
+    const child_user = localStorage.getItem('child_user')
+    console.log(child_user)
+  })
+  const button = document.getElementById('btn')
+
+  button.addEventListener('click', function () {
+    // 父页面向子页面发送消息
+    document.getElementById('child-frame').contentWindow.postMessage('hello Jack', '*')
+  })
+  // 向localStorage中添加数据
+  localStorage.setItem('parent_user', JSON.stringify({name: '麻花腾'}))
+
+
+  window.onpagehide = function () {
+    console.log('pagehide')
+  }
+  window.onpageshow = function () {
+    console.log('pageshow')
+  }
+
+  window.ononline = function (e) {
+    console.log(e)
+  }
+  window.onoffline = function (e) {
+    console.log(e)
+  }
+
+  window.onfocus = function (e) {
+    console.log(e)
+    document.title = '父窗体'
+  }
+  window.onblur = function (e) {
+    console.log(e)
+    document.title = '您有新的信息，请尽快查收'
+  }
+</script>
+</body>
+</html>
