@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>共同父节点</title>
+</head>
+<body>
+<script>
+  /*
+  * 查找两个节点的最近的一个共同父节点，可以包括节点自身
+  *
+  * oNode1 和 oNode2 在同一文档中，且不会为相同的节点
+  * */
+  function commonParentNode(oNode1, oNode2) {
+    let parentNode1 = oNode1.parentNode
+    let parentNode2 = oNode2.parentNode
+    while (true) {
+      if (parentNode1.contains(oNode2)) {
+        return parentNode1
+      }
+      if (parentNode2.contains(oNode1)) {
+        return parentNode2
+      }
+      parentNode1 = parentNode1.parentNode
+      parentNode2 = parentNode2.parentNode
+    }
+  }
+</script>
+</body>
+</html>

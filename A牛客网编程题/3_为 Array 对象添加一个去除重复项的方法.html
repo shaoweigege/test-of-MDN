@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>为 Array 对象添加一个去除重复项的方法</title>
+</head>
+<body>
+<script>
+  /*
+  * 为 Array 对象添加一个去除重复项的方法
+  * */
+  Array.prototype.uniq = function () {
+    return [...new Set(this)]
+  }
+
+  let date = new Date()
+  console.log(date.getDay())
+  console.log(date.getDate())
+</script>
+</body>
+</html>

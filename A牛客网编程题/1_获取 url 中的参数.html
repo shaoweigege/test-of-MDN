@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>获取 url 中的参数</title>
+</head>
+<body>
+<script>
+  /*
+  *
+  1. 指定参数名称，返回该参数的值 或者 空字符串
+  2. 不指定参数名称，返回全部的参数对象 或者 {}
+  3. 如果存在多个同名参数，则返回数组
+  *
+  * http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key
+  * [1, 2, 3]
+  * */
+  function getUrlParam(sUrl, sKey) {
+    // 找到?的下标 和#的下标
+    let idx1 = sUrl.indexOf('?')
+    let idx2 = sUrl.indexOf('#')
+    let params
+    if (idx2 < 0) {
+      params = sUrl.substring(idx1 + 1)
+    } else {
+      params = sUrl.substring(idx1 + 1, idx2)
+    }
+    // params就是所有的请求参数组成的字符串
+    let arr = params.split('&')
+    let obj = {}
+    arr.forEach(param => {
+      let innerArr = param.split('=')
+      if (obj[innerArr[0]]) {
+        obj[innerArr[0]].push(innerArr[1])
+      } else {
+        obj[innerArr[0]] = [innerArr[1]]
+      }
+    })
+
+    if (!sKey) {
+      return obj
+    }
+    if (!obj[sKey]) {
+      return ''
+    }
+    if (obj[sKey].length > 1) {
+      return obj[sKey]
+    } else {
+      return obj[sKey][0]
+    }
+  }
+
+  //Test
+  console.log(getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe'))
+</script>
+</body>
+</html>
