@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>原型链</title>
+</head>
+<body>
+<script>
+  function Person() {
+    this.say = function () {
+      console.log('人可以说话')
+    }
+  }
+
+  const p = new Person()
+  // 实例对象有__proto__这个属性(隐式原型) 指向构造函数的prototype属性(显式原型)
+  // 构造函数.prototype这又是一个实例对象 那么它也有__proto__这个属性 构造函数.prototype.__proto__ 这个属性指向Object的prototype属性
+  // Object.prototype这又是一个实例对象 那么它也有__proto__这个属性 Object.prototype.__proto__ 这个属性指向null
+  console.log(p.__proto__ === Person.prototype)
+  console.log(Person.prototype.__proto__ === Object.prototype)
+  console.log(Object.prototype.__proto__)
+
+  console.log(Person.prototype.constructor === Person)
+</script>
+</body>
+</html>

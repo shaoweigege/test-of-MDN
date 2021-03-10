@@ -7,7 +7,10 @@
 <body>
 <script>
   let obj = {
-    name: 'Jack'
+    name: 'Jack',
+    aaa: {
+      bbb: 'ccc'
+    }
   }
   // Object.create(obj) 返回一个空对象 该空对象的原型指向obj
   let newObj1 = Object.create(obj)
@@ -15,7 +18,9 @@
 
   // Object.assign()是真的去复制对象的属性
   let newObj2 = Object.assign(obj)
-  console.log(newObj2)
+  newObj2.name = 'Rose'
+  newObj2.aaa.bbb = 'ddd'
+  console.log(newObj2, obj)
 </script>
 </body>
 </html>

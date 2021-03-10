@@ -16,8 +16,9 @@
   }
 
   // 继承之前
-  console.log(Animal.prototype.constructor === Animal)
-  console.log(Cat.prototype.constructor === Cat)
+  console.log(Animal.prototype.constructor === Animal) // true
+  console.log(Animal.prototype === (new Animal).__proto__) // true
+  console.log(Cat.prototype.constructor === Cat) // true
 
   //  方法一：利用构造函数绑定实现继承
   function Dog(name, color) {

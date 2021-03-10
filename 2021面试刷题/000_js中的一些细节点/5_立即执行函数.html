@@ -12,8 +12,29 @@
   *   2.(function(){}())
   *  立即执行函数会创建一个独立的作用域 该作用域中的变量在外面是访问不到的
   * */
+  // 打印 0 1 2 3 4 5
   for (var i = 0; i < 6; i++) {
     console.log(i)
+  }
+
+  // 打印 0 1 2 3 4 5
+  for (var j = 0; j < 6; j++) {
+    setTimeout(console.log, 10, j)
+  }
+
+  // 打印 6 6 6 6 6 6
+  // 因为function(){console.log(m)}会在10ms后执行 而10ms后m已经变成了6了
+  for (var m = 0; m < 6; m++) {
+    setTimeout(function () {
+      console.log(m)
+    }, 10)
+  }
+
+  // 打印 0 1 2 3 4 5
+  for (let n = 0; n < 6; n++) {
+    setTimeout(function () {
+      console.log(n)
+    }, 10)
   }
 </script>
 </body>

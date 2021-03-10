@@ -30,9 +30,12 @@
   f1.call(true) // Boolean对象true
   f1.call(NaN) // Number对象NaN
 
-  let f2 = () => {
-    console.log(this) // 这里的this始终都是window对象
+  let f2 = (...rest) => {
+    console.log(this, rest) // 这里的this始终都是window对象
   }
+  // 箭头函数使用call&apply&bind调用时 传入的第一个参数会被忽略
+  f2.call({name: 'Jack'}, 1, 2, 3)
+  f2.call(1, 2, 3)
 </script>
 </body>
 </html>
