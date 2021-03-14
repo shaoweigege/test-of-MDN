@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变为自动响应</title>
+</head>
+<body>
+<script>
+  let targetMap = new WeakMap()
+
+  function track(target, key) {
+    let depsMap = targetMap.get(target)
+    if (!depsMap) {
+      depsMap = new Map()
+      targetMap.set(target, depsMap)
+    }
+    let dep = depsMap.get(key)
+    if (!dep) {
+      dep = new Set()
+      depsMap.set(key, dep)
+    }
+    dep.add(effect)
+  }
+
+  function trigger(target, key) {
+    let depsMap = targetMap.get(target)
+    if (depsMap) {
+      let dep = depsMap.get(key)
+      if (dep) {
+        dep.forEach(effect => effect())
+      }
+    }
+  }
+
+  function reactive(target) {
+    return new Proxy(target, {
+      get(target, key, receiver) {
+        let result = Reflect.get(target, key, receiver)
+        // 在访问这个target对象的key键之前，先把effect保存下
+        track(target, key)
+        console.log('执行track()')
+        return result
+      },
+      set(target, key, value, receiver) {
+        let oldValue = target[key]
+        // 下面两步的顺序不能颠倒，很关键
+        // 这一步其实就已经赋值成功了
+        let result = Reflect.set(target, key, value, receiver)
+        // 到这里再执行get时获取的是新设的值
+        if (result && oldValue !== value) {
+          // 如果把这个target对象的key键的值改了，就得执行一遍对应的effect
+          trigger(target, key)
+        }
+        return result
+      }
+    })
+  }
+
+  // Test
+  let product = reactive({
+    price: 2,
+    quantity: 5
+  })
+  let total = 0
+  let effect = () => {
+    total = product.price * product.quantity
+  }
+  // 首次调用
+  effect()
+  console.log(total)
+  product.price *= 2
+  console.log(total)
+</script>
+</body>
+</html>

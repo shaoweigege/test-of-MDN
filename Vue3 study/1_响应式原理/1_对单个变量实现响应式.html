@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对单个变量实现响应式</title>
+</head>
+<body>
+<script>
+  /*
+	*  1.dep 就是存放依赖的集合
+	*  2.effect 就是依赖的关系
+	*  3.track 是一个函数 用来将effect添加到dep集合中
+	*  4.trigger 是一个函数 用来手动触发依赖计算
+	*
+	* */
+  let price = 2
+  let quantity = 5
+  let total = 0
+
+  // dep就是一个用来存放众多依赖关系的集合
+  let dep = new Set()
+  // 表明依赖关系
+  let effect = () => {
+    // total表示依赖者 price&quantity是被依赖者 effect就是用来表示这种依赖关系的函数
+    total = price * quantity
+  }
+
+  // 用来将effect添加进dep集合中
+  function track() {
+    dep.add(effect)
+  }
+
+  // trigger用来主动触发计算依赖
+  function trigger() {
+    // 遍历dep
+    dep.forEach(effect => effect())
+  }
+
+  track()
+  trigger()
+  console.log(total)
+  // 修改变量的值
+  price = price * 2
+  // 再次手动触发trigger()函数
+  trigger()
+  console.log(total)
+</script>
+</body>
+</html>

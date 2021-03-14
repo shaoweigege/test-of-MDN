@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对多个对象的多个属性进行手动响应</title>
+</head>
+<body>
+<script>
+  /*
+	*  使用WeakMap来存储不同对象的depsMap
+	* */
+  let targetMap = new WeakMap()
+
+  /**
+   *  与上例中的变化是，多指定了个参数 target，表明 effect 存储到哪个对象对应的的 depsMap 中
+   */
+  function track(target, key) {
+    let depsMap = targetMap.get(target)
+    if (!depsMap) {
+      // 新建一个Map用来存储该target的depsMap
+      depsMap = new Map()
+      // 然后将此Map添加进WeakMap
+      targetMap.set(target, depsMap)
+    }
+    let dep = depsMap.get(key)
+    if (!dep) {
+      dep = new Set()
+      // 将此set添加进depsMap中
+      depsMap.set(key, dep)
+    }
+    dep.add(effect)
+  }
+
+  /**
+   * 同样，触发的时候也要指定一个 target，表明执行的是哪个对象的对应的depsMap中的effect
+   */
+  function trigger(target, key) {
+    let depsMap = targetMap.get(target)
+    if (depsMap) {
+      let dep = depsMap.get(key)
+      if (dep) {
+        dep.forEach(effect => effect())
+      }
+    }
+  }
+
+  let product = {price: 5, quantity: 2}
+  let total = 0
+  let effect = () => {
+    total = product.price * product.quantity
+  }
+  effect()
+  console.log(total)
+
+  // 更改
+  track(product, 'quantity')
+  product.quantity *= 2
+  trigger(product, 'quantity')
+  console.log(total)
+</script>
+</body>
+</html>

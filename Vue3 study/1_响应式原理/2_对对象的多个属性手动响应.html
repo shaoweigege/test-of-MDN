@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2_对对象的多个属性手动响应</title>
+</head>
+<body>
+<script>
+  /*
+	*  1.depsMap 使用Map结构来存储依赖 每一个键都对应着这个键的dep(Set)
+	* */
+  let product = {
+    price: 5,
+    quantity: 10
+  }
+  let total = 0
+  let depsMap = new Map()
+
+  let effect = () => {
+    total = product.price * product.quantity
+  }
+
+  /**
+   *  与上例中的变化是，指定了个参数key，表明effect存储到对象哪个键对应的的dep中
+   */
+  function track(key) {
+    let dep = depsMap.get(key)
+    if (!dep) {
+      // 如果不存在这个key的dep 那就创建一个
+      dep = new Set()
+      // 然后将该key对应的dep添加到depsMap结构中
+      depsMap.set(key, dep)
+    }
+    // 然后将effect添加到该key对应的dep中
+    dep.add(effect)
+  }
+
+  /**
+   * 同样，触发的时候也要指定一个key，表明执行的是对象哪个键的对应的dep中的effect
+   */
+  function trigger(key) {
+    let dep = depsMap.get(key)
+    console.log(dep)
+    // 如果存在这个key对应的dep 就遍历该dep
+    if (dep) {
+      dep.forEach(effect => effect())
+    }
+  }
+
+  // 首次计算
+  effect()
+  console.log(total)
+
+  track('quantity')
+  product.quantity = product.quantity * 2
+  trigger('quantity')
+  console.log(total)
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6_实现ref函数</title>
+</head>
+<body>
+<script>
+  const targetMap = new WeakMap()
+  let activeEffect = null // 👈 新增，是否需要添加effect的标志
+
+  function track(target, key) {
+    // 👇 新增，只有再activeEffect为真时才执行保存的操作
+    if (activeEffect) {
+      let depsMap = targetMap.get(target)
+      if (!depsMap) {
+        targetMap.set(target, (depsMap = new Map()))
+      }
+      let dep = depsMap.get(key)
+      if (!dep) {
+        depsMap.set(key, (dep = new Set()))
+      }
+      dep.add(activeEffect) // 👈 修改，将直接添加effect改为了添加activeEffect
+    }
+  }
+
+  function trigger(target, key) {
+    const depsMap = targetMap.get(target)
+    if (depsMap) {
+      let dep = depsMap.get(key)
+      if (dep) {
+        dep.forEach(effect => effect())
+      }
+    }
+  }
+
+  function reactive(target) {
+    return new Proxy(target, {
+      get(target, key, receiver) {
+        let result = Reflect.get(target, key, receiver)
+        console.log('调用track()')
+        track(target, key)
+        return result
+      },
+      set(target, key, value, receiver) {
+        let oldValue = target[key]
+        let result = Reflect.set(target, key, value, receiver)
+        if (result && oldValue !== value) {
+          trigger(target, key)
+        }
+        return result
+      }
+    })
+  }
+
+  // 👇 新增
+  // 为了用统一的方式，把eff添加到对应的dep中，顺便还执行了一遍设置了初始值
+  // 这样以后，只有我们手动调用effect那次才会保存dep，用trigger触发的get就不会再保存一遍了
+  function effect(eff) {
+    activeEffect = eff
+    activeEffect()
+    activeEffect = null
+  }
+
+  function ref(raw) {
+    const r = {
+      get value() {
+        // 在获取.value属性之前将本身的value属性假如track
+        track(r, 'value')
+        return raw
+      },
+      set value(val) {
+        if (val && val !== raw) {
+          raw = val
+          // 触发trigger
+          trigger(r, 'value')
+        }
+      }
+    }
+    return r
+  }
+
+  let product = reactive({
+    price: 5,
+    quantity: 2
+  })
+  let salePrice = 0
+  let total = 0
+
+  // 👇 同理也要对effect函数改造，把每一个要保存的dep变为了effect函数的参数
+  // 手动设定了total呃salePrice的初始值
+  effect(() => {
+    total = product.price * product.quantity
+  })
+  // 所以这里就不会把这个eff添加给quantity
+  effect(() => {
+    salePrice = product.price * 0.9
+  })
+
+  console.log(total, salePrice) // output: 10, 4.5
+
+  // 设置quantity只会重新计算total 因为此时activeEffect是null
+  product.quantity = 3
+  console.log(total, salePrice) // output: 15, 4.5
+
+  // 设置price后，total和salePrice对应的effect都会执行，都会被重新计算
+  product.price = 10
+  console.log(total, salePrice) // output: 30, 9
+
+</script>
+</body>
+</html>
