@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ESModule</title>
+</head>
+<body>
+<button id="btn">click</button>
+<script type="module">
+  const button = document.getElementById('btn')
+  button.addEventListener('click', () => {
+    // ES2020提案 import()方法实现动态导入 该方法返回一个Promise对象
+    import('./foo.js')
+        .then(module => {
+          console.log(module)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+  })
+</script>
+</body>
+</html>

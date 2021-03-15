@@ -194,12 +194,57 @@
     let childNodes = nodes[0].childNodes
     for (let j = 0; j < childNodes.length; j++) {
       if (j % 2 === 1) {
-        console.log(childNodes[j].nodeName,':',childNodes[j].innerHTML)
+        console.log(childNodes[j].nodeName, ':', childNodes[j].innerHTML)
         // resultJson[childNodes[j].nodeName] = childNodes[j].innerHTML
       }
     }
   }
 
+</script>
+<script>
+  // 删除对象的深层属性
+  let result = {
+    "code": "SUCCESS",
+    "flag": 1,
+    "reason": "",
+    "hashcode": "a5533bfc25a5b649da53124f3f7b82b2",
+    "chipid": "ZXCVBNM",
+    "chipcode": "",
+    "chipw": 387,
+    "chiph": 97,
+    "objects": [{
+      "id": "郑网毛",
+      "confidence": "0.72",
+      "bboxs": [{
+        "id": "郑",
+        "le": "Z",
+        "x": 178,
+        "y": 27,
+        "w": 47,
+        "h": 52
+      }, {
+        "id": "网",
+        "le": "W",
+        "x": 229,
+        "y": 20,
+        "w": 47,
+        "h": 49
+      }, {
+        "id": "毛",
+        "le": "M",
+        "x": 274,
+        "y": 19,
+        "w": 33,
+        "h": 49
+      }]
+    }]
+  }
+  result.objects.forEach(obj => {
+    if (obj.bboxs) {
+      delete obj.bboxs
+    }
+  })
+  console.log(result)
 </script>
 </body>
 </html>
