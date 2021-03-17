@@ -8,6 +8,7 @@
 <script>
   /*
   * Array.prototype.fill(value[,start[,end]) 包左不包右
+  * 返回值:修改后的数组 而且原来的数组也发生变化
   *
   * 使用指定的元素从开始位置一直填充到结束位置
   *
@@ -19,8 +20,18 @@
   *   如果提供的end>数组的length 那么就相当于只提供了两个参数的情况
   *
   * */
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  console.log(array.fill(100, 5, 7))
+  const array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  console.log(array1.fill(100, 5, 7))
+  console.log(array1)
+
+  /*
+  * Array.prototype.splice(startIndex[,deleteCount[,item1,item2...]])
+  * 返回值是被删除的元素组成的数组;如果没有元素被删除 则返回空数组
+  * 原数组会发生变化
+  * */
+  const array2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  console.log(array2.splice(5, 2, 100, 100)) // [6,7] 返回值是被删除的元素组成的数组
+  console.log(array2)
 </script>
 </body>
 </html>

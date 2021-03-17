@@ -5,10 +5,10 @@
   <title>剪贴板事件</title>
   <style>
     *::selection {
-      /*color: tomato;*/
-      /*background-color: #eee;*/
-      /*padding: 2px 5px;*/
-      /*border: 1px solid #333;*/
+      color: tomato;
+      background-color: #eee;
+      padding: 2px 5px;
+      border: 1px solid #333;
     }
   </style>
 </head>
@@ -16,12 +16,16 @@
 <p>Hello World</p>
 <input type="text">
 <script>
+  // 不管是按键的Ctrl+C键还是鼠标右键点击复制按钮都可以监听得到
   window.addEventListener('copy', e => {
     console.log('copy事件触发', e.target.innerText)
   })
 
   window.addEventListener('paste', e => {
     console.log('paste事件触发', e.target)
+    setTimeout(()=>{
+      e.target.value = '你好世界'
+    },0)
   })
 </script>
 </body>

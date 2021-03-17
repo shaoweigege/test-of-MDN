@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>navigator.onLine</title>
+</head>
+<body>
+<script>
+  console.log(navigator.onLine)
+
+  window.addEventListener('online', e => {
+    console.log('online')
+  })
+
+  window.addEventListener('offline', e => {
+    console.log('offline')
+  })
+</script>
+</body>
+</html>
